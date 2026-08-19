@@ -14,7 +14,11 @@ const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 heroTl
   .to('.hero-bg-front img', { scale: 1, duration: 1.6, ease: 'power2.out' }, 0)
   .to('.hero-wordmark', { opacity: 1, duration: .3 }, .15)
-  .to('.hero-wordmark', { y: 0, duration: 1.4, ease: 'power4.out' }, '<');
+  .to('.hero-wordmark', { y: 0, duration: 1.4, ease: 'power4.out' }, '<')
+  // once it's finished rising, bring it in front of the mountains for
+  // good — guarantees the full logo reads at rest on every screen size,
+  // regardless of exactly where the ridge line falls
+  .set('.hero-wordmark', { zIndex: 4 });
 
 if (!reduceMotion){
   gsap.to('.hero-bg-full img', {
