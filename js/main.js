@@ -4,20 +4,16 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 
 /* =========================================================
    Hero intro sequence
-   1. full background appears
-   2. front background (mountains) settles in, sandwiching the
-      wordmark between the two layers
-   3. the wordmark rises up, as if climbing from behind the front
-      mountains and out in front of the full background
+   Both mountain layers are on screen from frame one — nothing
+   fades in. The front layer settles from a slight zoom, and the
+   wordmark rises up through it, as if climbing from behind the
+   front mountains and out in front of the full background.
    ========================================================= */
-document.querySelector('.hero').classList.add('is-loaded');
-
 const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
 heroTl
-  .to('.hero-bg-full', { opacity: 1, duration: 1.2 })
-  .to('.hero-bg-front', { opacity: 1, duration: 1, ease: 'power2.out' }, '-=.5')
-  .to('.hero-wordmark', { opacity: 1, duration: .3 }, '-=.3')
+  .to('.hero-bg-front img', { scale: 1, duration: 1.6, ease: 'power2.out' }, 0)
+  .to('.hero-wordmark', { opacity: 1, duration: .3 }, .15)
   .to('.hero-wordmark', { y: 0, duration: 1.4, ease: 'power4.out' }, '<');
 
 if (!reduceMotion){

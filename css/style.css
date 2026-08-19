@@ -62,7 +62,6 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   width: min(100%, 1440px);
   transform: translateX(-50%);
   z-index: 1;
-  opacity: 0;
 }
 .hero-bg-full img{
   width: 100%; height: 100%; object-fit: cover; object-position: center 65%;
@@ -89,10 +88,11 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   width: min(100%, 1440px);
   transform: translateX(-50%);
   z-index: 3;
-  opacity: 0;
 }
 .hero-bg-front img{
   width: 100%; height: 100%; object-fit: cover; object-position: center bottom;
+  transform: scale(1.08);
+  transform-origin: center bottom;
 }
 
 /* =========================================================
@@ -110,10 +110,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
     background: url("../assets/images/bg-mountain-full.jpg") center 65% / cover no-repeat;
     filter: blur(50px) saturate(1.1) brightness(.9);
     transform: scale(1.15);
-    opacity: 0;
-    transition: opacity 1.2s var(--ease-out);
   }
-  .hero.is-loaded::before{ opacity: 1; }
 
   .hero-bg-full,
   .hero-bg-front{
