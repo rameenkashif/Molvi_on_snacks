@@ -53,9 +53,14 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   background: linear-gradient(#cfe0ea, var(--cream));
 }
 
-/* layer 1 — full background */
+/* layer 1 — full background
+   capped to a max width and centered so the photo's zoom (and the
+   front mountain's ridge line) stays consistent instead of the
+   image scaling up further on ultra-wide viewports */
 .hero-bg-full{
-  position: absolute; inset: 0;
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  width: min(100%, 1440px);
+  transform: translateX(-50%);
   z-index: 1;
   opacity: 0;
 }
@@ -76,14 +81,45 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 .hero-wordmark img{ width: 100%; }
 
-/* layer 3 — front background, tucks the wordmark's lower edge behind the hills */
+/* layer 3 — front background, tucks the wordmark's lower edge behind the
+   hills. Capped and centered to match layer 1's framing exactly, so the
+   ridge line lands in the same place regardless of viewport width. */
 .hero-bg-front{
-  position: absolute; inset: 0;
+  position: absolute; top: 0; bottom: 0; left: 50%;
+  width: min(100%, 1440px);
+  transform: translateX(-50%);
   z-index: 3;
   opacity: 0;
 }
 .hero-bg-front img{
   width: 100%; height: 100%; object-fit: cover; object-position: center bottom;
+}
+
+/* =========================================================
+   Ultra-wide viewports — once the capped layers (above) leave a
+   visible strip either side, fill it with a blurred echo of the
+   photo and feather the capped layers' edges into it, so the cap
+   reads as an edge fade rather than a hard seam. Scoped to widths
+   beyond the cap so narrower/mobile viewports are untouched.
+   ========================================================= */
+@media (min-width: 1441px){
+  .hero::before{
+    content: "";
+    position: absolute; inset: 0;
+    z-index: 0;
+    background: url("../assets/images/bg-mountain-full.jpg") center 65% / cover no-repeat;
+    filter: blur(50px) saturate(1.1) brightness(.9);
+    transform: scale(1.15);
+    opacity: 0;
+    transition: opacity 1.2s var(--ease-out);
+  }
+  .hero.is-loaded::before{ opacity: 1; }
+
+  .hero-bg-full,
+  .hero-bg-front{
+    -webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+    mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+  }
 }
 
 /* =========================================================

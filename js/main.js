@@ -10,6 +10,8 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
    3. the wordmark rises up, as if climbing from behind the front
       mountains and out in front of the full background
    ========================================================= */
+document.querySelector('.hero').classList.add('is-loaded');
+
 const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
 heroTl
