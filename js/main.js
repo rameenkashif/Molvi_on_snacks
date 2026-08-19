@@ -14,7 +14,16 @@ const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 heroTl
   .to('.hero-bg-front img', { scale: 1, duration: 1.6, ease: 'power2.out' }, 0)
   .to('.hero-wordmark', { opacity: 1, duration: .3 }, .15)
-  .to('.hero-wordmark', { y: 0, duration: 1.4, ease: 'power4.out' }, '<');
+  .to('.hero-wordmark', { y: 0, duration: 1.4, ease: 'power4.out' }, '<')
+  // wood block rises from below until it settles at the hero's bottom edge
+  .to('.hero-wood', { y: '0%', duration: 1, ease: 'power3.out' }, '-=.5')
+  // orea & pista fade + expand in first, then strawberry follows in front
+  .to(['.hero-bucket--orea', '.hero-bucket--pista'], {
+    opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out', stagger: .12,
+  }, '-=.35')
+  .to('.hero-bucket--strawberry', {
+    opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out',
+  }, '-=.55');
 
 if (!reduceMotion){
   gsap.to('.hero-bg-full img', {
