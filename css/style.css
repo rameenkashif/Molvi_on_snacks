@@ -113,13 +113,14 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform: translateX(-50%) translateY(100%);
   z-index: 4;
   background-image: url("../assets/images/wood-floor.jpg");
-  background-repeat: repeat;
-  background-size: 280px auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   box-shadow: inset 0 16px 24px rgba(0,0,0,.35);
 }
 
-/* layer 5 — the three tubs, composed with strawberry large and centered
-   in front, orea and pista smaller and tucked behind it either side */
+/* layer 5 — the three tubs, all standing on the same baseline in a row,
+   strawberry just slightly larger and centered */
 .hero-buckets{
   position: absolute; left: 50%;
   bottom: clamp(64px, 12vw, 132px);
@@ -140,20 +141,20 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 .hero-bucket--orea{
-  left: 2%;
-  width: 34%;
+  left: 1%;
+  width: 33%;
   z-index: 1;
-  transform: translateY(16%) scale(.7);
+  transform: scale(.7);
 }
 .hero-bucket--pista{
-  right: 2%;
-  width: 34%;
+  right: 1%;
+  width: 33%;
   z-index: 1;
-  transform: translateY(16%) scale(.7);
+  transform: scale(.7);
 }
 .hero-bucket--strawberry{
   left: 50%;
-  width: 44%;
+  width: 36%;
   z-index: 2;
   transform: translateX(-50%) scale(.7);
 }
