@@ -70,9 +70,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 /* layer 2 — wordmark, sandwiched between the two mountain layers */
 .hero-wordmark{
   position: absolute;
-  top: 8%;
+  top: 6%;
   left: 50%;
-  width: min(600px, 82vw);
+  width: min(520px, 78vw);
   z-index: 2;
   opacity: 0;
   transform: translate(-50%, 42vh);
@@ -80,14 +80,23 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 .hero-wordmark img{ width: 100%; }
 
-/* layer 3 — front background, tucks the wordmark's lower edge behind the
-   hills. Capped and centered to match layer 1's framing exactly, so the
-   ridge line lands in the same place regardless of viewport width. */
+/* layer 3 — front background. Held to well under half the hero's height
+   (and capped/centered like layer 1) so its ridge line always sits below
+   the wordmark by construction — no dependence on the photo's exact alpha
+   shape or the viewport's width/height ratio. Just the lower slice of the
+   mountains, tucking the wordmark's bottom edge behind them for depth. */
 .hero-bg-front{
-  position: absolute; top: 0; bottom: 0; left: 50%;
+  position: absolute; bottom: 0; left: 50%;
   width: min(100%, 1440px);
+  height: 38%;
+  min-height: 200px;
   transform: translateX(-50%);
   z-index: 3;
+  overflow: hidden;
+  /* feather the top edge so the height cap dissolves into the full
+     background beneath (the same photo) instead of a hard seam */
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 90px);
+  mask-image: linear-gradient(to bottom, transparent, black 90px);
 }
 .hero-bg-front img{
   width: 100%; height: 100%; object-fit: cover; object-position: center bottom;
@@ -112,10 +121,20 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
     transform: scale(1.15);
   }
 
-  .hero-bg-full,
-  .hero-bg-front{
+  .hero-bg-full{
     -webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
     mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+  }
+
+  .hero-bg-front{
+    -webkit-mask-image:
+      linear-gradient(to bottom, transparent, black 90px),
+      linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+    -webkit-mask-composite: source-in;
+    mask-image:
+      linear-gradient(to bottom, transparent, black 90px),
+      linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+    mask-composite: intersect;
   }
 }
 
