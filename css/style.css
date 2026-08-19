@@ -70,7 +70,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 /* layer 2 — wordmark, sandwiched between the two mountain layers */
 .hero-wordmark{
   position: absolute;
-  top: 1%;
+  top: 2.5%;
   left: 50%;
   width: min(520px, 78vw);
   z-index: 2;
@@ -109,7 +109,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .hero-wood{
   position: absolute; left: 50%; bottom: 0;
   width: min(100%, 1440px);
-  height: clamp(90px, 15vw, 160px);
+  height: clamp(64px, 10vw, 108px);
   transform: translateX(-50%) translateY(100%);
   z-index: 4;
   background-image: url("../assets/images/wood-floor.jpg");
@@ -123,9 +123,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    strawberry just slightly larger and centered */
 .hero-buckets{
   position: absolute; left: 50%;
-  bottom: clamp(64px, 12vw, 132px);
-  width: min(760px, 80vw);
-  height: clamp(210px, 32vw, 360px);
+  bottom: clamp(62px, 10vw, 106px);
+  width: min(870px, 90vw);
+  height: clamp(270px, 39vw, 410px);
   transform: translateX(-50%);
   z-index: 5;
 }
@@ -141,20 +141,21 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 .hero-bucket--orea{
-  left: 1%;
+  left: 0;
   width: 33%;
   z-index: 1;
   transform: scale(.7);
 }
 .hero-bucket--pista{
-  right: 1%;
+  right: 0;
   width: 33%;
   z-index: 1;
   transform: scale(.7);
 }
+/* wide enough that the neighbouring tubs' inner edges tuck behind it */
 .hero-bucket--strawberry{
   left: 50%;
-  width: 36%;
+  width: 46%;
   z-index: 2;
   transform: translateX(-50%) scale(.7);
 }
