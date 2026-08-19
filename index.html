@@ -3,36 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Molvi on Snacks — Ishq e Strawberry, Shifa e Pista, Orea Barkat</title>
-<meta name="description" content="Molvi on Snacks — hand-scooped ice cream with a desi twist. Ishq e Strawberry, Shifa e Pista, Orea Barkat and more.">
+<title>Molvi on Snacks</title>
+<meta name="description" content="Molvi on Snacks — hand-scooped ice cream with a desi twist.">
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<a class="skip-link" href="#icecreams">Skip to ice creams</a>
-
-<!-- ============ NAV ============ -->
-<header class="site-nav" id="site-nav">
-  <div class="nav-inner">
-    <a href="#hero" class="nav-logo" aria-label="Molvi on Snacks — home">
-      <img src="assets/images/logo-orange.png" alt="Molvi on Snacks logo">
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="#hero" class="active">home</a>
-      <a href="#icecreams">icecreams</a>
-      <a href="#samosas">samosas</a>
-      <a href="#shakes">shakes</a>
-      <a href="#cart">cart</a>
-    </nav>
-    <button class="nav-avatar" aria-label="Your account">
-      <img src="assets/images/mascot.png" alt="">
-    </button>
-    <button class="nav-burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="hero">
@@ -72,60 +48,9 @@
     <svg viewBox="0 0 1440 140" preserveAspectRatio="none"><path d="M0,80 C240,140 360,10 600,40 C840,70 960,140 1200,90 C1320,65 1400,70 1440,80 L1440,140 L0,140 Z"/></svg>
   </div>
 
-  <a href="#icecreams" class="hero-scroll-cue" aria-label="Scroll to menu">
+  <span class="hero-scroll-cue" aria-hidden="true">
     <span></span>
-  </a>
-</section>
-
-<!-- ============ ICECREAMS ============ -->
-<section class="icecreams" id="icecreams" data-flavor="">
-  <div class="icecreams-drip" aria-hidden="true">
-    <svg viewBox="0 0 1440 90" preserveAspectRatio="none">
-      <path d="M0,0 L1440,0 L1440,20 C1380,20 1370,60 1320,60 C1270,60 1260,15 1200,15 C1140,15 1130,75 1070,75 C1010,75 1000,25 940,25 C880,25 870,50 810,50 C750,50 740,10 680,10 C620,10 610,65 550,65 C490,65 480,20 420,20 C360,20 350,55 290,55 C230,55 220,15 160,15 C100,15 90,45 30,45 C10,45 0,30 0,20 Z"/>
-    </svg>
-  </div>
-
-  <div class="icecreams-inner">
-    <p class="section-eyebrow">the menu</p>
-    <h2 class="section-title">ic<span class="wobble">e</span>creams</h2>
-    <p class="section-sub">tap a flavour — it'll drip its colour all over the page</p>
-
-    <ul class="flavor-cards" role="list">
-      <li class="flavor-card" data-flavor="orea" style="--flavor-tint:#D8C4A0; --flavor-deep:#8a6a45;">
-        <button class="flavor-card-btn" aria-pressed="false">
-          <span class="flavor-card-glow" aria-hidden="true"></span>
-          <img src="assets/images/cup-orea.png" alt="" class="flavor-card-img">
-          <span class="flavor-card-name">Orea Barkat</span>
-          <span class="flavor-card-note">cookies, cream &amp; a little blessing</span>
-        </button>
-      </li>
-
-      <li class="flavor-card flavor-card--lead" data-flavor="strawberry" style="--flavor-tint:#F1B9C4; --flavor-deep:#c14b63;">
-        <button class="flavor-card-btn" aria-pressed="false">
-          <span class="flavor-card-glow" aria-hidden="true"></span>
-          <img src="assets/images/cup-strawberry.png" alt="" class="flavor-card-img">
-          <span class="flavor-card-name">Ishq e Strawberry</span>
-          <span class="flavor-card-note">falling in love, one scoop at a time</span>
-        </button>
-      </li>
-
-      <li class="flavor-card" data-flavor="pista" style="--flavor-tint:#C9CF8F; --flavor-deep:#7c8a3f;">
-        <button class="flavor-card-btn" aria-pressed="false">
-          <span class="flavor-card-glow" aria-hidden="true"></span>
-          <img src="assets/images/cup-pista.png" alt="" class="flavor-card-img">
-          <span class="flavor-card-name">Shifa e Pista</span>
-          <span class="flavor-card-note">pistachio cure for a hard day</span>
-        </button>
-      </li>
-    </ul>
-
-    <a href="#" class="btn-pill">view all flavours</a>
-  </div>
-
-  <div class="icecreams-footer" aria-hidden="true">
-    <img class="icecreams-footer-logo" src="assets/images/logo-white.png" alt="">
-    <div class="icecreams-checker"></div>
-  </div>
+  </span>
 </section>
 
 <script src="js/vendor/gsap.min.js"></script>
