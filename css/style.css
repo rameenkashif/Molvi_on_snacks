@@ -124,8 +124,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .hero-buckets{
   position: absolute; left: 50%;
   bottom: clamp(38px, 7.5vw, 72px);
-  width: min(870px, 90vw);
-  height: clamp(270px, 39vw, 410px);
+  width: min(775px, 90vw);
+  height: clamp(270px, 39vw, 365px);
   transform: translateX(-50%);
   z-index: 5;
 }
