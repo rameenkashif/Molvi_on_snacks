@@ -45,6 +45,63 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 /* =========================================================
+   Site nav — slides down from off-screen once the wave has
+   scrolled fully out of frame (handled in js/main.js). Sits
+   above everything else and never affects document flow.
+   ========================================================= */
+.site-nav{
+  position: fixed;
+  top: 0; left: 50%;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(16px, 3vw, 40px);
+  width: min(92%, 1100px);
+  margin-top: 16px;
+  padding: 10px clamp(16px, 3vw, 28px);
+  background: var(--white);
+  border-radius: 0 0 20px 20px;
+  box-shadow: 0 12px 28px rgba(60, 33, 26, .16);
+  font-family: var(--font-body);
+}
+
+.site-nav-logo{ flex: 0 0 auto; }
+.site-nav-logo img{ height: clamp(30px, 4vw, 38px); width: auto; }
+
+.site-nav-links{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.4vw, 32px);
+  padding: 0;
+  flex: 1 1 auto;
+}
+.site-nav-links a{
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--brown-deep);
+  text-transform: lowercase;
+  transition: color .2s var(--ease-out);
+}
+.site-nav-links a:hover,
+.site-nav-links a.is-active{ color: var(--orange); }
+
+.site-nav-mascot{
+  flex: 0 0 auto;
+  width: clamp(36px, 4.5vw, 46px);
+  height: clamp(36px, 4.5vw, 46px);
+  border-radius: 50%;
+  border: 2px solid var(--cream-deep);
+  object-fit: cover;
+}
+
+@media (max-width: 700px){
+  .site-nav-links{ gap: 10px; }
+  .site-nav-links a{ font-size: .8rem; }
+}
+
+/* =========================================================
    Hero
    ========================================================= */
 .hero{
