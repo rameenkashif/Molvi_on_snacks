@@ -125,14 +125,16 @@ ScrollTrigger.create({
 });
 
 /* =========================================================
-   Flavour cards — click to select. Picking a cup retints the
-   whole section to that flavour's card colour and calls the cup
-   out (scaled up, ringed) while the other two recede. Clicking
-   the selected cup again — or the retinted background around it —
-   clears the selection.
+   Flavour cards — click to select. Picking a cup sets --active-bg on
+   the document root, so the section background, the hero wave above
+   it, and the drip edge below it all retint together to that
+   flavour's colour; the cup itself is called out (scaled up, glowing)
+   while the other two recede. Clicking the selected cup again clears
+   the selection everywhere.
    ========================================================= */
 {
   const flavourColors = { orea: '#ecd9b3', strawberry: '#f6c2ce', pista: '#bcc684' };
+  const root = document.documentElement;
   const nextPage = document.querySelector('.next-page');
   const cupCards = document.querySelectorAll('.cup-card');
 
@@ -145,7 +147,7 @@ ScrollTrigger.create({
 
     if (alreadySelected){
       nextPage.classList.remove('has-selection');
-      nextPage.style.removeProperty('--active-bg');
+      root.style.removeProperty('--active-bg');
       return;
     }
 
@@ -153,7 +155,7 @@ ScrollTrigger.create({
     card.classList.add('is-selected');
     card.setAttribute('aria-pressed', 'true');
     nextPage.classList.add('has-selection');
-    nextPage.style.setProperty('--active-bg', flavourColors[flavour]);
+    root.style.setProperty('--active-bg', flavourColors[flavour]);
   };
 
   cupCards.forEach((card) => {

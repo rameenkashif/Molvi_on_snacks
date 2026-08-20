@@ -243,7 +243,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 /* layer 6 — closing wave. Rises in last, once the tubs have popped in,
    its crest landing just short of the strawberry tub's bottom edge
    (a small visible gap, not touching). Same cream as the page below it,
-   so it reads as that page welling up rather than a hero decoration. */
+   so it reads as that page welling up rather than a hero decoration.
+   --active-bg is set on the document root when a flavour card is
+   selected (js/main.js), so this recolours in sync with that page. */
 .hero-wave{
   position: absolute; left: 50%; bottom: 0;
   width: min(100%, 1440px);
@@ -252,7 +254,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   z-index: 4;
 }
 .hero-wave svg{ width: 100%; height: 100%; display: block; }
-.hero-wave path{ fill: var(--wave-cream); }
+.hero-wave path{ fill: var(--active-bg, var(--wave-cream)); transition: fill .6s var(--ease-out); }
 
 /* the page the wave reveals on scroll, holding the three flavour cards.
    Background is driven by --active-bg so clicking a cup can retint the
@@ -272,18 +274,12 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 /* "icecreams" heading — fades and zooms in above the cups once the
-   section scrolls into view. White bubble letters need a brown outline
-   to read against the cream/yellow background. */
+   section scrolls into view. */
 .cups-heading{
   width: min(360px, 58vw);
   opacity: 0;
   transform: scale(.6);
-  filter:
-    drop-shadow(1.5px 0 0 var(--brown-deep))
-    drop-shadow(-1.5px 0 0 var(--brown-deep))
-    drop-shadow(0 1.5px 0 var(--brown-deep))
-    drop-shadow(0 -1.5px 0 var(--brown-deep))
-    drop-shadow(0 8px 16px rgba(60, 33, 26, .25));
+  filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .25));
 }
 
 .cups-row{
@@ -329,18 +325,33 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   border-radius: clamp(18px, 2.4vw, 32px);
   opacity: 0;
   transform: translateY(28px);
-  transition: box-shadow .4s var(--ease-out);
+  transition: opacity .4s var(--ease-out);
+  z-index: 1;
 }
 .cup-card--orea .cup-card-bg{ background: #ecd9b3; }
 .cup-card--strawberry .cup-card-bg{ background: #f6c2ce; }
 .cup-card--pista .cup-card-bg{ background: #bcc684; }
 
-.cup-card.is-selected .cup-card-bg{
-  box-shadow: 0 0 0 4px rgba(255, 253, 247, .8), 0 22px 40px rgba(60, 33, 26, .3);
+/* selected card: its colour rectangle disappears (the whole page behind
+   it is already that colour) and a soft white glow stands in for it */
+.cup-card.is-selected .cup-card-bg{ opacity: 0; }
+
+.cup-card::after{
+  content: "";
+  position: absolute;
+  inset: 8%;
+  z-index: 2;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 253, 247, .9) 0%, rgba(255, 253, 247, 0) 68%);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
 }
+.cup-card.is-selected::after{ opacity: 1; }
 
 .cup-card-img{
   position: relative;
+  z-index: 3;
   width: 100%;
   height: 92%;
   object-fit: contain;
@@ -351,8 +362,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 /* drip edge — hangs below the section's bottom boundary onto the page
-   beneath, always the section's own base cream/yellow regardless of any
-   flavour selection tinting the section above it. */
+   beneath. Matches the selected flavour's colour, same as the page and
+   the hero wave above; falls back to the base cream/yellow when nothing
+   is selected. */
 .cups-drip{
   position: absolute; left: 50%; bottom: 0;
   width: min(100%, 1440px);
@@ -361,7 +373,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   pointer-events: none;
 }
 .cups-drip svg{ width: 100%; height: 100%; display: block; }
-.cups-drip path{ fill: var(--wave-cream); }
+.cups-drip path{ fill: var(--active-bg, var(--wave-cream)); transition: fill .6s var(--ease-out); }
 
 /* Desktop — land the wordmark a bit higher than the shared/mobile position */
 @media (min-width: 861px){
