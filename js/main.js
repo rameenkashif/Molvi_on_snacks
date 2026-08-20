@@ -88,7 +88,8 @@ gsap.timeline({
   .to('.cup-card--strawberry .cup-card-img', { opacity: 1, duration: .15 }, '-=.3')
   .to('.cup-card--strawberry .cup-card-img', {
     scale: 1, duration: .75, ease: 'back.out(2.6)',
-  }, '<');
+  }, '<')
+  .to('.cups-cta', { opacity: 1, y: 0, duration: .6 }, '-=.2');
 
 /* =========================================================
    Flavour cards — hover tilt. Each cup leans slightly away from
@@ -143,6 +144,9 @@ ScrollTrigger.create({
     cupCards.forEach((c) => {
       c.classList.remove('is-selected');
       c.setAttribute('aria-pressed', 'false');
+      // the scroll-reveal timeline left an inline opacity:1 on this via
+      // GSAP, which a plain CSS rule can't outrank — reset it here too.
+      gsap.to(c.querySelector('.cup-card-bg'), { opacity: 1, duration: .3 });
     });
 
     if (alreadySelected){
@@ -156,6 +160,7 @@ ScrollTrigger.create({
     card.setAttribute('aria-pressed', 'true');
     nextPage.classList.add('has-selection');
     root.style.setProperty('--active-bg', flavourColors[flavour]);
+    gsap.to(card.querySelector('.cup-card-bg'), { opacity: 0, duration: .3 });
   };
 
   cupCards.forEach((card) => {

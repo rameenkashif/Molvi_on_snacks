@@ -333,8 +333,25 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .cup-card--pista .cup-card-bg{ background: #bcc684; }
 
 /* selected card: its colour rectangle disappears (the whole page behind
-   it is already that colour) and a soft white glow stands in for it */
+   it is already that colour) and a soft white glow stands in for it,
+   plus a dark grounding shadow under the cup so it reads as sitting
+   on a surface rather than floating. */
 .cup-card.is-selected .cup-card-bg{ opacity: 0; }
+
+.cup-card::before{
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 6%;
+  width: 52%;
+  height: 10%;
+  transform: translateX(-50%);
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(60, 33, 26, .38) 0%, rgba(60, 33, 26, 0) 72%);
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
+}
+.cup-card.is-selected::before{ opacity: 1; }
 
 .cup-card::after{
   content: "";
@@ -359,6 +376,26 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transform: scale(.7);
   transform-origin: bottom center;
+}
+
+/* call to action — fades/rises in after the cups, sitting below the row */
+.cups-cta{
+  opacity: 0;
+  transform: translateY(20px);
+  padding: 14px 42px;
+  background: #6b3f2e;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+  border-radius: 999px;
+  box-shadow: 0 14px 28px rgba(60, 33, 26, .3);
+  transition: background-color .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+.cups-cta:hover{
+  background: var(--brown-deep);
+  box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
 }
 
 /* drip edge — hangs below the section's bottom boundary onto the page
