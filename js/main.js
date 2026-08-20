@@ -60,3 +60,29 @@ gsap.timeline({
 .to('.hero-wood', { y: '-6%', ease: 'none' }, 0)
 .to('.hero-bg-front', { y: '-4%', ease: 'none' }, 0)
 .to('.hero-bg-full img', { y: '3%', ease: 'none' }, 0);
+
+/* =========================================================
+   Flavour cards — once the wave has fully risen and the page
+   reads as solid cream/yellow, each card's colour block fades
+   in first, then its cup pops on top, echoing the hero buckets'
+   beat. Strawberry sits centred and lands last, slightly larger.
+   ========================================================= */
+gsap.timeline({
+  defaults: { ease: 'power3.out' },
+  scrollTrigger: {
+    trigger: '.next-page',
+    start: 'top 65%',
+    toggleActions: 'play none none reverse',
+  }
+})
+  .to('.cup-card-bg', { opacity: 1, y: 0, duration: .6, stagger: .15 })
+  .to(['.cup-card--orea .cup-card-img', '.cup-card--pista .cup-card-img'], {
+    opacity: 1, duration: .15, stagger: .16,
+  }, '-=.15')
+  .to(['.cup-card--orea .cup-card-img', '.cup-card--pista .cup-card-img'], {
+    scale: 1, duration: .7, ease: 'back.out(2.4)', stagger: .16,
+  }, '<')
+  .to('.cup-card--strawberry .cup-card-img', { opacity: 1, duration: .15 }, '-=.3')
+  .to('.cup-card--strawberry .cup-card-img', {
+    scale: 1, duration: .75, ease: 'back.out(2.6)',
+  }, '<');

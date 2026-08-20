@@ -176,11 +176,62 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .hero-wave svg{ width: 100%; height: 100%; display: block; }
 .hero-wave path{ fill: var(--wave-cream); }
 
-/* the empty page the wave reveals on scroll */
+/* the page the wave reveals on scroll, holding the three flavour cards */
 .next-page{
   position: relative;
   min-height: 100vh;
   background: var(--wave-cream);
+  display: flex;
+  align-items: center;
+  padding: clamp(40px, 8vw, 100px) 5vw;
+}
+
+.cups-row{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(14px, 3vw, 36px);
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+/* each flavour card = a rounded colour block that fades in first,
+   with the cup popping in on top of it, matching the hero buckets' beat */
+.cup-card{
+  position: relative;
+  margin: 0;
+  flex: 1 1 0;
+  max-width: 320px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.cup-card--strawberry{
+  flex-basis: 0;
+  max-width: 360px;
+  z-index: 2;
+  transform: translateY(-5%);
+}
+
+.cup-card-bg{
+  position: absolute;
+  inset: 6% 3% 0 3%;
+  border-radius: clamp(18px, 2.4vw, 32px);
+  opacity: 0;
+  transform: translateY(28px);
+}
+.cup-card--orea .cup-card-bg{ background: #ecd9b3; }
+.cup-card--strawberry .cup-card-bg{ background: #f6c2ce; }
+.cup-card--pista .cup-card-bg{ background: #bcc684; }
+
+.cup-card-img{
+  position: relative;
+  width: 88%;
+  opacity: 0;
+  transform: scale(.7);
+  filter: drop-shadow(0 16px 18px rgba(0,0,0,.28));
 }
 
 /* Desktop — land the wordmark a bit higher than the shared/mobile position */
