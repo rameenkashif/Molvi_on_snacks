@@ -87,3 +87,23 @@ gsap.timeline({
   .to('.cup-card--strawberry .cup-card-img', {
     scale: 1, duration: .75, ease: 'back.out(2.6)',
   }, '<');
+
+/* =========================================================
+   Flavour cards — hover tilt. Each cup leans slightly away from
+   its own base on hover, outer cups tilting outward and the
+   centred strawberry cup tilting toward the strawberry side.
+   ========================================================= */
+if (!reduceMotion){
+  const tiltByFlavour = { orea: -8, pista: 8, strawberry: -6 };
+  document.querySelectorAll('.cup-card').forEach((card) => {
+    const img = card.querySelector('.cup-card-img');
+    const flavour = Object.keys(tiltByFlavour).find((f) => card.classList.contains(`cup-card--${f}`));
+    const tilt = tiltByFlavour[flavour] || 0;
+    card.addEventListener('mouseenter', () => {
+      gsap.to(img, { rotation: tilt, duration: .4, ease: 'power2.out' });
+    });
+    card.addEventListener('mouseleave', () => {
+      gsap.to(img, { rotation: 0, duration: .5, ease: 'power2.out' });
+    });
+  });
+}
