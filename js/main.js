@@ -29,7 +29,9 @@ heroTl
   .to('.hero-bucket--strawberry', { opacity: 1, duration: .15 }, '-=.3')
   .to('.hero-bucket--strawberry', {
     scale: 1, duration: .75, ease: 'back.out(2.6)',
-  }, '<');
+  }, '<')
+  // once everything else has landed, the closing wave rises in last
+  .to('.hero-wave', { y: '0%', duration: .9, ease: 'power3.out' }, '-=.15');
 
 if (!reduceMotion){
   gsap.to('.hero-bg-full img', {
@@ -39,3 +41,22 @@ if (!reduceMotion){
     delay: 1,
   });
 }
+
+/* =========================================================
+   Scroll parallax — hero layers drift at different rates as the
+   page scrolls into the next (empty, cream) section, so the wave's
+   rise reads as continuous with that page welling up.
+   ========================================================= */
+gsap.timeline({
+  scrollTrigger: {
+    trigger: '.hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: .6,
+  }
+})
+.to('.hero-wave', { y: '-45%', ease: 'none' }, 0)
+.to('.hero-buckets', { y: '-12%', ease: 'none' }, 0)
+.to('.hero-wood', { y: '-6%', ease: 'none' }, 0)
+.to('.hero-bg-front', { y: '-4%', ease: 'none' }, 0)
+.to('.hero-bg-full img', { y: '3%', ease: 'none' }, 0);
