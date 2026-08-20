@@ -109,7 +109,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .hero-wood{
   position: absolute; left: 50%; bottom: 0;
   width: min(100%, 1440px);
-  height: clamp(64px, 10vw, 108px);
+  height: clamp(46px, 8vw, 82px);
   transform: translateX(-50%) translateY(100%);
   z-index: 4;
   background-image: url("../assets/images/wood-floor.jpg");
@@ -123,9 +123,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    strawberry just slightly larger and centered */
 .hero-buckets{
   position: absolute; left: 50%;
-  bottom: clamp(38px, 7.5vw, 72px);
-  width: min(775px, 90vw);
-  height: clamp(270px, 39vw, 365px);
+  bottom: clamp(20px, 5.6vw, 46px);
+  width: min(700px, 90vw);
+  height: clamp(270px, 39vw, 330px);
   transform: translateX(-50%);
   z-index: 5;
 }
@@ -147,7 +147,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform: scale(.7);
 }
 .hero-bucket--pista{
-  right: 0;
+  right: -18px;
   width: 35%;
   z-index: 1;
   transform: scale(.7);
