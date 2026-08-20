@@ -164,7 +164,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 /* Desktop — land the wordmark a bit higher than the shared/mobile position */
 @media (min-width: 861px){
   .hero-wordmark{
-    top: 0.5%;
+    top: calc(0.5% - 36px);
   }
 }
 
