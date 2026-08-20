@@ -17,13 +17,19 @@ heroTl
   .to('.hero-wordmark', { y: 0, duration: 1.4, ease: 'power4.out' }, '<')
   // wood block rises from below until it settles at the hero's bottom edge
   .to('.hero-wood', { y: '0%', duration: 1, ease: 'power3.out' }, '-=.5')
-  // orea & pista fade + expand in first, then strawberry follows in front
+  // orea & pista pop in first, then strawberry pops in front. The opacity
+  // snaps on quickly so the overshoot on the scale reads as a pop rather
+  // than a fade.
   .to(['.hero-bucket--orea', '.hero-bucket--pista'], {
-    opacity: 1, scale: 1, duration: 1.1, ease: 'power2.out', stagger: .12,
+    opacity: 1, duration: .15, stagger: .16,
   }, '-=.35')
+  .to(['.hero-bucket--orea', '.hero-bucket--pista'], {
+    scale: 1, duration: .7, ease: 'back.out(2.4)', stagger: .16,
+  }, '<')
+  .to('.hero-bucket--strawberry', { opacity: 1, duration: .15 }, '-=.3')
   .to('.hero-bucket--strawberry', {
-    opacity: 1, scale: 1, duration: 1.2, ease: 'power2.out',
-  }, '-=.55');
+    scale: 1, duration: .75, ease: 'back.out(2.6)',
+  }, '<');
 
 if (!reduceMotion){
   gsap.to('.hero-bg-full img', {

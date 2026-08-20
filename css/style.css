@@ -148,7 +148,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 .hero-bucket--pista{
   right: 0;
-  width: 33%;
+  width: 35%;
   z-index: 1;
   transform: scale(.7);
 }
@@ -156,6 +156,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .hero-bucket--strawberry{
   left: 52%;
   width: 46%;
+  bottom: -2.5%;
   z-index: 2;
   transform: translateX(-50%) scale(.7);
 }
