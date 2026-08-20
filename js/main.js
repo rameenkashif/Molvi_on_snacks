@@ -64,9 +64,10 @@ gsap.timeline({
 
 /* =========================================================
    Flavour cards — once the wave has fully risen and the page
-   reads as solid cream/yellow, each card's colour block fades
-   in first, then its cup pops on top, echoing the hero buckets'
-   beat. Strawberry sits centred and lands last, slightly larger.
+   reads as solid cream/yellow, the "icecreams" heading fades and
+   zooms in above the row, then each card's colour block fades in,
+   then its cup pops on top, echoing the hero buckets' beat.
+   Strawberry sits centred and lands last, slightly larger.
    ========================================================= */
 gsap.timeline({
   defaults: { ease: 'power3.out' },
@@ -76,7 +77,8 @@ gsap.timeline({
     toggleActions: 'play none none reverse',
   }
 })
-  .to('.cup-card-bg', { opacity: 1, y: 0, duration: .6, stagger: .15 })
+  .to('.cups-heading', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(1.7)' })
+  .to('.cup-card-bg', { opacity: 1, y: 0, duration: .6, stagger: .15 }, '-=.25')
   .to(['.cup-card--orea .cup-card-img', '.cup-card--pista .cup-card-img'], {
     opacity: 1, duration: .15, stagger: .16,
   }, '-=.15')
@@ -121,3 +123,46 @@ ScrollTrigger.create({
   onEnter: () => gsap.to('.site-nav', { yPercent: 0, duration: .5, ease: 'power3.out' }),
   onLeaveBack: () => gsap.to('.site-nav', { yPercent: -100, duration: .4, ease: 'power3.in' }),
 });
+
+/* =========================================================
+   Flavour cards — click to select. Picking a cup retints the
+   whole section to that flavour's card colour and calls the cup
+   out (scaled up, ringed) while the other two recede. Clicking
+   the selected cup again — or the retinted background around it —
+   clears the selection.
+   ========================================================= */
+{
+  const flavourColors = { orea: '#ecd9b3', strawberry: '#f6c2ce', pista: '#bcc684' };
+  const nextPage = document.querySelector('.next-page');
+  const cupCards = document.querySelectorAll('.cup-card');
+
+  const selectCard = (card) => {
+    const alreadySelected = card.classList.contains('is-selected');
+    cupCards.forEach((c) => {
+      c.classList.remove('is-selected');
+      c.setAttribute('aria-pressed', 'false');
+    });
+
+    if (alreadySelected){
+      nextPage.classList.remove('has-selection');
+      nextPage.style.removeProperty('--active-bg');
+      return;
+    }
+
+    const flavour = Object.keys(flavourColors).find((f) => card.classList.contains(`cup-card--${f}`));
+    card.classList.add('is-selected');
+    card.setAttribute('aria-pressed', 'true');
+    nextPage.classList.add('has-selection');
+    nextPage.style.setProperty('--active-bg', flavourColors[flavour]);
+  };
+
+  cupCards.forEach((card) => {
+    card.addEventListener('click', () => selectCard(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        selectCard(card);
+      }
+    });
+  });
+}

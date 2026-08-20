@@ -254,14 +254,36 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .hero-wave svg{ width: 100%; height: 100%; display: block; }
 .hero-wave path{ fill: var(--wave-cream); }
 
-/* the page the wave reveals on scroll, holding the three flavour cards */
+/* the page the wave reveals on scroll, holding the three flavour cards.
+   Background is driven by --active-bg so clicking a cup can retint the
+   whole section to that flavour's colour (js/main.js sets the variable;
+   default falls back to the base cream/yellow). */
 .next-page{
   position: relative;
   min-height: 100vh;
-  background: var(--wave-cream);
+  background-color: var(--active-bg, var(--wave-cream));
+  transition: background-color .6s var(--ease-out);
   display: flex;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4vw, 44px);
   padding: clamp(40px, 8vw, 100px) 5vw;
+}
+
+/* "icecreams" heading — fades and zooms in above the cups once the
+   section scrolls into view. White bubble letters need a brown outline
+   to read against the cream/yellow background. */
+.cups-heading{
+  width: min(360px, 58vw);
+  opacity: 0;
+  transform: scale(.6);
+  filter:
+    drop-shadow(1.5px 0 0 var(--brown-deep))
+    drop-shadow(-1.5px 0 0 var(--brown-deep))
+    drop-shadow(0 1.5px 0 var(--brown-deep))
+    drop-shadow(0 -1.5px 0 var(--brown-deep))
+    drop-shadow(0 8px 16px rgba(60, 33, 26, .25));
 }
 
 .cups-row{
@@ -279,7 +301,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    All three cards share one fixed rectangle size and sit on the same
    baseline; the images are capped to the same height so differing
    source-photo aspect ratios don't make one cup read bigger than
-   another. */
+   another. Clicking one selects it: it's called out (scaled up, ringed)
+   while the other two recede, and the page behind retints to match. */
 .cup-card{
   position: relative;
   margin: 0;
@@ -289,6 +312,15 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   display: flex;
   align-items: flex-end;
   justify-content: center;
+  cursor: pointer;
+  transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
+}
+
+.next-page.has-selection .cup-card{ transform: scale(.92); opacity: .55; }
+.next-page.has-selection .cup-card.is-selected{
+  transform: scale(1.1);
+  opacity: 1;
+  z-index: 5;
 }
 
 .cup-card-bg{
@@ -297,10 +329,15 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   border-radius: clamp(18px, 2.4vw, 32px);
   opacity: 0;
   transform: translateY(28px);
+  transition: box-shadow .4s var(--ease-out);
 }
 .cup-card--orea .cup-card-bg{ background: #ecd9b3; }
 .cup-card--strawberry .cup-card-bg{ background: #f6c2ce; }
 .cup-card--pista .cup-card-bg{ background: #bcc684; }
+
+.cup-card.is-selected .cup-card-bg{
+  box-shadow: 0 0 0 4px rgba(255, 253, 247, .8), 0 22px 40px rgba(60, 33, 26, .3);
+}
 
 .cup-card-img{
   position: relative;
@@ -311,8 +348,20 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transform: scale(.7);
   transform-origin: bottom center;
-  cursor: pointer;
 }
+
+/* drip edge — hangs below the section's bottom boundary onto the page
+   beneath, always the section's own base cream/yellow regardless of any
+   flavour selection tinting the section above it. */
+.cups-drip{
+  position: absolute; left: 50%; bottom: 0;
+  width: min(100%, 1440px);
+  height: clamp(46px, 7vw, 90px);
+  transform: translateX(-50%) translateY(100%);
+  pointer-events: none;
+}
+.cups-drip svg{ width: 100%; height: 100%; display: block; }
+.cups-drip path{ fill: var(--wave-cream); }
 
 /* Desktop — land the wordmark a bit higher than the shared/mobile position */
 @media (min-width: 861px){
