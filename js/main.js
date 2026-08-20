@@ -44,8 +44,10 @@ if (!reduceMotion){
 
 /* =========================================================
    Scroll parallax — hero layers drift at different rates as the
-   page scrolls into the next (empty, cream) section, so the wave's
-   rise reads as continuous with that page welling up.
+   page scrolls into the next (empty, cream) section. The wave
+   itself is left out of this: it stays pinned flush to the
+   hero's bottom edge the whole time, so it never pulls away from
+   the seam with .next-page and exposes a gap underneath it.
    ========================================================= */
 gsap.timeline({
   scrollTrigger: {
@@ -55,7 +57,6 @@ gsap.timeline({
     scrub: .6,
   }
 })
-.to('.hero-wave', { y: '-45%', ease: 'none' }, 0)
 .to('.hero-buckets', { y: '-12%', ease: 'none' }, 0)
 .to('.hero-wood', { y: '-6%', ease: 'none' }, 0)
 .to('.hero-bg-front', { y: '-4%', ease: 'none' }, 0)

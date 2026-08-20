@@ -231,7 +231,6 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   width: 88%;
   opacity: 0;
   transform: scale(.7);
-  filter: drop-shadow(0 16px 18px rgba(0,0,0,.28));
 }
 
 /* Desktop — land the wordmark a bit higher than the shared/mobile position */
