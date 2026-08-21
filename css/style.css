@@ -415,6 +415,18 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
 }
 
+/* "Molvi on Snacks" sticker — sits on the yellow/cream background,
+   just above where the brown drips start. Static, tilted, layered
+   above everything else on the page; no entrance animation. */
+.samosa-logo-sticker{
+  position: absolute;
+  bottom: clamp(24px, 4.4vw, 64px);
+  left: clamp(4vw, 6vw, 90px);
+  z-index: 20;
+  width: clamp(104px, 11.5vw, 161px);
+  transform: rotate(-30deg);
+}
+
 /* footer band — a solid brown rectangle the drips hang into, with a
    cream/orange checkerboard strip along its own bottom edge. */
 .cups-footer{
@@ -538,25 +550,16 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .samosa-spark{ width: clamp(26px, 3.4vw, 38px); margin-top: -4px; }
 .samosa-wordmark{ width: min(340px, 54vw); }
 
-/* both stickers: pulled up over the section's own top edge so they
-   straddle the checker above and this cream section, like stickers
-   slapped across the seam. Static — no entrance animation, no
-   hidden initial state — and layered above everything else on the
-   page. */
-.samosa-logo-sticker{
-  position: absolute;
-  top: clamp(-134px, -15vw, -112px);
-  left: clamp(5vw, 8vw, 110px);
-  z-index: 20;
-  width: clamp(90px, 10vw, 140px);
-  transform: rotate(-30deg);
-}
+/* the snack tester badge: pulled up over .samosa-page's own top edge
+   so it straddles the checker above and this cream section, like a
+   sticker slapped across the seam. Static — no entrance animation,
+   no hidden initial state — and layered above everything else. */
 .samosa-badge{
   position: absolute;
   top: clamp(-64px, -7.4vw, -42px);
   right: clamp(5vw, 8vw, 110px);
   z-index: 20;
-  width: clamp(120px, 13vw, 190px);
+  width: clamp(132px, 14.3vw, 209px);
   transform: rotate(8deg);
 }
 
