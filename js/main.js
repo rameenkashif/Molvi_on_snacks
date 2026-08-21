@@ -79,6 +79,7 @@ gsap.timeline({
 })
   .to('.cups-heading', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(1.7)' })
   .to('.cup-card-bg', { opacity: 1, y: 0, duration: .6, stagger: .15 }, '-=.25')
+  .to('.cup-card-label', { opacity: 1, y: 0, duration: .5, stagger: .15 }, '-=.4')
   .to(['.cup-card--orea .cup-card-img', '.cup-card--pista .cup-card-img'], {
     opacity: 1, duration: .15, stagger: .16,
   }, '-=.15')

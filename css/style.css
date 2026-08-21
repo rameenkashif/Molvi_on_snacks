@@ -332,6 +332,23 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .cup-card--strawberry .cup-card-bg{ background: #f6c2ce; }
 .cup-card--pista .cup-card-bg{ background: #bcc684; }
 
+/* flavour name, sitting above the cup within the card */
+.cup-card-label{
+  position: absolute;
+  top: 9%; left: 6%; right: 6%;
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(.82rem, 1.5vw, 1.05rem);
+  color: var(--brown-deep);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
+  pointer-events: none;
+}
+
 /* selected card: its colour rectangle disappears (the whole page behind
    it is already that colour) and a soft white glow stands in for it,
    plus a dark grounding shadow under the cup so it reads as sitting
