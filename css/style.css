@@ -398,19 +398,45 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
 }
 
-/* drip edge — hangs below the section's bottom boundary onto the page
-   beneath. Matches the selected flavour's colour, same as the page and
-   the hero wave above; falls back to the base cream/yellow when nothing
-   is selected. */
-.cups-drip{
-  position: absolute; left: 50%; bottom: 0;
-  width: min(100%, 1440px);
-  height: clamp(46px, 7vw, 90px);
-  transform: translateX(-50%) translateY(100%);
-  pointer-events: none;
+/* footer band — a solid brown rectangle the drips hang into, with a
+   cream/orange checkerboard strip along its own bottom edge. */
+.cups-footer{
+  position: relative;
+  height: clamp(120px, 16vw, 200px);
+  background: var(--brown-deep);
 }
-.cups-drip svg{ width: 100%; height: 100%; display: block; }
-.cups-drip path{ fill: var(--active-bg, var(--wave-cream)); transition: fill .6s var(--ease-out); }
+
+/* drip edge — the supplied drip graphic used as an SVG mask (the
+   opaque part of the source PNG is what shows through). Lives inside
+   .cups-footer, anchored to its own top edge so the flat bar sits
+   flush with the .next-page boundary above and the streaks hang down
+   into the footer's own brown background beneath — that background
+   is what shows through the mask's gaps, standing in for the
+   "behind" rectangle. Matches the selected flavour's colour, same as
+   the page and the hero wave; falls back to the base cream/yellow
+   when nothing is selected. */
+.cups-drip{
+  position: absolute; left: 0; right: 0; top: 0;
+  z-index: 10;
+  margin: 0 auto;
+  width: min(100%, 1440px);
+  height: clamp(90px, 13vw, 160px);
+  pointer-events: none;
+  display: block;
+}
+.cups-drip rect{
+  fill: var(--active-bg, var(--wave-cream));
+  transition: fill .6s var(--ease-out);
+}
+.cups-footer-checker{
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 42%;
+  background-image: conic-gradient(
+    var(--orange) 90deg, var(--wave-cream) 90deg 180deg,
+    var(--orange) 180deg 270deg, var(--wave-cream) 270deg
+  );
+  background-size: 44px 44px;
+}
 
 /* Desktop — land the wordmark a bit higher than the shared/mobile position */
 @media (min-width: 861px){
