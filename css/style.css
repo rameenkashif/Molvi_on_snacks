@@ -542,13 +542,13 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  gap: clamp(8px, 1.6vw, 16px);
+  gap: 0;
   opacity: 0;
   transform: scale(.6);
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
 }
-.samosa-spark{ width: clamp(30px, 3.9vw, 44px); margin-top: -4px; margin-left: -16px; }
-.samosa-wordmark{ width: min(374px, 59.4vw); margin-left: -56px; transform: translateY(-24px); }
+.samosa-spark{ width: clamp(56px, 11.9vw, 75px); margin-top: -21px; }
+.samosa-wordmark{ width: min(374px, 59.4vw); margin-left: -14px; }
 
 /* the snack tester badge: pulled up over .samosa-page's own top edge
    so it straddles the checker above and this cream section, like a
