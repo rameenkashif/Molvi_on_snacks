@@ -10,6 +10,7 @@
   --orange-deep:   #d94900;
   --white:        #fffdf7;
   --wave-cream:   #f5f5dc;
+  --pink:         #f6c2ce;
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-accent:  "Baloo 2", "Segoe UI", sans-serif;
@@ -499,6 +500,158 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   .hero-wave{
     -webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
     mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
+  }
+}
+
+/* =========================================================
+   Samosas — a pink band holding the sticker logo, easing via a
+   chocolate-brown drip edge into the same orange/cream checker as
+   the icecream footer (same drip component, fill and background
+   swapped), then a cream section with the samosa heading, the
+   "official snack tester" badge, and a three-up selector. Exactly
+   one samosa is selected at all times (defaults to the first) —
+   selecting one calls it out and swaps the name above the row.
+   ========================================================= */
+.samosa-hero{
+  position: relative;
+  min-height: clamp(200px, 28vw, 320px);
+  background: var(--pink);
+}
+.samosa-hero-logo{
+  width: clamp(112px, 13vw, 168px);
+  margin: clamp(26px, 4vw, 42px) 0 0 clamp(22px, 5vw, 60px);
+  filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .18));
+}
+
+.samosa-footer{
+  position: relative;
+  height: clamp(120px, 16vw, 200px);
+  margin-top: -1px;
+  background: var(--pink);
+}
+.samosa-drip{
+  position: absolute; left: 0; right: 0; top: 0; height: 58%;
+  z-index: 10;
+  margin: 0 auto;
+  width: min(100%, 1440px);
+  pointer-events: none;
+  display: block;
+}
+.samosa-drip path{ fill: var(--brown-deep); }
+.samosa-footer-checker{
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 42%;
+  background-image: conic-gradient(
+    var(--orange) 90deg, var(--wave-cream) 90deg 180deg,
+    var(--orange) 180deg 270deg, var(--wave-cream) 270deg
+  );
+  background-size: calc(100vw / 14) calc(100vw / 14);
+}
+
+.samosa-page{
+  position: relative;
+  background: var(--cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 3vw, 28px);
+  padding: clamp(28px, 6vw, 56px) 5vw clamp(60px, 9vw, 100px);
+  overflow: hidden;
+}
+
+.samosa-heading{
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(8px, 1.6vw, 16px);
+  opacity: 0;
+  transform: scale(.6);
+  filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
+}
+.samosa-spark{ width: clamp(26px, 3.4vw, 38px); margin-top: -4px; }
+.samosa-wordmark{ width: min(260px, 44vw); }
+.samosa-badge{
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-left: clamp(2px, 1vw, 10px);
+  transform: translateY(-55%) rotate(8deg);
+  width: clamp(60px, 7.4vw, 86px);
+}
+
+.samosa-name{
+  margin: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(1.05rem, 2.3vw, 1.4rem);
+  color: var(--brown-deep);
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.samosa-row{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(8px, 2.2vw, 26px);
+  width: 100%;
+  max-width: 880px;
+}
+
+.samosa-card{
+  position: relative;
+  margin: 0;
+  flex: 1 1 0;
+  max-width: 230px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  opacity: .55;
+  transform: scale(.86);
+  transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
+}
+.samosa-card:nth-child(2){ max-width: 270px; }
+.samosa-card.is-selected{
+  opacity: 1;
+  transform: scale(1);
+  z-index: 2;
+}
+.samosa-card img{
+  width: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  opacity: 0;
+  transform: scale(.7);
+  transform-origin: bottom center;
+  filter: drop-shadow(0 14px 18px rgba(60, 33, 26, .25));
+}
+
+.samosa-cta{
+  opacity: 0;
+  transform: translateY(20px);
+  padding: 14px 42px;
+  background: #6b3f2e;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+  border-radius: 999px;
+  box-shadow: 0 14px 28px rgba(60, 33, 26, .3);
+  transition: background-color .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+.samosa-cta:hover{
+  background: var(--brown-deep);
+  box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
+}
+
+@media (max-width: 640px){
+  .samosa-badge{
+    left: auto; right: 4%; top: -14%;
+    transform: rotate(8deg);
   }
 }
 

@@ -174,3 +174,51 @@ ScrollTrigger.create({
     });
   });
 }
+
+/* =========================================================
+   Samosas — heading, badge and the three-up selector fade/pop in
+   once the section scrolls into view, echoing the icecream cards'
+   beat (colour-block-then-cup becomes badge-then-samosa here).
+   ========================================================= */
+gsap.timeline({
+  defaults: { ease: 'power3.out' },
+  scrollTrigger: {
+    trigger: '.samosa-page',
+    start: 'top 70%',
+    toggleActions: 'play none none reverse',
+  }
+})
+  .to('.samosa-heading', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(1.7)' })
+  .to('.samosa-name', { opacity: 1, y: 0, duration: .5 }, '-=.25')
+  .to('.samosa-card img', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .16 }, '-=.15')
+  .to('.samosa-cta', { opacity: 1, y: 0, duration: .6 }, '-=.2');
+
+/* =========================================================
+   Samosas — click to select. Exactly one samosa is selected at
+   all times (Pizza Samosa by default): selecting one calls it out
+   and swaps the name shown above the row to match.
+   ========================================================= */
+{
+  const samosaName = document.getElementById('samosa-name');
+  const samosaCards = document.querySelectorAll('.samosa-card');
+
+  const selectSamosa = (card) => {
+    samosaCards.forEach((c) => {
+      c.classList.remove('is-selected');
+      c.setAttribute('aria-pressed', 'false');
+    });
+    card.classList.add('is-selected');
+    card.setAttribute('aria-pressed', 'true');
+    samosaName.textContent = card.dataset.samosaName;
+  };
+
+  samosaCards.forEach((card) => {
+    card.addEventListener('click', () => selectSamosa(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        selectSamosa(card);
+      }
+    });
+  });
+}
