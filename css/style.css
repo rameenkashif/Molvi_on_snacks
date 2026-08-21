@@ -597,7 +597,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 .samosa-card--pizza{ max-width: 350px; top: -8px; }
-.samosa-card--fajita{ max-width: 320px; }
+.samosa-card--fajita{ max-width: 320px; top: -18px; }
 
 .samosa-row.has-selection .samosa-card{ transform: scale(.92); opacity: .55; }
 .samosa-row.has-selection .samosa-card.is-selected{
