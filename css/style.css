@@ -547,7 +547,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform: scale(.6);
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
 }
-.samosa-spark{ width: clamp(56px, 11.9vw, 75px); margin-top: 17px; margin-left: -76px; }
+.samosa-spark{ width: clamp(56px, 11.9vw, 75px); margin-top: 9px; margin-left: -112px; }
 .samosa-wordmark{ width: min(374px, 59.4vw); margin-left: -52px; margin-top: -38px; }
 
 /* the snack tester badge: pulled up over .samosa-page's own top edge
