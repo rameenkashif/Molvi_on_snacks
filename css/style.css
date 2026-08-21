@@ -406,25 +406,24 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   background: var(--brown-deep);
 }
 
-/* drip edge — the supplied drip graphic used as an SVG mask (the
-   opaque part of the source PNG is what shows through). Lives inside
-   .cups-footer, anchored to its own top edge so the flat bar sits
-   flush with the .next-page boundary above and the streaks hang down
-   into the footer's own brown background beneath — that background
-   is what shows through the mask's gaps, standing in for the
-   "behind" rectangle. Matches the selected flavour's colour, same as
-   the page and the hero wave; falls back to the base cream/yellow
-   when nothing is selected. */
+/* drip edge — wide, rounded drips (colour dominant, brown only in the
+   narrow gaps between them) closer to the reference than the earlier
+   thin-streak drip graphic. Lives inside .cups-footer, anchored to
+   its own top edge so the flat bar sits flush with the .next-page
+   boundary above and the drips hang down into the footer's own brown
+   background beneath, which shows through in the gaps. Matches the
+   selected flavour's colour, same as the page and the hero wave;
+   falls back to the base cream/yellow when nothing is selected. */
 .cups-drip{
   position: absolute; left: 0; right: 0; top: 0;
   z-index: 10;
   margin: 0 auto;
   width: min(100%, 1440px);
-  height: clamp(90px, 13vw, 160px);
+  height: clamp(70px, 11vw, 130px);
   pointer-events: none;
   display: block;
 }
-.cups-drip rect{
+.cups-drip path{
   fill: var(--active-bg, var(--wave-cream));
   transition: fill .6s var(--ease-out);
 }
