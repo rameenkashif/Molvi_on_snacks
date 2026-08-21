@@ -403,6 +403,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .cups-footer{
   position: relative;
   height: clamp(120px, 16vw, 200px);
+  margin-top: -1px;
   background: var(--brown-deep);
 }
 
@@ -415,11 +416,10 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    selected flavour's colour, same as the page and the hero wave;
    falls back to the base cream/yellow when nothing is selected. */
 .cups-drip{
-  position: absolute; left: 0; right: 0; top: 0;
+  position: absolute; left: 0; right: 0; top: 0; bottom: 42%;
   z-index: 10;
   margin: 0 auto;
   width: min(100%, 1440px);
-  height: clamp(70px, 11vw, 130px);
   pointer-events: none;
   display: block;
 }
