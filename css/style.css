@@ -504,22 +504,29 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 /* =========================================================
-   Samosas — a pink band holding the sticker logo, easing via a
-   chocolate-brown drip edge into the same orange/cream checker as
-   the icecream footer (same drip component, fill and background
-   swapped), then a cream section with the samosa heading, the
-   "official snack tester" badge, and a three-up selector. Exactly
-   one samosa is selected at all times (defaults to the first) —
-   selecting one calls it out and swaps the name above the row.
+   Samosas — a slim pink strip holding the sticker logo (just tall
+   enough for the logo, not a full hero — the drip below is what
+   carries the section), easing via a chocolate-brown drip edge into
+   the same orange/cream checker as the icecream footer (same drip
+   component, fill and background swapped), then straight into the
+   cream section with the samosa heading and a three-up selector.
+   The "official snack tester" badge is pinned to .samosa-page but
+   pulled up with a negative top offset so it straddles the seam,
+   reading as stamped across both the checker and the cream section.
+   Exactly one samosa is selected at all times (defaults to the
+   first) — selecting one calls it out and swaps the name above the
+   row.
    ========================================================= */
 .samosa-hero{
   position: relative;
-  min-height: clamp(200px, 28vw, 320px);
+  min-height: clamp(96px, 11vw, 140px);
   background: var(--pink);
+  display: flex;
+  align-items: center;
 }
 .samosa-hero-logo{
-  width: clamp(112px, 13vw, 168px);
-  margin: clamp(26px, 4vw, 42px) 0 0 clamp(22px, 5vw, 60px);
+  width: clamp(100px, 11vw, 148px);
+  margin: 0 0 0 clamp(22px, 5vw, 60px);
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .18));
 }
 
@@ -555,8 +562,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   flex-direction: column;
   align-items: center;
   gap: clamp(16px, 3vw, 28px);
-  padding: clamp(28px, 6vw, 56px) 5vw clamp(60px, 9vw, 100px);
-  overflow: hidden;
+  padding: clamp(20px, 4vw, 40px) 5vw clamp(60px, 9vw, 100px);
 }
 
 .samosa-heading{
@@ -571,13 +577,19 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 .samosa-spark{ width: clamp(26px, 3.4vw, 38px); margin-top: -4px; }
 .samosa-wordmark{ width: min(260px, 44vw); }
+
+/* pulled up over the section's own top edge so it straddles the
+   checker above and this cream section, like a wax seal stamped
+   across the seam between them */
 .samosa-badge{
   position: absolute;
-  left: 100%;
-  top: 50%;
-  margin-left: clamp(2px, 1vw, 10px);
-  transform: translateY(-55%) rotate(8deg);
-  width: clamp(60px, 7.4vw, 86px);
+  top: clamp(-52px, -6vw, -34px);
+  right: clamp(6vw, 9vw, 130px);
+  z-index: 6;
+  width: clamp(64px, 7.8vw, 92px);
+  opacity: 0;
+  transform: rotate(-18deg) scale(.6);
+  filter: drop-shadow(0 8px 14px rgba(60, 33, 26, .3));
 }
 
 .samosa-name{
@@ -646,13 +658,6 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .samosa-cta:hover{
   background: var(--brown-deep);
   box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
-}
-
-@media (max-width: 640px){
-  .samosa-badge{
-    left: auto; right: 4%; top: -14%;
-    transform: rotate(8deg);
-  }
 }
 
 /* =========================================================

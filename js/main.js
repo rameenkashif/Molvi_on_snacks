@@ -189,6 +189,7 @@ gsap.timeline({
   }
 })
   .to('.samosa-heading', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(1.7)' })
+  .to('.samosa-badge', { opacity: 1, rotate: 8, scale: 1, duration: .6, ease: 'back.out(2)' }, '-=.4')
   .to('.samosa-name', { opacity: 1, y: 0, duration: .5 }, '-=.25')
   .to('.samosa-card img', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .16 }, '-=.15')
   .to('.samosa-cta', { opacity: 1, y: 0, duration: .6 }, '-=.2');
