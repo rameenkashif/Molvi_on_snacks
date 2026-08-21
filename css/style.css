@@ -505,12 +505,15 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 /* =========================================================
    Samosas — arrives directly after the icecream footer's checker
    (.cups-footer-checker), with the samosa heading and a three-up
-   selector. The "official snack tester" badge is pinned to
-   .samosa-page but pulled up with a negative top offset so it
-   straddles the seam, reading as stamped across both the checker
-   above and this cream section. Exactly one samosa is selected at
-   all times (defaults to the first) — selecting one calls it out
-   and swaps the name above the row.
+   selector. Two stickers are pinned to .samosa-page, statically
+   placed with no entrance animation, on top of every layer: the
+   wordmark logo (left) and the "official snack tester" badge
+   (right), both pulled up with a negative top offset so they
+   straddle the seam, reading as stamped across the checker above
+   and this cream section. The samosa row mirrors the icecream cups
+   exactly — same card size, same hover tilt, same selected-state
+   white glow and per-card name label sitting just behind each
+   samosa — so picking one calls it out while the others recede.
    ========================================================= */
 .samosa-page{
   position: relative;
@@ -533,63 +536,117 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
 }
 .samosa-spark{ width: clamp(26px, 3.4vw, 38px); margin-top: -4px; }
-.samosa-wordmark{ width: min(260px, 44vw); }
+.samosa-wordmark{ width: min(340px, 54vw); }
 
-/* pulled up over the section's own top edge so it straddles the
-   checker above and this cream section, like a wax seal stamped
-   across the seam between them */
-.samosa-badge{
+/* both stickers: pulled up over the section's own top edge so they
+   straddle the checker above and this cream section, like stickers
+   slapped across the seam. Static — no entrance animation, no
+   hidden initial state — and layered above everything else on the
+   page. */
+.samosa-logo-sticker{
   position: absolute;
-  top: clamp(-52px, -6vw, -34px);
-  right: clamp(6vw, 9vw, 130px);
-  z-index: 6;
-  width: clamp(64px, 7.8vw, 92px);
-  opacity: 0;
-  transform: rotate(-18deg) scale(.6);
+  top: clamp(-46px, -5vw, -28px);
+  left: clamp(5vw, 8vw, 110px);
+  z-index: 20;
+  width: clamp(90px, 10vw, 140px);
+  transform: rotate(30deg);
   filter: drop-shadow(0 8px 14px rgba(60, 33, 26, .3));
 }
-
-.samosa-name{
-  margin: 0;
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(1.05rem, 2.3vw, 1.4rem);
-  color: var(--brown-deep);
-  opacity: 0;
-  transform: translateY(10px);
+.samosa-badge{
+  position: absolute;
+  top: clamp(-64px, -7.4vw, -42px);
+  right: clamp(5vw, 8vw, 110px);
+  z-index: 20;
+  width: clamp(120px, 13vw, 190px);
+  transform: rotate(8deg);
+  filter: drop-shadow(0 8px 14px rgba(60, 33, 26, .3));
 }
 
 .samosa-row{
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: clamp(8px, 2.2vw, 26px);
+  gap: clamp(14px, 3vw, 36px);
   width: 100%;
-  max-width: 880px;
+  max-width: 1080px;
 }
 
+/* each card matches the icecream cups exactly: same fixed rectangle,
+   same recede/call-out transition, same white-glow-plus-shadow pair
+   on selection. The name sits just behind the top of the samosa
+   (lower z-index than the image), always visible for its own card —
+   never a single shared label swapping between them. */
 .samosa-card{
   position: relative;
   margin: 0;
   flex: 1 1 0;
-  max-width: 230px;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   cursor: pointer;
-  opacity: .55;
-  transform: scale(.86);
   transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
 }
-.samosa-card:nth-child(2){ max-width: 270px; }
-.samosa-card.is-selected{
+
+.samosa-row.has-selection .samosa-card{ transform: scale(.92); opacity: .55; }
+.samosa-row.has-selection .samosa-card.is-selected{
+  transform: scale(1.1);
   opacity: 1;
-  transform: scale(1);
-  z-index: 2;
+  z-index: 5;
 }
-.samosa-card img{
+
+.samosa-card-label{
+  position: absolute;
+  top: 9%; left: 6%; right: 6%;
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(.82rem, 1.5vw, 1.05rem);
+  color: var(--brown-deep);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
+  pointer-events: none;
+}
+
+/* selected card: a dark grounding shadow under the samosa so it reads
+   as sitting on a surface, plus a soft white glow behind it. */
+.samosa-card::before{
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 6%;
+  width: 52%;
+  height: 10%;
+  transform: translateX(-50%);
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(60, 33, 26, .38) 0%, rgba(60, 33, 26, 0) 72%);
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
+}
+.samosa-card.is-selected::before{ opacity: 1; }
+
+.samosa-card::after{
+  content: "";
+  position: absolute;
+  inset: 8%;
+  z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 253, 247, .9) 0%, rgba(255, 253, 247, 0) 68%);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
+}
+.samosa-card.is-selected::after{ opacity: 1; }
+
+.samosa-card-img{
+  position: relative;
+  z-index: 3;
   width: 100%;
+  height: 92%;
   object-fit: contain;
   object-position: bottom center;
   opacity: 0;

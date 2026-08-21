@@ -92,6 +92,7 @@
 
 <!-- ============ SAMOSAS ============ -->
 <section class="samosa-page" id="samosas">
+  <img class="samosa-logo-sticker" src="assets/images/sticker-logo.png" alt="Molvi on Snacks">
   <img class="samosa-badge" src="assets/images/badge-snack-tester.png" alt="Official snack tester">
 
   <div class="samosa-heading">
@@ -99,18 +100,19 @@
     <img class="samosa-wordmark" src="assets/images/heading-samosa.png" alt="Samosas">
   </div>
 
-  <p class="samosa-name" id="samosa-name">Pizza Samosa</p>
-
-  <div class="samosa-row">
-    <button type="button" class="samosa-card is-selected" data-samosa-name="Pizza Samosa" aria-pressed="true">
-      <img src="assets/images/samosa-pizza.png" alt="Pizza Samosa">
-    </button>
-    <button type="button" class="samosa-card" data-samosa-name="Peri Peri Samosa" aria-pressed="false">
-      <img src="assets/images/samosa-peri-peri.png" alt="Peri Peri Samosa">
-    </button>
-    <button type="button" class="samosa-card" data-samosa-name="Fajita Samosa" aria-pressed="false">
-      <img src="assets/images/samosa-fajita.png" alt="Fajita Samosa">
-    </button>
+  <div class="samosa-row has-selection">
+    <figure class="samosa-card samosa-card--pizza is-selected" tabindex="0" role="button" aria-pressed="true">
+      <figcaption class="samosa-card-label">Pizza Samosa</figcaption>
+      <img class="samosa-card-img" src="assets/images/samosa-pizza.png" alt="Pizza Samosa">
+    </figure>
+    <figure class="samosa-card samosa-card--peri" tabindex="0" role="button" aria-pressed="false">
+      <figcaption class="samosa-card-label">Peri Peri Samosa</figcaption>
+      <img class="samosa-card-img" src="assets/images/samosa-peri-peri.png" alt="Peri Peri Samosa">
+    </figure>
+    <figure class="samosa-card samosa-card--fajita" tabindex="0" role="button" aria-pressed="false">
+      <figcaption class="samosa-card-label">Fajita Samosa</figcaption>
+      <img class="samosa-card-img" src="assets/images/samosa-fajita.png" alt="Fajita Samosa">
+    </figure>
   </div>
 
   <button type="button" class="samosa-cta">view all</button>

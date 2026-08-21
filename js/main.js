@@ -176,9 +176,10 @@ ScrollTrigger.create({
 }
 
 /* =========================================================
-   Samosas — heading, badge and the three-up selector fade/pop in
-   once the section scrolls into view, echoing the icecream cards'
-   beat (colour-block-then-cup becomes badge-then-samosa here).
+   Samosas — heading and the three-up selector fade/pop in once the
+   section scrolls into view, echoing the icecream cards' beat. The
+   logo and "official snack tester" stickers are static (no
+   animation, no scroll trigger) so they aren't part of this timeline.
    ========================================================= */
 gsap.timeline({
   defaults: { ease: 'power3.out' },
@@ -189,28 +190,36 @@ gsap.timeline({
   }
 })
   .to('.samosa-heading', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(1.7)' })
-  .to('.samosa-badge', { opacity: 1, rotate: 8, scale: 1, duration: .6, ease: 'back.out(2)' }, '-=.4')
-  .to('.samosa-name', { opacity: 1, y: 0, duration: .5 }, '-=.25')
-  .to('.samosa-card img', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .16 }, '-=.15')
+  .to('.samosa-card-label', { opacity: 1, y: 0, duration: .5, stagger: .15 }, '-=.25')
+  .to('.samosa-card-img', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .16 }, '-=.4')
   .to('.samosa-cta', { opacity: 1, y: 0, duration: .6 }, '-=.2');
 
 /* =========================================================
-   Samosas — click to select. Exactly one samosa is selected at
-   all times (Pizza Samosa by default): selecting one calls it out
-   and swaps the name shown above the row to match.
+   Samosas — click to select, hover to tilt: the exact same
+   interaction as the icecream cups. Selecting one calls it out
+   (scaled up, glowing) while the other two recede; clicking the
+   selected one again clears the selection. Each samosa tilts
+   slightly away from its own base on hover.
    ========================================================= */
 {
-  const samosaName = document.getElementById('samosa-name');
+  const samosaRow = document.querySelector('.samosa-row');
   const samosaCards = document.querySelectorAll('.samosa-card');
 
   const selectSamosa = (card) => {
+    const alreadySelected = card.classList.contains('is-selected');
     samosaCards.forEach((c) => {
       c.classList.remove('is-selected');
       c.setAttribute('aria-pressed', 'false');
     });
+
+    if (alreadySelected){
+      samosaRow.classList.remove('has-selection');
+      return;
+    }
+
     card.classList.add('is-selected');
     card.setAttribute('aria-pressed', 'true');
-    samosaName.textContent = card.dataset.samosaName;
+    samosaRow.classList.add('has-selection');
   };
 
   samosaCards.forEach((card) => {
@@ -222,4 +231,19 @@ gsap.timeline({
       }
     });
   });
+
+  if (!reduceMotion){
+    const tiltBySamosa = { pizza: -8, peri: 8, fajita: -6 };
+    samosaCards.forEach((card) => {
+      const img = card.querySelector('.samosa-card-img');
+      const flavour = Object.keys(tiltBySamosa).find((f) => card.classList.contains(`samosa-card--${f}`));
+      const tilt = tiltBySamosa[flavour] || 0;
+      card.addEventListener('mouseenter', () => {
+        gsap.to(img, { rotation: tilt, duration: .4, ease: 'power2.out' });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(img, { rotation: 0, duration: .5, ease: 'power2.out' });
+      });
+    });
+  }
 }
