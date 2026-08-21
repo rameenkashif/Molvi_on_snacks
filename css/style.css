@@ -420,11 +420,11 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    above everything else on the page; no entrance animation. */
 .samosa-logo-sticker{
   position: absolute;
-  bottom: clamp(24px, 4.4vw, 64px);
+  bottom: clamp(-8px, 2.2vw, 32px);
   left: clamp(4vw, 6vw, 90px);
   z-index: 20;
-  width: clamp(104px, 11.5vw, 161px);
-  transform: rotate(-30deg);
+  width: clamp(120px, 13.2vw, 185px);
+  transform: rotate(-18deg);
 }
 
 /* footer band — a solid brown rectangle the drips hang into, with a
@@ -547,8 +547,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform: scale(.6);
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
 }
-.samosa-spark{ width: clamp(26px, 3.4vw, 38px); margin-top: -4px; }
-.samosa-wordmark{ width: min(340px, 54vw); }
+.samosa-spark{ width: clamp(30px, 3.9vw, 44px); margin-top: -4px; }
+.samosa-wordmark{ width: min(340px, 54vw); margin-left: -32px; }
 
 /* the snack tester badge: pulled up over .samosa-page's own top edge
    so it straddles the checker above and this cream section, like a
