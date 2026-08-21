@@ -10,7 +10,6 @@
   --orange-deep:   #d94900;
   --white:        #fffdf7;
   --wave-cream:   #f5f5dc;
-  --pink:         #f6c2ce;
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-accent:  "Baloo 2", "Segoe UI", sans-serif;
@@ -504,57 +503,15 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 /* =========================================================
-   Samosas — a slim pink strip holding the sticker logo (just tall
-   enough for the logo, not a full hero — the drip below is what
-   carries the section), easing via a chocolate-brown drip edge into
-   the same orange/cream checker as the icecream footer (same drip
-   component, fill and background swapped), then straight into the
-   cream section with the samosa heading and a three-up selector.
-   The "official snack tester" badge is pinned to .samosa-page but
-   pulled up with a negative top offset so it straddles the seam,
-   reading as stamped across both the checker and the cream section.
-   Exactly one samosa is selected at all times (defaults to the
-   first) — selecting one calls it out and swaps the name above the
-   row.
+   Samosas — arrives directly after the icecream footer's checker
+   (.cups-footer-checker), with the samosa heading and a three-up
+   selector. The "official snack tester" badge is pinned to
+   .samosa-page but pulled up with a negative top offset so it
+   straddles the seam, reading as stamped across both the checker
+   above and this cream section. Exactly one samosa is selected at
+   all times (defaults to the first) — selecting one calls it out
+   and swaps the name above the row.
    ========================================================= */
-.samosa-hero{
-  position: relative;
-  min-height: clamp(96px, 11vw, 140px);
-  background: var(--pink);
-  display: flex;
-  align-items: center;
-}
-.samosa-hero-logo{
-  width: clamp(100px, 11vw, 148px);
-  margin: 0 0 0 clamp(22px, 5vw, 60px);
-  filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .18));
-}
-
-.samosa-footer{
-  position: relative;
-  height: clamp(120px, 16vw, 200px);
-  margin-top: -1px;
-  background: var(--pink);
-}
-.samosa-drip{
-  position: absolute; left: 0; right: 0; top: 0; height: 58%;
-  z-index: 10;
-  margin: 0 auto;
-  width: min(100%, 1440px);
-  pointer-events: none;
-  display: block;
-}
-.samosa-drip path{ fill: var(--brown-deep); }
-.samosa-footer-checker{
-  position: absolute; left: 0; right: 0; bottom: 0;
-  height: 42%;
-  background-image: conic-gradient(
-    var(--orange) 90deg, var(--wave-cream) 90deg 180deg,
-    var(--orange) 180deg 270deg, var(--wave-cream) 270deg
-  );
-  background-size: calc(100vw / 14) calc(100vw / 14);
-}
-
 .samosa-page{
   position: relative;
   background: var(--cream);
