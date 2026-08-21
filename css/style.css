@@ -434,7 +434,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
     var(--orange) 90deg, var(--wave-cream) 90deg 180deg,
     var(--orange) 180deg 270deg, var(--wave-cream) 270deg
   );
-  background-size: 44px 44px;
+  /* each tile = 2 squares across, so 14 tiles = 28 squares per row */
+  background-size: calc(100vw / 14) calc(100vw / 14);
 }
 
 /* Desktop — land the wordmark a bit higher than the shared/mobile position */
