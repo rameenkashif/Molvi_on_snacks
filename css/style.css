@@ -596,6 +596,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
 }
 
+.samosa-card--pizza{ max-width: 336px; top: -32px; }
+
 .samosa-row.has-selection .samosa-card{ transform: scale(.92); opacity: .55; }
 .samosa-row.has-selection .samosa-card.is-selected{
   transform: scale(1.1);
