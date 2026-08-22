@@ -427,23 +427,25 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform: rotate(-18deg);
 }
 
-/* footer band — a solid brown rectangle the drips hang into, with a
+/* footer band — its own background carries the selected flavour's
+   colour (falling back to brown when nothing is selected), with a
    cream/orange checkerboard strip along its own bottom edge. */
 .cups-footer{
   position: relative;
   height: clamp(120px, 16vw, 200px);
   margin-top: -1px;
-  background: var(--brown-deep);
+  background: var(--active-bg, var(--brown-deep));
+  transition: background-color .6s var(--ease-out);
 }
 
-/* drip edge — wide, rounded drips (colour dominant, brown only in the
-   narrow gaps between them) closer to the reference than the earlier
-   thin-streak drip graphic. Lives inside .cups-footer, anchored to
+/* drip edge — the drip artwork's own path is the *gap* between
+   drips, not the drips themselves (its silhouette is a thin
+   connecting strip plus small tip highlights) — so it's filled a
+   fixed cream, and the flavour colour comes through from
+   .cups-footer's own background showing through the drip-shaped
+   negative space around it. Lives inside .cups-footer, anchored to
    its own top edge so the flat bar sits flush with the .next-page
-   boundary above and the drips hang down into the footer's own brown
-   background beneath, which shows through in the gaps. Matches the
-   selected flavour's colour, same as the page and the hero wave;
-   falls back to the base cream/yellow when nothing is selected. */
+   boundary above. */
 .cups-drip{
   position: absolute; left: 0; right: 0; top: 0; height: 58%;
   z-index: 10;
@@ -452,10 +454,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   pointer-events: none;
   display: block;
 }
-.cups-drip path{
-  fill: var(--active-bg, var(--wave-cream));
-  transition: fill .6s var(--ease-out);
-}
+.cups-drip-shape{ fill: var(--wave-cream); }
 .cups-footer-checker{
   position: absolute; left: 0; right: 0; bottom: 0;
   height: 42%;
