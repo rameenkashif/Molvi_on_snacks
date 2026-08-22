@@ -427,34 +427,35 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform: rotate(-18deg);
 }
 
-/* footer band — its own background carries the selected flavour's
-   colour (falling back to brown when nothing is selected), with a
-   cream/orange checkerboard strip along its own bottom edge. */
+/* footer band — a fixed cream trim (never flavour-tinted) that the
+   drips hang from, with a cream/orange checkerboard strip along its
+   own bottom edge. */
 .cups-footer{
   position: relative;
   height: clamp(120px, 16vw, 200px);
   margin-top: -1px;
-  background: var(--active-bg, var(--brown-deep));
-  transition: background-color .6s var(--ease-out);
+  background: var(--wave-cream);
 }
 
-/* drip edge — the drip artwork's own path is the *gap* between
-   drips, not the drips themselves (its silhouette is a thin
-   connecting strip plus small tip highlights) — so it's filled a
-   fixed cream, and the flavour colour comes through from
-   .cups-footer's own background showing through the drip-shaped
-   negative space around it. Lives inside .cups-footer, anchored to
-   its own top edge so the flat bar sits flush with the .next-page
-   boundary above. */
+/* drip edge — traced from the uploaded artwork's actual negative
+   space, so this path *is* the drips themselves (not a gap standing
+   in for them), filled directly with the selected flavour's colour
+   (falling back to brown when nothing is selected). Sized taller
+   than the checker beneath it so its longest drips overlap down
+   onto the checker's own top edge — it sits above the checker in
+   the stacking order, so those tips paint over it. */
 .cups-drip{
-  position: absolute; left: 0; right: 0; top: 0; height: 58%;
+  position: absolute; left: 0; right: 0; top: 0; height: 72%;
   z-index: 10;
   margin: 0 auto;
   width: min(100%, 1440px);
   pointer-events: none;
   display: block;
 }
-.cups-drip-shape{ fill: var(--wave-cream); }
+.cups-drip-shape{
+  fill: var(--active-bg, var(--brown-deep));
+  transition: fill .6s var(--ease-out);
+}
 .cups-footer-checker{
   position: absolute; left: 0; right: 0; bottom: 0;
   height: 42%;
