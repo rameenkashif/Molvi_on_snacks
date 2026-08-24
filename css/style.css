@@ -118,6 +118,20 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   .site-nav-links::-webkit-scrollbar{ display: none; }
   .site-nav-links a{ font-size: .78rem; }
   .site-nav-mascot{ width: 30px; height: 30px; }
+
+  /* both stickers shrink and tuck closer to their own corner so they
+     stay clear of the heading/CTA content beside them instead of
+     obstructing it at narrow widths. */
+  .samosa-logo-sticker{
+    width: 84px;
+    left: 3vw;
+    bottom: -6px;
+  }
+  .samosa-badge{
+    width: 84px;
+    right: 3vw;
+    top: -26px;
+  }
 }
 
 /* =========================================================
@@ -401,8 +415,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    drives this image's own transform for the entrance pop and hover
    tilt and would otherwise fight a transform set here. */
 .cup-card--orea .cup-card-img{
-  left: -8px;
-  top: 48px;
+  left: -2.5%;
+  top: 11%;
   height: 94.76%;
 }
 
@@ -453,7 +467,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    flush against .next-page's bottom edge, right at the seam where
    the icecream section ends. */
 .cups-drip{
-  position: absolute; left: 0; right: 0; top: 0; height: 58%;
+  position: absolute; left: 0; right: 0; top: -8px; height: 58%;
   z-index: 10;
   margin: 0 auto;
   width: min(100%, 1440px);
