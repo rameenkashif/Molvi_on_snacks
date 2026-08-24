@@ -839,6 +839,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   filter: drop-shadow(0 14px 18px rgba(60, 33, 26, .25));
 }
 
+.shake-card--vanilla .shake-card-img{ rotate: -7deg; }
+.shake-card--strawberry .shake-card-img{ scale: .9; }
+
 .shakes-cta{
   opacity: 0;
   transform: translateY(20px);
