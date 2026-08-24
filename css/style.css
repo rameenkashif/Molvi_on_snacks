@@ -449,11 +449,14 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 
 /* drip edge — the uploaded artwork's own path, used as-is (no
    tracing/inversion), filled directly with the selected flavour's
-   colour (falling back to brown when nothing is selected). Sits
-   flush against .next-page's bottom edge, right at the seam where
-   the icecream section ends. */
+   colour (falling back to cream when nothing is selected, so the
+   drips stay visible against the brown footer). Sits against
+   .next-page's bottom edge, right at the seam where the icecream
+   section ends, and extends down far enough to overlay the top of
+   the checker strip below it (z-index above the checker) for every
+   fill colour, including the unselected/initial state. */
 .cups-drip{
-  position: absolute; left: 0; right: 0; top: -8px; height: 58%;
+  position: absolute; left: 0; right: 0; top: -8px; height: 70%;
   z-index: 10;
   margin: 0 auto;
   width: min(100%, 1440px);
@@ -461,7 +464,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   display: block;
 }
 .cups-drip-shape{
-  fill: var(--active-bg, var(--brown-deep));
+  fill: var(--active-bg, var(--wave-cream));
   transition: fill .6s var(--ease-out);
 }
 .cups-footer-checker{
@@ -839,8 +842,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   filter: drop-shadow(0 14px 18px rgba(60, 33, 26, .25));
 }
 
-.shake-card--vanilla .shake-card-img{ rotate: -7deg; }
-.shake-card--strawberry .shake-card-img{ scale: .9; }
+.shake-card--vanilla .shake-card-img{ rotate: -7deg; translate: 8px 0; }
+.shake-card--strawberry .shake-card-img{ scale: .873; translate: 4px -4px; }
 
 .shakes-cta{
   opacity: 0;
