@@ -537,12 +537,12 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    ========================================================= */
 .samosa-page{
   position: relative;
-  background: var(--cream);
+  background: var(--wave-cream);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: clamp(16px, 3vw, 28px);
-  padding: clamp(20px, 4vw, 40px) 5vw clamp(60px, 9vw, 100px);
+  padding: clamp(20px, 4vw, 40px) 5vw clamp(20px, 4vw, 40px);
 }
 
 .samosa-heading{
@@ -704,10 +704,15 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    ========================================================= */
 .samosa-ribbon{
   width: 100%;
+  background: var(--wave-cream);
+  margin-top: -32px;
+}
+.samosa-ribbon img{
+  width: 100%;
   max-width: 1440px;
   margin: 0 auto;
+  display: block;
 }
-.samosa-ribbon img{ width: 100%; display: block; }
 
 .samosa-cheese-footer{
   position: relative;
