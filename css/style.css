@@ -427,25 +427,22 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform: rotate(-18deg);
 }
 
-/* footer band — a fixed cream trim (never flavour-tinted) that the
-   drips hang from, with a cream/orange checkerboard strip along its
-   own bottom edge. */
+/* footer band — a fixed brown backdrop behind the drip artwork, with
+   a cream/orange checkerboard strip along its own bottom edge. */
 .cups-footer{
   position: relative;
   height: clamp(120px, 16vw, 200px);
   margin-top: -1px;
-  background: var(--wave-cream);
+  background: var(--brown-deep);
 }
 
-/* drip edge — traced from the uploaded artwork's actual negative
-   space, so this path *is* the drips themselves (not a gap standing
-   in for them), filled directly with the selected flavour's colour
-   (falling back to brown when nothing is selected). Sized taller
-   than the checker beneath it so its longest drips overlap down
-   onto the checker's own top edge — it sits above the checker in
-   the stacking order, so those tips paint over it. */
+/* drip edge — the uploaded artwork's own path, used as-is (no
+   tracing/inversion), filled directly with the selected flavour's
+   colour (falling back to brown when nothing is selected). Sits
+   flush against .next-page's bottom edge, right at the seam where
+   the icecream section ends. */
 .cups-drip{
-  position: absolute; left: 0; right: 0; top: 0; height: 72%;
+  position: absolute; left: 0; right: 0; top: 0; height: 58%;
   z-index: 10;
   margin: 0 auto;
   width: min(100%, 1440px);
