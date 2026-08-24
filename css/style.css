@@ -678,6 +678,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 
 .samosa-cta{
   opacity: 0;
+  margin-top: 24px;
   transform: translateY(20px);
   padding: 14px 42px;
   background: #6b3f2e;
@@ -705,7 +706,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .samosa-ribbon{
   width: 100%;
   background: var(--wave-cream);
-  margin-top: -32px;
+  margin-top: -56px;
 }
 .samosa-ribbon img{
   width: 100%;
