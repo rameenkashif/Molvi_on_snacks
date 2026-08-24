@@ -118,20 +118,6 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   .site-nav-links::-webkit-scrollbar{ display: none; }
   .site-nav-links a{ font-size: .78rem; }
   .site-nav-mascot{ width: 30px; height: 30px; }
-
-  /* both stickers shrink and tuck closer to their own corner so they
-     stay clear of the heading/CTA content beside them instead of
-     obstructing it at narrow widths. */
-  .samosa-logo-sticker{
-    width: 84px;
-    left: 3vw;
-    bottom: -6px;
-  }
-  .samosa-badge{
-    width: 84px;
-    right: 3vw;
-    top: -26px;
-  }
 }
 
 /* =========================================================
@@ -707,6 +693,27 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .samosa-cta:hover{
   background: var(--brown-deep);
   box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
+}
+
+/* Mobile — both samosa stickers shrink and tuck closer to their own
+   corner so they stay clear of the heading beside them instead of
+   obstructing it at narrow widths; the wordmark shrinks and drops
+   its desktop-only upward pull so the heading sits in normal flow
+   instead of climbing up toward the badge. Placed after every rule
+   it overrides so the cascade doesn't let the unconditional desktop
+   rule win at equal specificity. */
+@media (max-width: 700px){
+  .samosa-logo-sticker{
+    width: 84px;
+    left: 3vw;
+    bottom: -6px;
+  }
+  .samosa-wordmark{ width: 200px; margin-top: 0; }
+  .samosa-badge{
+    width: 44px;
+    right: 2px;
+    top: -40px;
+  }
 }
 
 /* =========================================================
