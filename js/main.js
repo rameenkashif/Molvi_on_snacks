@@ -248,3 +248,74 @@ gsap.timeline({
     });
   }
 }
+
+/* =========================================================
+   Shakes — heading and the three-up selector fade/pop in once the
+   section scrolls into view, the same beat as the icecream cups and
+   samosas.
+   ========================================================= */
+gsap.timeline({
+  defaults: { ease: 'power3.out' },
+  scrollTrigger: {
+    trigger: '.shakes-page',
+    start: 'top 70%',
+    toggleActions: 'play none none reverse',
+  }
+})
+  .to('.shakes-heading', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(1.7)' })
+  .to('.shake-card-label', { opacity: 1, y: 0, duration: .5, stagger: .15 }, '-=.25')
+  .to('.shake-card-img', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .16 }, '-=.4')
+  .to('.shakes-cta', { opacity: 1, y: 0, duration: .6 }, '-=.2');
+
+/* =========================================================
+   Shakes — click to select, hover to tilt: the exact same
+   interaction as the icecream cups and samosas. Selecting one calls
+   it out (scaled up, glowing) while the other two recede; clicking
+   the selected one again clears the selection.
+   ========================================================= */
+{
+  const shakesRow = document.querySelector('.shakes-row');
+  const shakeCards = document.querySelectorAll('.shake-card');
+
+  const selectShake = (card) => {
+    const alreadySelected = card.classList.contains('is-selected');
+    shakeCards.forEach((c) => {
+      c.classList.remove('is-selected');
+      c.setAttribute('aria-pressed', 'false');
+    });
+
+    if (alreadySelected){
+      shakesRow.classList.remove('has-selection');
+      return;
+    }
+
+    card.classList.add('is-selected');
+    card.setAttribute('aria-pressed', 'true');
+    shakesRow.classList.add('has-selection');
+  };
+
+  shakeCards.forEach((card) => {
+    card.addEventListener('click', () => selectShake(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        selectShake(card);
+      }
+    });
+  });
+
+  if (!reduceMotion){
+    const tiltByShake = { chocolate: -8, vanilla: 8, strawberry: -6 };
+    shakeCards.forEach((card) => {
+      const img = card.querySelector('.shake-card-img');
+      const flavour = Object.keys(tiltByShake).find((f) => card.classList.contains(`shake-card--${f}`));
+      const tilt = tiltByShake[flavour] || 0;
+      card.addEventListener('mouseenter', () => {
+        gsap.to(img, { rotation: tilt, duration: .4, ease: 'power2.out' });
+      });
+      card.addEventListener('mouseleave', () => {
+        gsap.to(img, { rotation: 0, duration: .5, ease: 'power2.out' });
+      });
+    });
+  }
+}
