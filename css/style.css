@@ -434,6 +434,11 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   height: clamp(120px, 16vw, 200px);
   margin-top: -1px;
   background: var(--brown-deep);
+  /* bridges the hairline compositor seam that can appear between this
+     section and .next-page above (a sub-pixel gap at certain zoom/DPI
+     levels) by painting solid colour a few px past this box's own
+     top edge, rather than relying on margin overlap alone. */
+  box-shadow: 0 -4px 0 0 var(--brown-deep);
 }
 
 /* drip edge — the uploaded artwork's own path, used as-is (no
