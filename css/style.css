@@ -51,17 +51,15 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    ========================================================= */
 .site-nav{
   position: fixed;
-  top: 0; left: 50%;
+  top: 0; left: 0; right: 0;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: clamp(16px, 3vw, 40px);
-  width: min(92%, 1100px);
-  margin-top: 16px;
+  width: 100%;
   padding: 10px clamp(16px, 3vw, 28px);
   background: var(--white);
-  border-radius: 0 0 20px 20px;
   box-shadow: 0 12px 28px rgba(60, 33, 26, .16);
   font-family: var(--font-body);
 }
@@ -290,6 +288,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
+  /* the flavour names now sit below each card, poking past its own
+     box — this makes room so they don't collide with the CTA. */
+  margin-bottom: 56px;
 }
 
 /* each flavour card = a rounded colour block that fades in first,
@@ -335,7 +336,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 /* flavour name, sitting above the cup within the card */
 .cup-card-label{
   position: absolute;
-  top: 9%; left: 6%; right: 6%;
+  bottom: -13%; left: 6%; right: 6%;
   z-index: 2;
   margin: 0;
   text-align: center;
@@ -393,6 +394,16 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transform: scale(.7);
   transform-origin: bottom center;
+}
+
+/* orea barkat cup: nudged left/down and sized up slightly relative
+   to the other two — left/top rather than transform, since GSAP
+   drives this image's own transform for the entrance pop and hover
+   tilt and would otherwise fight a transform set here. */
+.cup-card--orea .cup-card-img{
+  left: -8px;
+  top: 8px;
+  height: 94.76%;
 }
 
 /* call to action — fades/rises in after the cups, sitting below the row */
@@ -578,6 +589,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   gap: clamp(14px, 3vw, 36px);
   width: 100%;
   max-width: 1080px;
+  /* the flavour names now sit below each card, poking past its own
+     box — this makes room so they don't collide with the CTA. */
+  margin-bottom: 56px;
 }
 
 /* each card matches the icecream cups exactly: same fixed rectangle,
@@ -610,7 +624,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 
 .samosa-card-label{
   position: absolute;
-  top: 9%; left: 6%; right: 6%;
+  bottom: -13%; left: 6%; right: 6%;
   z-index: 2;
   margin: 0;
   text-align: center;

@@ -113,17 +113,18 @@ if (!reduceMotion){
 }
 
 /* =========================================================
-   Site nav — slides down from off-screen once the hero (and its
-   closing wave) has scrolled fully out of frame, i.e. once
-   .next-page's top edge reaches the top of the viewport.
+   Site nav — peeks in half-visible from the top edge over the hero,
+   then slides fully into view once the hero (and its closing wave)
+   has scrolled out of frame, i.e. once .next-page's top edge reaches
+   the top of the viewport.
    ========================================================= */
-gsap.set('.site-nav', { xPercent: -50, yPercent: -100 });
+gsap.set('.site-nav', { yPercent: -50 });
 
 ScrollTrigger.create({
   trigger: '.next-page',
   start: 'top top+=50',
   onEnter: () => gsap.to('.site-nav', { yPercent: 0, duration: .5, ease: 'power3.out' }),
-  onLeaveBack: () => gsap.to('.site-nav', { yPercent: -100, duration: .4, ease: 'power3.in' }),
+  onLeaveBack: () => gsap.to('.site-nav', { yPercent: -50, duration: .4, ease: 'power3.in' }),
 });
 
 /* =========================================================
