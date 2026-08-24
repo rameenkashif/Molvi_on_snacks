@@ -741,7 +741,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 .shakes-heading{
-  width: min(300px, 48vw);
+  width: min(345px, 55.2vw);
+  margin-top: -8px;
   opacity: 0;
   transform: scale(.6);
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
@@ -841,6 +842,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .shakes-cta{
   opacity: 0;
   transform: translateY(20px);
+  margin-top: clamp(28px, 3.8vw, 48px);
   padding: 14px 42px;
   background: #6b3f2e;
   color: var(--white);
