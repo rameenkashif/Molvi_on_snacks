@@ -12,7 +12,6 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
 heroTl
-  .to('.site-nav', { opacity: 1, y: 0, duration: .8 }, 0)
   .to('.hero-bg-front img', { scale: 1, duration: 1.6, ease: 'power2.out' }, 0)
   .to('.hero-wordmark', { opacity: 1, duration: .3 }, .15)
   .to('.hero-wordmark', { y: 0, duration: 1.4, ease: 'power4.out' }, '<')
@@ -114,12 +113,18 @@ if (!reduceMotion){
 }
 
 /* =========================================================
-   Site nav — always visible, on the hero included. It carries real
-   ordering controls now (delivery/pick-up, delivery-area picker),
-   not just section links, so hiding it until the visitor scrolls
-   past the hero (the previous behaviour) meant those controls were
-   unreachable on first load — the same as the nav being broken.
+   Site nav — hidden off-screen through the hero, then slides down
+   from the top once the visitor scrolls to the icecreams section
+   (and slides back up if they scroll back into the hero).
    ========================================================= */
+gsap.set('.site-nav', { yPercent: -100 });
+
+ScrollTrigger.create({
+  trigger: '.next-page',
+  start: 'top top+=50',
+  onEnter: () => gsap.to('.site-nav', { yPercent: 0, duration: .5, ease: 'power3.out' }),
+  onLeaveBack: () => gsap.to('.site-nav', { yPercent: -100, duration: .4, ease: 'power3.in' }),
+});
 
 /* =========================================================
    Site nav — section links zoom to their destination. Clicking
