@@ -121,6 +121,28 @@ if (!reduceMotion){
    ========================================================= */
 
 /* =========================================================
+   Site nav — section links zoom to their destination. Clicking
+   icecreams/samosas/shakes smooth-scrolls there as usual, but the
+   destination section also pops in with a quick scale+fade, so the
+   jump reads as the screen zooming onto that section rather than a
+   plain scroll.
+   ========================================================= */
+if (!reduceMotion){
+  document.querySelectorAll('.site-nav-links a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      gsap.fromTo(target,
+        { scale: .92, opacity: .55 },
+        { scale: 1, opacity: 1, duration: .7, ease: 'power3.out', delay: .2, transformOrigin: '50% 50%' }
+      );
+    });
+  });
+}
+
+/* =========================================================
    Flavour cards — click to select. Picking a cup sets --active-bg on
    the document root, so the section background, the hero wave above
    it, and the drip edge below it all retint together to that
