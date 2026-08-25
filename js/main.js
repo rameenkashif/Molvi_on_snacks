@@ -113,20 +113,12 @@ if (!reduceMotion){
 }
 
 /* =========================================================
-   Site nav — stays fully off-screen over the hero, only sliding
-   into view once the hero (and its closing wave) has scrolled out
-   of frame, i.e. once .next-page's top edge reaches the top of the
-   viewport.
+   Site nav — always visible, on the hero included. It carries real
+   ordering controls now (delivery/pick-up, delivery-area picker),
+   not just section links, so hiding it until the visitor scrolls
+   past the hero (the previous behaviour) meant those controls were
+   unreachable on first load — the same as the nav being broken.
    ========================================================= */
-gsap.set('.site-nav', { yPercent: -100 });
-
-ScrollTrigger.create({
-  id: 'nav-reveal',
-  trigger: '.next-page',
-  start: 'top top+=50',
-  onEnter: () => gsap.to('.site-nav', { yPercent: 0, duration: .5, ease: 'power3.out' }),
-  onLeaveBack: () => gsap.to('.site-nav', { yPercent: -100, duration: .4, ease: 'power3.in' }),
-});
 
 /* =========================================================
    Flavour cards — click to select. Picking a cup sets --active-bg on

@@ -16,7 +16,13 @@ function readCart(){
 }
 
 function writeCart(cart){
-  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  } catch (e) {
+    /* storage blocked (private mode, sandboxed preview, etc.) —
+       still update the UI for this page load even though it won't
+       persist across a reload */
+  }
   updateCartBadge();
   updateViewCartFab();
   if (typeof renderCartPage === 'function') renderCartPage();
