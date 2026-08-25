@@ -1155,7 +1155,10 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    fixed gaps, a heading label, then a simple link list.
    ========================================================= */
 .site-footer{
-  background: var(--brown-deep);
+  background-color: var(--brown-deep);
+  background-image: url("../assets/images/footer-pattern.png");
+  background-repeat: repeat;
+  background-size: 116px 116px;
   color: var(--white);
   margin-top: -1px;
 }
