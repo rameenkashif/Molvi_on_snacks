@@ -440,6 +440,11 @@ gsap.timeline({
   });
 
   addBtn.addEventListener('click', () => {
+    const section = menuData[currentSection];
+    section.items.forEach((item) => {
+      const qty = qtyState[item.id] || 0;
+      if (qty > 0) addToCart(currentSection, item, qty);
+    });
     addBtn.classList.add('is-added');
     addLabel.textContent = 'Added!';
     setTimeout(closeMenu, 900);
@@ -467,4 +472,123 @@ gsap.timeline({
     const cards = document.querySelectorAll('.shake-card');
     openMenu('shakes', selectedFlavour(cards, 'shake-card--') || 'chocolate');
   });
+}
+
+/* =========================================================
+   Cart — a small localStorage-backed store shared by the menu
+   modal (which adds items) and the cart page (which lists,
+   edits and removes them). Kept as plain top-level function
+   declarations so both can call into it regardless of script
+   order, since it's hoisted.
+   ========================================================= */
+const CART_STORAGE_KEY = 'molvi-cart';
+const DELIVERY_FEE = 80;
+
+function readCart(){
+  try {
+    return JSON.parse(localStorage.getItem(CART_STORAGE_KEY)) || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function writeCart(cart){
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  updateCartBadge();
+  renderCartPage();
+}
+
+function addToCart(section, item, qty){
+  const cart = readCart();
+  const existing = cart.find((c) => c.section === section && c.id === item.id);
+  if (existing){
+    existing.qty += qty;
+  } else {
+    cart.push({ section, id: item.id, name: item.name, price: item.price, img: item.img, qty });
+  }
+  writeCart(cart);
+}
+
+function updateCartBadge(){
+  const badge = document.getElementById('cart-badge');
+  if (!badge) return;
+  const count = readCart().reduce((sum, item) => sum + item.qty, 0);
+  badge.textContent = count;
+  badge.hidden = count === 0;
+}
+
+function renderCartPage(){
+  const page = document.querySelector('.cart-page');
+  const listEl = document.getElementById('cart-list');
+  if (!page || !listEl) return;
+
+  const cart = readCart();
+  page.classList.toggle('is-empty', cart.length === 0);
+  listEl.innerHTML = '';
+
+  cart.forEach((item) => {
+    const li = document.createElement('li');
+    li.className = 'cart-item';
+    li.innerHTML = `
+      <img class="cart-item-img" src="${item.img}" alt="">
+      <div class="cart-item-info">
+        <span class="cart-item-tag cart-item-tag--${item.section}">${item.section}</span>
+        <p class="cart-item-name">${item.name}</p>
+        <p class="cart-item-price">Rs. ${item.price} each</p>
+      </div>
+      <div class="cart-item-meta">
+        <div class="cart-item-stepper">
+          <button type="button" class="cart-item-step cart-item-step--minus" aria-label="Decrease ${item.name} quantity">&minus;</button>
+          <span class="cart-item-qty">${item.qty}</span>
+          <button type="button" class="cart-item-step cart-item-step--plus" aria-label="Increase ${item.name} quantity">+</button>
+        </div>
+        <span class="cart-item-line-total">Rs. ${item.price * item.qty}</span>
+        <button type="button" class="cart-item-remove" aria-label="Remove ${item.name}">&times;</button>
+      </div>
+    `;
+    li.querySelector('.cart-item-step--minus').addEventListener('click', () => {
+      const cur = readCart();
+      const target = cur.find((c) => c.section === item.section && c.id === item.id);
+      if (!target) return;
+      target.qty -= 1;
+      const next = target.qty <= 0 ? cur.filter((c) => c !== target) : cur;
+      writeCart(next);
+    });
+    li.querySelector('.cart-item-step--plus').addEventListener('click', () => {
+      const cur = readCart();
+      const target = cur.find((c) => c.section === item.section && c.id === item.id);
+      if (!target) return;
+      target.qty += 1;
+      writeCart(cur);
+    });
+    li.querySelector('.cart-item-remove').addEventListener('click', () => {
+      const cur = readCart().filter((c) => !(c.section === item.section && c.id === item.id));
+      writeCart(cur);
+    });
+    listEl.appendChild(li);
+  });
+
+  const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const delivery = cart.length ? DELIVERY_FEE : 0;
+  document.getElementById('cart-subtotal').textContent = `Rs. ${subtotal}`;
+  document.getElementById('cart-delivery').textContent = `Rs. ${delivery}`;
+  document.getElementById('cart-total').textContent = `Rs. ${subtotal + delivery}`;
+}
+
+{
+  const checkoutBtn = document.getElementById('cart-checkout');
+  if (checkoutBtn){
+    checkoutBtn.addEventListener('click', () => {
+      if (readCart().length === 0) return;
+      checkoutBtn.classList.add('is-done');
+      checkoutBtn.textContent = 'Order placed!';
+      setTimeout(() => {
+        writeCart([]);
+        checkoutBtn.classList.remove('is-done');
+        checkoutBtn.textContent = 'Checkout';
+      }, 1400);
+    });
+  }
+  updateCartBadge();
+  renderCartPage();
 }

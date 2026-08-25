@@ -1387,6 +1387,252 @@ body.menu-modal-lock{ overflow: hidden; }
 }
 
 /* =========================================================
+   Cart page — sits between the shakes section and the brand
+   marquee, on the same cream ground the shakes checker transitions
+   into. Mirrors the menu modal's row styling (image + name/price +
+   stepper) so the two feel like one system, plus a remove button, a
+   summary card, and an empty state for when nothing's been added.
+   ========================================================= */
+.cart-page{
+  padding: clamp(56px, 8vw, 96px) 5vw clamp(48px, 7vw, 80px);
+  background: var(--cream);
+  text-align: center;
+}
+.cart-heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.cart-spark{ width: clamp(20px, 2.6vw, 28px); opacity: .9; }
+.cart-title{
+  margin: 0;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--orange);
+}
+.cart-subtitle{
+  margin: 6px 0 40px;
+  color: var(--brown-deep);
+  opacity: .7;
+  font-weight: 600;
+}
+
+.cart-wrap{ max-width: 720px; margin: 0 auto; text-align: left; }
+
+.cart-list{
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cart-item{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 20px;
+  background: var(--white);
+  box-shadow: 0 8px 20px rgba(60, 33, 26, .08);
+}
+.cart-item-img{
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  object-fit: cover;
+  background: var(--cream-deep);
+}
+.cart-item-info{ flex: 1 1 auto; min-width: 0; }
+.cart-item-tag{
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 2px 9px;
+  border-radius: 999px;
+  margin-bottom: 4px;
+  color: var(--white);
+}
+.cart-item-tag--icecreams{ background: #e8628f; }
+.cart-item-tag--samosas{ background: #e2571b; }
+.cart-item-tag--shakes{ background: #6b3f2e; }
+.cart-item-name{
+  margin: 0 0 2px;
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--brown-deep);
+}
+.cart-item-price{
+  margin: 0;
+  font-size: .85rem;
+  color: var(--brown-deep);
+  opacity: .6;
+  font-weight: 600;
+}
+.cart-item-meta{
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cart-item-stepper{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: inset 0 0 0 1.5px rgba(60, 33, 26, .12);
+}
+.cart-item-step{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  color: var(--brown-deep);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s var(--ease-out);
+}
+.cart-item-step:hover{ background: var(--cream-deep); }
+.cart-item-qty{ min-width: 16px; text-align: center; font-weight: 700; font-size: .9rem; }
+.cart-item-line-total{
+  font-weight: 700;
+  color: var(--orange);
+  min-width: 60px;
+  text-align: right;
+  font-size: .92rem;
+}
+.cart-item-remove{
+  border: none;
+  background: none;
+  color: var(--brown-deep);
+  opacity: .4;
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  transition: opacity .2s var(--ease-out), color .2s var(--ease-out);
+}
+.cart-item-remove:hover{ opacity: 1; color: #c0392b; }
+
+.cart-empty{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 56px 20px;
+  text-align: center;
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 8px 20px rgba(60, 33, 26, .06);
+}
+.cart-empty p{
+  margin: 0;
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--brown-deep);
+  opacity: .55;
+}
+.cart-empty-cta{
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .2s var(--ease-out), transform .2s var(--ease-out);
+}
+.cart-empty-cta:hover{ background: var(--orange-deep); transform: translateY(-2px); }
+
+.cart-page.is-empty .cart-list,
+.cart-page.is-empty .cart-summary{ display: none; }
+.cart-page:not(.is-empty) .cart-empty{ display: none; }
+
+.cart-summary{
+  background: var(--brown-deep);
+  border-radius: 24px;
+  padding: 22px 26px;
+  color: var(--white);
+}
+.cart-summary-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: .95rem;
+  opacity: .85;
+}
+.cart-summary-row strong{ font-weight: 700; }
+.cart-summary-row--total{
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(255, 253, 247, .3);
+  opacity: 1;
+  font-size: 1.1rem;
+}
+.cart-summary-row--total strong{
+  color: var(--orange);
+  font-family: var(--font-accent);
+  font-size: 1.3rem;
+}
+.cart-checkout{
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  border: none;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.02rem;
+  cursor: pointer;
+  transition: background-color .2s var(--ease-out), transform .2s var(--ease-out);
+}
+.cart-checkout:hover{ background: var(--orange-deep); transform: translateY(-2px); }
+.cart-checkout.is-done{ background: #2f9e44; }
+
+.site-nav-cart-link{ position: relative; }
+.cart-badge{
+  position: absolute;
+  top: -9px;
+  right: -14px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: .65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+@media (max-width: 480px){
+  .cart-item{ flex-wrap: wrap; }
+  .cart-item-img{ width: 56px; height: 56px; }
+  .cart-item-meta{ flex-basis: calc(100% - 72px); margin-left: 72px; margin-top: 8px; justify-content: space-between; }
+}
+
+/* =========================================================
    Reduced motion
    ========================================================= */
 @media (prefers-reduced-motion: reduce){
