@@ -118,6 +118,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   .site-nav-links::-webkit-scrollbar{ display: none; }
   .site-nav-links a{ font-size: .78rem; }
   .site-nav-mascot{ width: 30px; height: 30px; }
+  .site-nav-cart{ width: 30px; height: 30px; }
+  .site-nav-cart-icon{ width: 19px; height: 19px; }
 }
 
 /* =========================================================
@@ -1560,7 +1562,7 @@ body.menu-modal-lock{ overflow: hidden; }
 
 .cart-page.is-empty .cart-list,
 .cart-page.is-empty .cart-summary{ display: none; }
-.cart-page:not(.is-empty) .cart-empty{ display: none; }
+.cart-page.is-empty .cart-empty{ display: flex; }
 
 .cart-summary{
   background: var(--brown-deep);
@@ -1607,7 +1609,6 @@ body.menu-modal-lock{ overflow: hidden; }
 .cart-checkout:hover{ background: var(--orange-deep); transform: translateY(-2px); }
 .cart-checkout.is-done{ background: #2f9e44; }
 
-.site-nav-cart-link{ position: relative; }
 .cart-badge{
   position: absolute;
   top: -9px;
@@ -1631,6 +1632,209 @@ body.menu-modal-lock{ overflow: hidden; }
   .cart-item-img{ width: 56px; height: 56px; }
   .cart-item-meta{ flex-basis: calc(100% - 72px); margin-left: 72px; margin-top: 8px; justify-content: space-between; }
 }
+
+/* Cart / checkout as standalone pages — no hero above the fixed nav
+   here, so the page content needs its own top clearance, and (since
+   these pages don't run main.js's scroll-reveal) the nav is simply
+   visible from the first frame, no JS required. */
+.cart-page--standalone{ padding-top: clamp(96px, 13vw, 132px); min-height: 70vh; }
+.site-nav-cart{
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: var(--brown-deep);
+  transition: color .2s var(--ease-out);
+}
+.site-nav-cart:hover,
+.site-nav-cart.is-active{ color: var(--orange); }
+.site-nav-cart-icon{ width: 22px; height: 22px; fill: currentColor; }
+.site-nav-cart .cart-badge{ top: -2px; right: -2px; }
+
+/* Floating "View Cart" button — index.html only, pops in the moment
+   the cart goes from empty to non-empty so people browsing further
+   down the page don't have to scroll back up to the nav. */
+.view-cart-fab{
+  position: fixed;
+  right: clamp(16px, 3vw, 32px);
+  bottom: clamp(16px, 3vw, 32px);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 14px 32px rgba(60, 33, 26, .35);
+  opacity: 0;
+  transform: scale(.85);
+  pointer-events: none;
+  transition: transform .3s var(--ease-out), opacity .3s var(--ease-out), background-color .2s var(--ease-out);
+}
+.view-cart-fab.is-visible{ opacity: 1; transform: scale(1); pointer-events: auto; }
+.view-cart-fab.is-visible:hover{ background: var(--orange-deep); transform: scale(1) translateY(-3px); }
+.view-cart-fab svg{ width: 18px; height: 18px; fill: currentColor; }
+.view-cart-fab-count{
+  background: var(--white);
+  color: var(--orange);
+  border-radius: 999px;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75rem;
+  font-weight: 800;
+  padding: 0 5px;
+}
+@media (max-width: 600px){
+  .view-cart-fab span:not(.view-cart-fab-count){ display: none; }
+  .view-cart-fab{ padding: 14px; }
+}
+
+/* =========================================================
+   Checkout page — delivery details form beside a read-only order
+   summary, then a details/success swap once the order is placed.
+   ========================================================= */
+.checkout-wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 28px;
+  align-items: start;
+  text-align: left;
+}
+.checkout-form{
+  background: var(--white);
+  border-radius: 24px;
+  padding: 28px clamp(20px, 3vw, 32px);
+  box-shadow: 0 8px 20px rgba(60, 33, 26, .06);
+}
+.checkout-form h2,
+.checkout-summary h2{
+  margin: 0 0 18px;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--brown-deep);
+}
+.checkout-field{ margin-bottom: 16px; }
+.checkout-field label{
+  display: block;
+  font-weight: 700;
+  font-size: .86rem;
+  color: var(--brown-deep);
+  margin-bottom: 6px;
+}
+.checkout-field input[type="text"],
+.checkout-field input[type="tel"],
+.checkout-field textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1.5px solid rgba(60, 33, 26, .15);
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: .92rem;
+  color: var(--brown-deep);
+  background: var(--cream);
+}
+.checkout-field textarea{ min-height: 64px; resize: vertical; }
+.checkout-field input:focus,
+.checkout-field textarea:focus{ outline: 2px solid var(--orange); outline-offset: 1px; }
+.checkout-payment-options{ display: flex; flex-direction: column; gap: 10px; }
+.checkout-radio{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: .92rem;
+  color: var(--brown-deep);
+  cursor: pointer;
+}
+.checkout-radio input{ accent-color: var(--orange); width: 16px; height: 16px; }
+
+.checkout-summary{
+  background: var(--brown-deep);
+  border-radius: 24px;
+  padding: 24px clamp(20px, 3vw, 26px);
+  color: var(--white);
+}
+.checkout-summary h2{ color: var(--white); }
+.checkout-summary-list{
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checkout-summary-item{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: .88rem;
+  opacity: .9;
+}
+.checkout-summary .cart-summary-row{ opacity: .85; }
+.checkout-summary .cart-summary-row--total{ opacity: 1; }
+
+.checkout-empty,
+.checkout-success{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 56px 24px;
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 8px 20px rgba(60, 33, 26, .06);
+}
+.checkout-empty p,
+.checkout-success p{ margin: 0; color: var(--brown-deep); opacity: .7; font-weight: 600; }
+.checkout-success h2{
+  margin: 0;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--orange);
+}
+.checkout-success-icon{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #2f9e44;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+@media (max-width: 800px){
+  .checkout-wrap{ grid-template-columns: 1fr; }
+}
+
+/* .checkout-wrap/.checkout-empty/.checkout-success each set their own
+   `display`, which otherwise outranks the `hidden` attribute's
+   built-in (low-specificity) `display: none` — so state toggling via
+   `.hidden = true/false` in JS needs an explicit override here. */
+.checkout-wrap[hidden],
+.checkout-empty[hidden],
+.checkout-success[hidden]{ display: none; }
 
 /* =========================================================
    Reduced motion
