@@ -319,3 +319,152 @@ gsap.timeline({
     });
   }
 }
+
+/* =========================================================
+   Menu modal — shared "view all" popup for icecreams, samosas and
+   shakes. Same panel markup for all three, themed per section via
+   modal[data-theme]; the flavour selected on the home page (if any)
+   opens pre-added at qty 1, everything else starts at 0. Users can
+   add multiple flavours, adjust quantities, leave instructions, then
+   add the whole order to the cart in one go.
+   ========================================================= */
+{
+  const menuData = {
+    icecreams: {
+      title: 'Ice-Creams',
+      items: [
+        { id: 'orea', name: 'Orea Barkat', price: 150, desc: 'Oreo chunks in creamy vanilla', img: 'assets/images/cup-orea-card.png' },
+        { id: 'strawberry', name: 'Ishq e Strawberry', price: 210, desc: 'Creamy strawberry ice-cream', img: 'assets/images/cup-strawberry-card.png' },
+        { id: 'pista', name: 'Shifa e Pista', price: 210, desc: 'Pista ice-cream with a royal touch', img: 'assets/images/cup-pista-card.png' },
+      ],
+    },
+    samosas: {
+      title: 'Samosas',
+      items: [
+        { id: 'pizza', name: 'Pizza Samosa', price: 140, desc: 'Cheesy pizza filling in a crispy samosa', img: 'assets/images/samosa-pizza.png' },
+        { id: 'peri', name: 'Peri Peri Samosa', price: 100, desc: 'Spicy peri peri chicken filling', img: 'assets/images/samosa-peri-peri.png' },
+        { id: 'fajita', name: 'Fajita Samosa', price: 120, desc: 'Zesty chicken fajita filling in a crispy shell', img: 'assets/images/samosa-fajita.png' },
+      ],
+    },
+    shakes: {
+      title: 'Shakes',
+      items: [
+        { id: 'chocolate', name: 'Chocolate Shake', price: 250, desc: 'Rich chocolate blended thick shake', img: 'assets/images/shake-chocolate.png' },
+        { id: 'vanilla', name: 'Vanilla Shake', price: 230, desc: 'Classic vanilla bean shake', img: 'assets/images/shake-vanilla.png' },
+        { id: 'strawberry', name: 'Strawberry Shake', price: 240, desc: 'Fresh strawberry blended shake', img: 'assets/images/shake-strawberry.png' },
+      ],
+    },
+  };
+
+  const modal = document.getElementById('menu-modal');
+  const listEl = document.getElementById('menu-modal-list');
+  const titleEl = document.getElementById('menu-modal-title');
+  const totalEl = document.getElementById('menu-modal-total-value');
+  const addBtn = document.getElementById('menu-modal-add');
+  const addLabel = addBtn.querySelector('.menu-modal-add-label');
+  const notesEl = document.getElementById('menu-modal-notes');
+
+  let currentSection = null;
+  let qtyState = {};
+
+  const renderTotal = () => {
+    const section = menuData[currentSection];
+    const total = section.items.reduce((sum, item) => sum + item.price * (qtyState[item.id] || 0), 0);
+    totalEl.textContent = `Rs. ${total}`;
+  };
+
+  const renderList = () => {
+    const section = menuData[currentSection];
+    listEl.innerHTML = '';
+    section.items.forEach((item) => {
+      const qty = qtyState[item.id] || 0;
+      const li = document.createElement('li');
+      li.className = 'menu-modal-item';
+      li.innerHTML = `
+        <img class="menu-modal-item-img" src="${item.img}" alt="">
+        <div class="menu-modal-item-info">
+          <p class="menu-modal-item-name">${item.name}</p>
+          <p class="menu-modal-item-desc">${item.desc}</p>
+        </div>
+        <div class="menu-modal-item-meta">
+          <span class="menu-modal-item-price">Rs. ${item.price}</span>
+          <div class="menu-modal-stepper">
+            <button type="button" class="menu-modal-step menu-modal-step--minus" aria-label="Decrease ${item.name} quantity" ${qty === 0 ? 'disabled' : ''}>&minus;</button>
+            <span class="menu-modal-qty">${qty}</span>
+            <button type="button" class="menu-modal-step menu-modal-step--plus" aria-label="Increase ${item.name} quantity">+</button>
+          </div>
+        </div>
+      `;
+      li.querySelector('.menu-modal-step--minus').addEventListener('click', () => {
+        qtyState[item.id] = Math.max(0, (qtyState[item.id] || 0) - 1);
+        renderList();
+        renderTotal();
+      });
+      li.querySelector('.menu-modal-step--plus').addEventListener('click', () => {
+        qtyState[item.id] = (qtyState[item.id] || 0) + 1;
+        renderList();
+        renderTotal();
+      });
+      listEl.appendChild(li);
+    });
+  };
+
+  const openMenu = (sectionKey, preselectId) => {
+    currentSection = sectionKey;
+    const section = menuData[sectionKey];
+    qtyState = {};
+    section.items.forEach((item) => { qtyState[item.id] = item.id === preselectId ? 1 : 0; });
+
+    modal.setAttribute('data-theme', sectionKey);
+    titleEl.textContent = section.title;
+    notesEl.value = '';
+    addBtn.classList.remove('is-added');
+    addLabel.textContent = 'Add to Cart';
+    renderList();
+    renderTotal();
+
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('menu-modal-lock');
+  };
+
+  const closeMenu = () => {
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('menu-modal-lock');
+  };
+
+  modal.querySelectorAll('[data-menu-close]').forEach((el) => el.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeMenu();
+  });
+
+  addBtn.addEventListener('click', () => {
+    addBtn.classList.add('is-added');
+    addLabel.textContent = 'Added!';
+    setTimeout(closeMenu, 900);
+  });
+
+  const selectedFlavour = (cards, prefix) => {
+    let found = null;
+    cards.forEach((card) => {
+      if (card.classList.contains('is-selected')){
+        found = [...card.classList].find((cls) => cls.startsWith(prefix))?.slice(prefix.length);
+      }
+    });
+    return found;
+  };
+
+  document.querySelector('.cups-cta').addEventListener('click', () => {
+    const cards = document.querySelectorAll('.cup-card');
+    openMenu('icecreams', selectedFlavour(cards, 'cup-card--') || 'orea');
+  });
+  document.querySelector('.samosa-cta').addEventListener('click', () => {
+    const cards = document.querySelectorAll('.samosa-card');
+    openMenu('samosas', selectedFlavour(cards, 'samosa-card--') || 'pizza');
+  });
+  document.querySelector('.shakes-cta').addEventListener('click', () => {
+    const cards = document.querySelectorAll('.shake-card');
+    openMenu('shakes', selectedFlavour(cards, 'shake-card--') || 'chocolate');
+  });
+}

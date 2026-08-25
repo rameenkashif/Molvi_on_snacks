@@ -231,6 +231,42 @@
   </div>
 </footer>
 
+<!-- ============ MENU MODAL (shared by icecreams / samosas / shakes) ============ -->
+<div class="menu-modal" id="menu-modal" aria-hidden="true">
+  <div class="menu-modal-overlay" data-menu-close></div>
+  <div class="menu-modal-panel" role="dialog" aria-modal="true" aria-labelledby="menu-modal-title">
+    <div class="menu-modal-drip" aria-hidden="true"></div>
+    <button type="button" class="menu-modal-close" data-menu-close aria-label="Close menu">&times;</button>
+
+    <div class="menu-modal-body">
+      <div class="menu-modal-head">
+        <img class="menu-modal-spark" src="assets/images/sparkle.png" alt="">
+        <h2 class="menu-modal-title" id="menu-modal-title"></h2>
+        <img class="menu-modal-spark" src="assets/images/sparkle.png" alt="">
+      </div>
+      <p class="menu-modal-subtitle">Choose your favourite flavour</p>
+
+      <ul class="menu-modal-list" id="menu-modal-list"></ul>
+
+      <div class="menu-modal-instructions">
+        <label for="menu-modal-notes">Instructions</label>
+        <textarea id="menu-modal-notes" placeholder="Any special requests? e.g. less spicy, extra napkins..."></textarea>
+      </div>
+    </div>
+
+    <div class="menu-modal-footer">
+      <div class="menu-modal-total">
+        <span>Total</span>
+        <strong id="menu-modal-total-value">Rs. 0</strong>
+      </div>
+      <button type="button" class="menu-modal-add" id="menu-modal-add">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h-2l-.94 2h-1.06a1 1 0 0 0 0 2h.72l2.3 8.06a2 2 0 0 0 1.92 1.44h7.06a2 2 0 0 0 1.94-1.51l1.5-6a1 1 0 0 0-.97-1.24h-11.4l-.35-1.25a1 1 0 0 0-.02-.06zm2 15a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm8 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
+        <span class="menu-modal-add-label">Add to Cart</span>
+      </button>
+    </div>
+  </div>
+</div>
+
 <script src="js/vendor/gsap.min.js"></script>
 <script src="js/vendor/ScrollTrigger.min.js"></script>
 <script src="js/main.js"></script>
