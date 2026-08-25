@@ -1125,7 +1125,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 700;
-  font-size: clamp(1.1rem, 2.4vw, 1.7rem);
+  font-size: clamp(.8rem, 1.4vw, 1.05rem);
+  text-transform: lowercase;
   color: var(--brown-deep);
   opacity: .8;
   white-space: nowrap;
@@ -1175,7 +1176,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 .site-footer-logo{
   display: block;
-  height: clamp(34px, 4vw, 44px);
+  height: clamp(50px, 6vw, 68px);
   width: auto;
   margin: 0 0 14px;
 }
