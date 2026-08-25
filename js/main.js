@@ -12,6 +12,7 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
 const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
 heroTl
+  .to('.site-nav', { opacity: 1, y: 0, duration: .8 }, 0)
   .to('.hero-bg-front img', { scale: 1, duration: 1.6, ease: 'power2.out' }, 0)
   .to('.hero-wordmark', { opacity: 1, duration: .3 }, .15)
   .to('.hero-wordmark', { y: 0, duration: 1.4, ease: 'power4.out' }, '<')
