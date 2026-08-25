@@ -121,6 +121,7 @@ if (!reduceMotion){
 gsap.set('.site-nav', { yPercent: -100 });
 
 ScrollTrigger.create({
+  id: 'nav-reveal',
   trigger: '.next-page',
   start: 'top top+=50',
   onEnter: () => gsap.to('.site-nav', { yPercent: 0, duration: .5, ease: 'power3.out' }),

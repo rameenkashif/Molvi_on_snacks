@@ -67,6 +67,163 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .site-nav-logo{ flex: 0 0 auto; }
 .site-nav-logo img{ height: clamp(30px, 4vw, 38px); width: auto; }
 
+/* Delivery / Pick-up toggle — a two-pill switch sitting right after
+   the logo, mirroring the reference ordering flow. */
+.site-nav-order-toggle{
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 3px;
+}
+.site-nav-toggle-btn{
+  border: none;
+  background: transparent;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color .2s var(--ease-out), color .2s var(--ease-out);
+}
+.site-nav-toggle-btn.is-active{ background: var(--orange); color: var(--white); }
+
+/* Delivery-area picker — a button that opens a small dropdown panel
+   with a search field, a decorative "map" (a stylised grid with a
+   pin, not a live map — no external map service is wired up) and a
+   filterable list of Islamabad sectors/areas. */
+.site-nav-location{
+  position: relative;
+  flex: 1 1 200px;
+  min-width: 0;
+  max-width: 260px;
+}
+.site-nav-location-btn{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  border: 1.5px solid var(--cream-deep);
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--brown-deep);
+  cursor: pointer;
+  transition: border-color .2s var(--ease-out);
+}
+.site-nav-location-btn svg:first-child{ flex: none; width: 15px; height: 15px; fill: var(--orange); }
+.site-nav-location-btn span{
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+.site-nav-location-btn svg:last-child{
+  flex: none;
+  width: 14px;
+  height: 14px;
+  fill: var(--brown-deep);
+  opacity: .6;
+  transition: transform .2s var(--ease-out);
+}
+.site-nav-location.is-open .site-nav-location-btn{ border-color: var(--orange); }
+.site-nav-location.is-open .site-nav-location-btn svg:last-child{ transform: rotate(180deg); }
+
+.site-nav-location-panel{
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: min(360px, 88vw);
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(60, 33, 26, .25);
+  padding: 16px;
+  z-index: 60;
+}
+.site-nav-location-panel[hidden]{ display: none; }
+
+.site-nav-location-search input{
+  width: 100%;
+  border-radius: 12px;
+  border: 1.5px solid rgba(60, 33, 26, .15);
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-size: .88rem;
+  color: var(--brown-deep);
+  background: var(--cream);
+  margin-bottom: 12px;
+}
+.site-nav-location-search input:focus{ outline: 2px solid var(--orange); outline-offset: 1px; }
+
+.site-nav-location-map{
+  position: relative;
+  height: 120px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #eef1e4, #e2e9d4);
+}
+.site-nav-location-map-grid{
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(107, 63, 46, .14) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(107, 63, 46, .14) 0 1px, transparent 1px 24px);
+}
+.site-nav-location-pin{
+  position: absolute;
+  transform: translate(-50%, -100%);
+  font-size: 1.4rem;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .3));
+  transition: top .35s var(--ease-out), left .35s var(--ease-out);
+}
+.site-nav-location-pin[hidden]{ display: none; }
+
+.site-nav-location-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.site-nav-location-list li button{
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--brown-deep);
+  cursor: pointer;
+  transition: background-color .15s var(--ease-out);
+}
+.site-nav-location-list li button:hover{ background: var(--cream); }
+.site-nav-location-list li button.is-selected{ background: var(--orange); color: var(--white); }
+.site-nav-location-empty{
+  padding: 10px;
+  text-align: center;
+  color: var(--brown-deep);
+  opacity: .6;
+  font-size: .85rem;
+}
+
 .site-nav-links{
   display: flex;
   align-items: center;
@@ -96,17 +253,35 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   object-fit: cover;
 }
 
-/* Mobile — logo and mascot shrink further, and the links scroll
-   horizontally (rather than wrapping/overflowing) starting right
-   after the logo, so they read close to the navbar, not adrift
-   in the middle of it. */
+/* Tablet — the Delivery/Pick-up toggle is the first thing to go,
+   since the location picker (which matters more) needs the room. */
+@media (max-width: 960px){
+  .site-nav-order-toggle{ display: none; }
+  .site-nav-location{ flex: 1 1 160px; max-width: 220px; }
+}
+
+/* Mobile — logo and mascot shrink further, the location button
+   collapses to just its pin icon, and the links scroll horizontally
+   (rather than wrapping/overflowing) starting right after it, so
+   they read close to the navbar, not adrift in the middle of it. */
 @media (max-width: 700px){
   .site-nav{
-    gap: 10px;
+    gap: 8px;
     padding: 8px clamp(10px, 4vw, 18px);
     margin-top: 10px;
   }
   .site-nav-logo img{ height: 24px; }
+  .site-nav-location{ flex: 0 0 auto; max-width: none; }
+  .site-nav-location-btn{ width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; }
+  .site-nav-location-btn span,
+  .site-nav-location-btn svg:last-child{ display: none; }
+  .site-nav-location-panel{
+    position: fixed;
+    top: 64px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+  }
   .site-nav-links{
     justify-content: flex-start;
     gap: 12px;
