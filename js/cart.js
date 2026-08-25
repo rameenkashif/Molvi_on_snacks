@@ -108,6 +108,7 @@ updateViewCartFab();
   const locationWrap = document.getElementById('site-nav-location');
   const locationBtn = document.getElementById('site-nav-location-btn');
   const locationPanel = document.getElementById('site-nav-location-panel');
+  const locationClose = document.getElementById('site-nav-location-close');
   const locationLabel = document.getElementById('site-nav-location-label');
   const locationSearch = document.getElementById('site-nav-location-search');
   const locationList = document.getElementById('site-nav-location-list');
@@ -163,13 +164,18 @@ updateViewCartFab();
       locationSearch.focus();
     };
 
-    locationBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
+    locationBtn.addEventListener('click', () => {
       if (locationPanel.hidden) openLocationPanel(); else closeLocationPanel();
     });
-    locationPanel.addEventListener('click', (e) => e.stopPropagation());
+    if (locationClose) locationClose.addEventListener('click', closeLocationPanel);
     locationSearch.addEventListener('input', () => renderAreaList(locationSearch.value));
-    document.addEventListener('click', closeLocationPanel);
+
+    // Close on an outside click — checked by containment rather than
+    // stopPropagation tricks, so it can never end up eating clicks
+    // meant for other nav elements (links, cart icon, toggle).
+    document.addEventListener('click', (e) => {
+      if (!locationPanel.hidden && !locationWrap.contains(e.target)) closeLocationPanel();
+    });
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLocationPanel();
     });

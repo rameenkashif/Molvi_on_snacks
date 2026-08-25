@@ -150,6 +150,24 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   padding: 16px;
   z-index: 60;
 }
+.site-nav-location-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: var(--cream);
+  color: var(--brown-deep);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.site-nav-location-close:hover{ background: var(--cream-deep); }
 .site-nav-location-panel[hidden]{ display: none; }
 
 .site-nav-location-search input{
