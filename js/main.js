@@ -89,22 +89,19 @@ if (!reduceMotion){
 }
 
 /* =========================================================
-   Icecream promo pop-up — the Khallis Vanilla poster, shown once
-   (ever, per browser — tracked in localStorage) the first time a
-   visitor scrolls into the icecream section.
+   Icecream promo pop-up — the Khallis Vanilla poster, shown the
+   first time a visitor scrolls into the icecream section on each
+   page load (so it reappears on every refresh, but not a second
+   time if they scroll past that section again on the same load).
    ========================================================= */
 {
-  const PROMO_SEEN_KEY = 'molvi-icecream-promo-seen';
   const popup = document.getElementById('promo-popup');
-  let alreadySeen = true;
-  try { alreadySeen = !!localStorage.getItem(PROMO_SEEN_KEY); } catch (e) { alreadySeen = false; }
 
-  if (popup && !alreadySeen){
+  if (popup){
     const openPromo = () => {
       popup.classList.add('is-open');
       popup.setAttribute('aria-hidden', 'false');
       document.body.classList.add('menu-modal-lock');
-      try { localStorage.setItem(PROMO_SEEN_KEY, '1'); } catch (e) { /* storage blocked */ }
     };
     const closePromo = () => {
       popup.classList.remove('is-open');
