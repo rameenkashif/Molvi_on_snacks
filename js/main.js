@@ -327,56 +327,80 @@ gsap.timeline({
   .to('.shakes-cta', { opacity: 1, y: 0, duration: .6 }, '-=.2');
 
 /* =========================================================
-   Shakes — click to select, hover to tilt: the exact same
-   interaction as the icecream cups and samosas. Selecting one calls
-   it out (scaled up, glowing) while the other two recede; clicking
-   the selected one again clears the selection.
+   Shakes — a continuous 3-up coverflow carousel, the same system as
+   the samosa and icecream carousels above. All three flavours are
+   always on screen; whichever one is centred is called out (bigger,
+   glowing) while the other two recede either side. It auto-advances
+   on a timer, and clicking any card recentres the whole set on it.
    ========================================================= */
 {
-  const shakesRow = document.querySelector('.shakes-row');
-  const shakeCards = document.querySelectorAll('.shake-card');
+  const carousel = document.getElementById('shakes-carousel');
+  const shakeCards = Array.from(document.querySelectorAll('.shake-card'));
+  const count = shakeCards.length;
+  const half = Math.floor(count / 2);
+  let current = shakeCards.findIndex((c) => c.dataset.flavor === 'chocolate');
+  if (current < 0) current = half;
+  let autoplayId = null;
+  let resumeId = null;
 
-  const selectShake = (card) => {
-    const alreadySelected = card.classList.contains('is-selected');
-    shakeCards.forEach((c) => {
-      c.classList.remove('is-selected');
-      c.setAttribute('aria-pressed', 'false');
-    });
-
-    if (alreadySelected){
-      shakesRow.classList.remove('has-selection');
-      return;
-    }
-
-    card.classList.add('is-selected');
-    card.setAttribute('aria-pressed', 'true');
-    shakesRow.classList.add('has-selection');
+  const OFFSET_STYLE = {
+    0: { tx: '0px', scale: '1.15', op: '1', z: '5' },
+    1: { tx: 'clamp(120px, 22vw, 260px)', scale: '.78', op: '.5', z: '3' },
   };
 
-  shakeCards.forEach((card) => {
-    card.addEventListener('click', () => selectShake(card));
+  const render = () => {
+    shakeCards.forEach((card, i) => {
+      let raw = i - current;
+      if (raw > half) raw -= count;
+      if (raw < -half) raw += count;
+      const abs = Math.abs(raw);
+      const style = OFFSET_STYLE[abs] || OFFSET_STYLE[1];
+      const sign = raw < 0 ? -1 : 1;
+      card.style.setProperty('--tx', abs === 0 ? '0px' : `calc(${sign} * ${style.tx})`);
+      card.style.setProperty('--scale', style.scale);
+      card.style.setProperty('--op', style.op);
+      card.style.setProperty('--z', style.z);
+      card.classList.toggle('is-center', raw === 0);
+      card.setAttribute('aria-pressed', raw === 0 ? 'true' : 'false');
+    });
+  };
+
+  const goTo = (index) => {
+    current = ((index % count) + count) % count;
+    render();
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayId) clearInterval(autoplayId);
+    autoplayId = null;
+  };
+  const startAutoplay = () => {
+    stopAutoplay();
+    if (reduceMotion) return;
+    autoplayId = setInterval(() => goTo(current + 1), 2800);
+  };
+  const pauseThenResume = () => {
+    stopAutoplay();
+    clearTimeout(resumeId);
+    resumeId = setTimeout(startAutoplay, 4500);
+  };
+
+  shakeCards.forEach((card, i) => {
+    card.addEventListener('click', () => { goTo(i); pauseThenResume(); });
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' '){
         e.preventDefault();
-        selectShake(card);
+        goTo(i);
+        pauseThenResume();
       }
     });
   });
 
-  if (!reduceMotion){
-    const tiltByShake = { chocolate: -8, vanilla: 8, strawberry: -6 };
-    shakeCards.forEach((card) => {
-      const img = card.querySelector('.shake-card-img');
-      const flavour = Object.keys(tiltByShake).find((f) => card.classList.contains(`shake-card--${f}`));
-      const tilt = tiltByShake[flavour] || 0;
-      card.addEventListener('mouseenter', () => {
-        gsap.to(img, { rotation: tilt, duration: .4, ease: 'power2.out' });
-      });
-      card.addEventListener('mouseleave', () => {
-        gsap.to(img, { rotation: 0, duration: .5, ease: 'power2.out' });
-      });
-    });
-  }
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+
+  render();
+  startAutoplay();
 }
 
 /* =========================================================
@@ -430,8 +454,8 @@ gsap.timeline({
     shakes: {
       title: 'Shakes',
       items: [
-        { id: 'chocolate', name: 'Chocolate Shake', price: 250, desc: 'Rich chocolate blended thick shake', img: 'assets/images/shake-chocolate.png' },
-        { id: 'vanilla', name: 'Vanilla Shake', price: 230, desc: 'Classic vanilla bean shake', img: 'assets/images/shake-vanilla.png' },
+        { id: 'chocolate', name: 'Choco Bliss Shake', price: 250, desc: 'Rich chocolate blended thick shake', img: 'assets/images/shake-chocolate.png' },
+        { id: 'vanilla', name: 'Khallis Vanilla', price: 230, desc: 'Classic vanilla bean shake', img: 'assets/images/shake-vanilla.png' },
         { id: 'strawberry', name: 'Strawberry Shake', price: 240, desc: 'Fresh strawberry blended shake', img: 'assets/images/shake-strawberry.png' },
       ],
     },
@@ -565,16 +589,6 @@ gsap.timeline({
     setTimeout(closeMenu, 900);
   });
 
-  const selectedFlavour = (cards, prefix) => {
-    let found = null;
-    cards.forEach((card) => {
-      if (card.classList.contains('is-selected')){
-        found = [...card.classList].find((cls) => cls.startsWith(prefix))?.slice(prefix.length);
-      }
-    });
-    return found;
-  };
-
   document.querySelector('.cups-cta').addEventListener('click', () => {
     const centered = document.querySelector('.cup-card.is-center');
     openMenu('icecreams', (centered && centered.dataset.flavor) || 'strawberry');
@@ -584,7 +598,7 @@ gsap.timeline({
     openMenu('samosas', (centered && centered.dataset.flavor) || 'pizza');
   });
   document.querySelector('.shakes-cta').addEventListener('click', () => {
-    const cards = document.querySelectorAll('.shake-card');
-    openMenu('shakes', selectedFlavour(cards, 'shake-card--') || 'chocolate');
+    const centered = document.querySelector('.shake-card.is-center');
+    openMenu('shakes', (centered && centered.dataset.flavor) || 'chocolate');
   });
 }

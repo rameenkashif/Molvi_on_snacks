@@ -926,38 +926,38 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
 }
 
-.shakes-row{
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: clamp(14px, 3vw, 36px);
+/* continuous coverflow, mirroring the samosa carousel exactly: every
+   card sits centred in the track and is pushed sideways + scaled +
+   faded purely by its --tx/--scale/--op custom properties, updated by
+   the JS carousel controller whenever the current (centred) index
+   changes. Only three flavours, so the offsets never go past ±1. */
+.shakes-carousel{
+  position: relative;
   width: 100%;
-  max-width: 1080px;
-  margin-bottom: 56px;
+  max-width: 780px;
+  height: clamp(280px, 34vw, 420px);
+  margin: 0 auto 56px;
 }
 
-/* mirrors the icecream/samosa card system exactly: fixed rectangle,
-   recede/call-out transition on selection, white-glow-plus-shadow
-   pair, and a name label sitting just behind each shake — cream
-   here instead of brown-deep, for contrast against the orange bg. */
 .shake-card{
-  position: relative;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
   margin: 0;
-  flex: 1 1 0;
-  max-width: 320px;
+  width: clamp(170px, 22vw, 300px);
   aspect-ratio: 3 / 4;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   cursor: pointer;
-  transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
-}
-
-.shakes-row.has-selection .shake-card{ transform: scale(.92); opacity: .55; }
-.shakes-row.has-selection .shake-card.is-selected{
-  transform: scale(1.1);
-  opacity: 1;
-  z-index: 5;
+  --tx: 0px;
+  --scale: 1;
+  --op: 1;
+  --z: 1;
+  z-index: var(--z);
+  transform: translateX(-50%) translateX(var(--tx)) scale(var(--scale));
+  opacity: var(--op);
+  transition: transform .6s var(--ease-out), opacity .5s var(--ease-out);
 }
 
 .shake-card-label{
@@ -990,7 +990,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transition: opacity .4s var(--ease-out);
 }
-.shake-card.is-selected::before{ opacity: 1; }
+.shake-card.is-center::before{ opacity: 1; }
 
 .shake-card::after{
   content: "";
@@ -1003,7 +1003,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transition: opacity .4s var(--ease-out);
 }
-.shake-card.is-selected::after{ opacity: 1; }
+.shake-card.is-center::after{ opacity: 1; }
 
 .shake-card-img{
   position: relative;
@@ -1017,9 +1017,6 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform-origin: bottom center;
   filter: drop-shadow(0 14px 18px rgba(60, 33, 26, .25));
 }
-
-.shake-card--vanilla .shake-card-img{ rotate: -7deg; translate: 8px 0; }
-.shake-card--strawberry .shake-card-img{ scale: .873; translate: 4px -4px; }
 
 .shakes-cta{
   opacity: 0;
