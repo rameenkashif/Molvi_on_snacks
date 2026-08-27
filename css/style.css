@@ -780,44 +780,39 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   transform: rotate(8deg);
 }
 
-.samosa-row{
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: clamp(14px, 3vw, 36px);
+/* a 5-up coverflow: every card sits centred in the track and is
+   pushed sideways + scaled + faded purely by its --tx/--scale/--op
+   custom properties, which the JS carousel controller updates
+   whenever the current (centred) index changes — so recentring on a
+   click just becomes a transition on those three properties, no
+   separate "move left/right" logic needed. */
+.samosa-carousel{
+  position: relative;
   width: 100%;
-  max-width: 1080px;
-  /* the flavour names now sit below each card, poking past its own
-     box — this makes room so they don't collide with the CTA. */
-  margin-bottom: 56px;
+  max-width: 1100px;
+  height: clamp(280px, 34vw, 420px);
+  margin: 0 auto 56px;
 }
 
-/* each card matches the icecream cups exactly: same fixed rectangle,
-   same recede/call-out transition, same white-glow-plus-shadow pair
-   on selection. The name sits just behind the top of the samosa
-   (lower z-index than the image), always visible for its own card —
-   never a single shared label swapping between them. */
 .samosa-card{
-  position: relative;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
   margin: 0;
-  flex: 1 1 0;
-  max-width: 368px;
+  width: clamp(150px, 20vw, 260px);
   aspect-ratio: 3 / 4;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   cursor: pointer;
-  transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
-}
-
-.samosa-card--pizza{ max-width: 350px; top: -8px; }
-.samosa-card--fajita{ max-width: 320px; top: -18px; }
-
-.samosa-row.has-selection .samosa-card{ transform: scale(.92); opacity: .55; }
-.samosa-row.has-selection .samosa-card.is-selected{
-  transform: scale(1.1);
-  opacity: 1;
-  z-index: 5;
+  --tx: 0px;
+  --scale: 1;
+  --op: 1;
+  --z: 1;
+  z-index: var(--z);
+  transform: translateX(-50%) translateX(var(--tx)) scale(var(--scale));
+  opacity: var(--op);
+  transition: transform .6s var(--ease-out), opacity .5s var(--ease-out);
 }
 
 .samosa-card-label{
@@ -852,7 +847,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transition: opacity .4s var(--ease-out);
 }
-.samosa-card.is-selected::before{ opacity: 1; }
+.samosa-card.is-center::before{ opacity: 1; }
 
 .samosa-card::after{
   content: "";
@@ -865,7 +860,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transition: opacity .4s var(--ease-out);
 }
-.samosa-card.is-selected::after{ opacity: 1; }
+.samosa-card.is-center::after{ opacity: 1; }
 
 .samosa-card-img{
   position: relative;
@@ -1468,6 +1463,31 @@ body.menu-modal-lock{ overflow: hidden; }
   font-size: .82rem;
   font-weight: 600;
   color: var(--menu-accent);
+}
+/* samosas are sold by the dozen — items with a size option (see
+   menuData in main.js) get this pill toggle instead of a single
+   flat price, and the price/total react to whichever is active. */
+.menu-modal-size-toggle{
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.menu-modal-size-btn{
+  border: 1.5px solid rgba(60, 33, 26, .15);
+  background: var(--white);
+  color: var(--brown-deep);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-family: var(--font-body);
+  font-size: .74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color .2s var(--ease-out), color .2s var(--ease-out), border-color .2s var(--ease-out);
+}
+.menu-modal-size-btn.is-active{
+  background: var(--menu-accent);
+  border-color: var(--menu-accent);
+  color: var(--white);
 }
 .menu-modal-item-meta{
   flex: none;

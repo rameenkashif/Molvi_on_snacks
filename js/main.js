@@ -198,7 +198,7 @@ if (!reduceMotion){
 }
 
 /* =========================================================
-   Samosas — heading and the three-up selector fade/pop in once the
+   Samosas — heading and the five-up carousel fade/pop in once the
    section scrolls into view, echoing the icecream cards' beat. The
    logo and "official snack tester" stickers are static (no
    animation, no scroll trigger) so they aren't part of this timeline.
@@ -212,62 +212,88 @@ gsap.timeline({
   }
 })
   .to('.samosa-heading', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(1.7)' })
-  .to('.samosa-card-label', { opacity: 1, y: 0, duration: .5, stagger: .15 }, '-=.25')
-  .to('.samosa-card-img', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .16 }, '-=.4')
+  .to('.samosa-card-label', { opacity: 1, y: 0, duration: .5, stagger: .1 }, '-=.25')
+  .to('.samosa-card-img', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .1 }, '-=.4')
   .to('.samosa-cta', { opacity: 1, y: 0, duration: .6 }, '-=.2');
 
 /* =========================================================
-   Samosas — click to select, hover to tilt: the exact same
-   interaction as the icecream cups. Selecting one calls it out
-   (scaled up, glowing) while the other two recede; clicking the
-   selected one again clears the selection. Each samosa tilts
-   slightly away from its own base on hover.
+   Samosas — a continuous 5-up coverflow carousel. All five flavours
+   are always on screen; whichever one is centred is called out
+   (bigger, glowing) while the rest recede by distance either side.
+   It auto-advances on a timer, and clicking any card (even one two
+   spots away) recentres the whole set on it directly — same
+   transition either way, so it just reads as the carousel spinning
+   forward or back to bring that flavour round to the middle.
    ========================================================= */
 {
-  const samosaRow = document.querySelector('.samosa-row');
-  const samosaCards = document.querySelectorAll('.samosa-card');
+  const carousel = document.getElementById('samosa-carousel');
+  const samosaCards = Array.from(document.querySelectorAll('.samosa-card'));
+  const count = samosaCards.length;
+  const half = Math.floor(count / 2);
+  let current = samosaCards.findIndex((c) => c.dataset.flavor === 'pizza');
+  if (current < 0) current = half;
+  let autoplayId = null;
+  let resumeId = null;
 
-  const selectSamosa = (card) => {
-    const alreadySelected = card.classList.contains('is-selected');
-    samosaCards.forEach((c) => {
-      c.classList.remove('is-selected');
-      c.setAttribute('aria-pressed', 'false');
-    });
-
-    if (alreadySelected){
-      samosaRow.classList.remove('has-selection');
-      return;
-    }
-
-    card.classList.add('is-selected');
-    card.setAttribute('aria-pressed', 'true');
-    samosaRow.classList.add('has-selection');
+  const OFFSET_STYLE = {
+    0: { tx: '0px', scale: '1.15', op: '1', z: '5' },
+    1: { tx: 'clamp(90px, 16vw, 210px)', scale: '.82', op: '.55', z: '3' },
+    2: { tx: 'clamp(170px, 28vw, 340px)', scale: '.6', op: '.25', z: '1' },
   };
 
-  samosaCards.forEach((card) => {
-    card.addEventListener('click', () => selectSamosa(card));
+  const render = () => {
+    samosaCards.forEach((card, i) => {
+      let raw = i - current;
+      if (raw > half) raw -= count;
+      if (raw < -half) raw += count;
+      const abs = Math.abs(raw);
+      const style = OFFSET_STYLE[abs] || OFFSET_STYLE[2];
+      const sign = raw < 0 ? -1 : 1;
+      card.style.setProperty('--tx', abs === 0 ? '0px' : `calc(${sign} * ${style.tx})`);
+      card.style.setProperty('--scale', style.scale);
+      card.style.setProperty('--op', style.op);
+      card.style.setProperty('--z', style.z);
+      card.classList.toggle('is-center', raw === 0);
+      card.setAttribute('aria-pressed', raw === 0 ? 'true' : 'false');
+    });
+  };
+
+  const goTo = (index) => {
+    current = ((index % count) + count) % count;
+    render();
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayId) clearInterval(autoplayId);
+    autoplayId = null;
+  };
+  const startAutoplay = () => {
+    stopAutoplay();
+    if (reduceMotion) return;
+    autoplayId = setInterval(() => goTo(current + 1), 2800);
+  };
+  const pauseThenResume = () => {
+    stopAutoplay();
+    clearTimeout(resumeId);
+    resumeId = setTimeout(startAutoplay, 4500);
+  };
+
+  samosaCards.forEach((card, i) => {
+    card.addEventListener('click', () => { goTo(i); pauseThenResume(); });
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' '){
         e.preventDefault();
-        selectSamosa(card);
+        goTo(i);
+        pauseThenResume();
       }
     });
   });
 
-  if (!reduceMotion){
-    const tiltBySamosa = { pizza: -8, peri: 8, fajita: -6 };
-    samosaCards.forEach((card) => {
-      const img = card.querySelector('.samosa-card-img');
-      const flavour = Object.keys(tiltBySamosa).find((f) => card.classList.contains(`samosa-card--${f}`));
-      const tilt = tiltBySamosa[flavour] || 0;
-      card.addEventListener('mouseenter', () => {
-        gsap.to(img, { rotation: tilt, duration: .4, ease: 'power2.out' });
-      });
-      card.addEventListener('mouseleave', () => {
-        gsap.to(img, { rotation: 0, duration: .5, ease: 'power2.out' });
-      });
-    });
-  }
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+
+  render();
+  startAutoplay();
 }
 
 /* =========================================================
@@ -350,6 +376,11 @@ gsap.timeline({
    add the whole order to the cart in one go.
    ========================================================= */
 {
+  const SAMOSA_SIZES = [
+    { id: 'half', label: 'Half Dozen', mult: 6 },
+    { id: 'full', label: 'Full Dozen', mult: 12 },
+  ];
+
   const menuData = {
     icecreams: {
       title: 'Ice-Creams',
@@ -361,10 +392,16 @@ gsap.timeline({
     },
     samosas: {
       title: 'Samosas',
+      /* sold by the dozen, not by the piece — `price` is per samosa,
+         and `sizes` (half/full dozen multipliers) turns the plain
+         qty stepper into the pack-size + qty picker from the
+         reference: pick a pack, then how many of that pack. */
       items: [
-        { id: 'pizza', name: 'Pizza Samosa', price: 140, desc: 'Cheesy pizza filling in a crispy samosa', img: 'assets/images/samosa-pizza.png' },
-        { id: 'peri', name: 'Peri Peri Samosa', price: 100, desc: 'Spicy peri peri chicken filling', img: 'assets/images/samosa-peri-peri.png' },
-        { id: 'fajita', name: 'Fajita Samosa', price: 120, desc: 'Zesty chicken fajita filling in a crispy shell', img: 'assets/images/samosa-fajita.png' },
+        { id: 'cheesy-tikka', name: 'Cheesy Tikka Samosa', price: 110, desc: 'Cheesy tikka with a spicy twist', img: 'assets/images/samosa-cheesy-tikka.png', sizes: SAMOSA_SIZES },
+        { id: 'malai-boti', name: 'Malai Boti Samosa', price: 100, desc: 'Creamy, smoky tikka inside a buttery, flaky crust.', img: 'assets/images/samosa-malai-boti.png', sizes: SAMOSA_SIZES },
+        { id: 'pizza', name: 'Pizza Samosa', price: 140, desc: 'Cheesy pizza filling in a crispy samosa', img: 'assets/images/samosa-pizza.png', sizes: SAMOSA_SIZES },
+        { id: 'peri-peri', name: 'Peri Peri Samosa', price: 100, desc: 'Spicy peri peri chicken filling', img: 'assets/images/samosa-peri-peri.png', sizes: SAMOSA_SIZES },
+        { id: 'chilli-cheese', name: 'Chilli Cheese Samosa', price: 110, desc: 'Loaded with chilli & melted cheese', img: 'assets/images/samosa-chilli-cheese.png', sizes: SAMOSA_SIZES },
       ],
     },
     shakes: {
@@ -387,10 +424,17 @@ gsap.timeline({
 
   let currentSection = null;
   let qtyState = {};
+  let sizeState = {};
+
+  const unitPrice = (item) => {
+    if (!item.sizes) return item.price;
+    const size = item.sizes.find((s) => s.id === sizeState[item.id]) || item.sizes[0];
+    return item.price * size.mult;
+  };
 
   const renderTotal = () => {
     const section = menuData[currentSection];
-    const total = section.items.reduce((sum, item) => sum + item.price * (qtyState[item.id] || 0), 0);
+    const total = section.items.reduce((sum, item) => sum + unitPrice(item) * (qtyState[item.id] || 0), 0);
     totalEl.textContent = `Rs. ${total}`;
   };
 
@@ -401,14 +445,19 @@ gsap.timeline({
       const qty = qtyState[item.id] || 0;
       const li = document.createElement('li');
       li.className = 'menu-modal-item';
+      const sizeToggleHtml = item.sizes ? `
+          <div class="menu-modal-size-toggle">
+            ${item.sizes.map((s) => `<button type="button" class="menu-modal-size-btn${s.id === sizeState[item.id] ? ' is-active' : ''}" data-size="${s.id}">${s.label}</button>`).join('')}
+          </div>` : '';
       li.innerHTML = `
         <img class="menu-modal-item-img" src="${item.img}" alt="">
         <div class="menu-modal-item-info">
           <p class="menu-modal-item-name">${item.name}</p>
           <p class="menu-modal-item-desc">${item.desc}</p>
+          ${sizeToggleHtml}
         </div>
         <div class="menu-modal-item-meta">
-          <span class="menu-modal-item-price">Rs. ${item.price}</span>
+          <span class="menu-modal-item-price">Rs. ${unitPrice(item)}</span>
           <div class="menu-modal-stepper">
             <button type="button" class="menu-modal-step menu-modal-step--minus" aria-label="Decrease ${item.name} quantity" ${qty === 0 ? 'disabled' : ''}>&minus;</button>
             <span class="menu-modal-qty">${qty}</span>
@@ -426,6 +475,13 @@ gsap.timeline({
         renderList();
         renderTotal();
       });
+      li.querySelectorAll('.menu-modal-size-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          sizeState[item.id] = btn.dataset.size;
+          renderList();
+          renderTotal();
+        });
+      });
       listEl.appendChild(li);
     });
   };
@@ -434,7 +490,11 @@ gsap.timeline({
     currentSection = sectionKey;
     const section = menuData[sectionKey];
     qtyState = {};
-    section.items.forEach((item) => { qtyState[item.id] = item.id === preselectId ? 1 : 0; });
+    sizeState = {};
+    section.items.forEach((item) => {
+      qtyState[item.id] = item.id === preselectId ? 1 : 0;
+      if (item.sizes) sizeState[item.id] = item.sizes[0].id;
+    });
 
     modal.setAttribute('data-theme', sectionKey);
     titleEl.textContent = section.title;
@@ -464,7 +524,18 @@ gsap.timeline({
     const section = menuData[currentSection];
     section.items.forEach((item) => {
       const qty = qtyState[item.id] || 0;
-      if (qty > 0) addToCart(currentSection, item, qty);
+      if (qty === 0) return;
+      if (item.sizes){
+        const size = item.sizes.find((s) => s.id === sizeState[item.id]) || item.sizes[0];
+        addToCart(currentSection, {
+          id: `${item.id}-${size.id}`,
+          name: `${item.name} (${size.label})`,
+          price: item.price * size.mult,
+          img: item.img,
+        }, qty);
+      } else {
+        addToCart(currentSection, item, qty);
+      }
     });
     addBtn.classList.add('is-added');
     addLabel.textContent = 'Added!';
@@ -486,8 +557,8 @@ gsap.timeline({
     openMenu('icecreams', selectedFlavour(cards, 'cup-card--') || 'orea');
   });
   document.querySelector('.samosa-cta').addEventListener('click', () => {
-    const cards = document.querySelectorAll('.samosa-card');
-    openMenu('samosas', selectedFlavour(cards, 'samosa-card--') || 'pizza');
+    const centered = document.querySelector('.samosa-card.is-center');
+    openMenu('samosas', (centered && centered.dataset.flavor) || 'pizza');
   });
   document.querySelector('.shakes-cta').addEventListener('click', () => {
     const cards = document.querySelectorAll('.shake-card');
