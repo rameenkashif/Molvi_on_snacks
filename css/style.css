@@ -273,6 +273,342 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   border-radius: 50%;
   border: 2px solid var(--cream-deep);
   object-fit: cover;
+  display: block;
+}
+
+/* Guest vs signed-in address panel — the guest area-picker and the
+   signed-in address list share the same dropdown chrome (button +
+   panel from .site-nav-location above); only one of the two inner
+   panels is ever unhidden, swapped by JS on login/logout. */
+.site-nav-address-list{
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.site-nav-address-item{
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 12px;
+  background: var(--cream);
+}
+.site-nav-address-item.is-default{ background: var(--cream-deep); }
+.site-nav-address-select{
+  flex: 1 1 auto;
+  min-width: 0;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 9px 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.site-nav-address-label{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: .85rem;
+  color: var(--brown-deep);
+}
+.site-nav-address-label em{
+  font-style: normal;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: .65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.site-nav-address-line{
+  font-size: .78rem;
+  color: var(--brown-deep);
+  opacity: .75;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.site-nav-address-remove{
+  flex: none;
+  width: 26px;
+  height: 26px;
+  margin-right: 6px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--brown-deep);
+  opacity: .5;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.site-nav-address-remove:hover{ opacity: 1; background: rgba(60, 33, 26, .1); }
+.site-nav-address-empty{
+  padding: 14px 10px;
+  text-align: center;
+  color: var(--brown-deep);
+  opacity: .6;
+  font-size: .85rem;
+}
+
+.site-nav-address-add-btn{
+  display: block;
+  width: 100%;
+  border: 1.5px dashed var(--orange);
+  border-radius: 12px;
+  background: none;
+  padding: 10px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: .85rem;
+  color: var(--orange);
+  cursor: pointer;
+  transition: background-color .2s var(--ease-out);
+}
+.site-nav-address-add-btn:hover{ background: var(--cream); }
+.site-nav-address-form[hidden]{ display: none; }
+.site-nav-address-form .checkout-field{ margin-bottom: 10px; }
+.site-nav-address-form-actions{ display: flex; gap: 8px; margin-top: 4px; }
+.site-nav-address-cancel,
+.site-nav-address-save{
+  flex: 1 1 0;
+  border: none;
+  border-radius: 999px;
+  padding: 9px 12px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: .82rem;
+  cursor: pointer;
+}
+.site-nav-address-cancel{ background: var(--cream); color: var(--brown-deep); }
+.site-nav-address-cancel:hover{ background: var(--cream-deep); }
+.site-nav-address-save{ background: var(--orange); color: var(--white); }
+.site-nav-address-save:hover{ background: var(--orange-deep); }
+
+/* Mascot — signed-out click opens the login modal; signed-in click
+   opens this dropdown instead. A small green dot on the avatar is
+   the only nav-level tell that someone's signed in. */
+.site-nav-account{
+  position: relative;
+  flex: 0 0 auto;
+}
+.site-nav-account-btn{
+  position: relative;
+  display: block;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.site-nav-account.is-logged-in .site-nav-account-btn::after{
+  content: "";
+  position: absolute;
+  right: -1px;
+  bottom: -1px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #2f9e44;
+  border: 2px solid var(--white);
+}
+.site-nav-account-menu{
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 200px;
+  background: var(--white);
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(60, 33, 26, .25);
+  padding: 8px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.site-nav-account-menu[hidden]{ display: none; }
+.site-nav-account-menu-item{
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: .88rem;
+  color: var(--brown-deep);
+  cursor: pointer;
+  transition: background-color .15s var(--ease-out);
+}
+.site-nav-account-menu-item:hover{ background: var(--cream); }
+.site-nav-account-menu-item--logout{
+  margin-top: 4px;
+  padding-top: 10px;
+  border-top: 1px solid var(--cream-deep);
+  color: var(--orange);
+}
+
+@media (max-width: 700px){
+  .site-nav-account-menu{ width: 180px; }
+}
+
+/* =========================================================
+   Account modals — login/signup, profile and orders. Reuse the
+   menu-modal's overlay/panel chrome (same fixed backdrop, same
+   translateY+scale entrance) with a narrower panel sized for a
+   form/info-list instead of a flavour grid.
+   ========================================================= */
+.account-modal[data-theme="account"]{
+  --menu-accent: #e2571b;
+  --menu-accent-bright: #ff9a56;
+  --menu-drip: #f4813a;
+  --menu-tint: #fdece1;
+  --menu-cta: #e2571b;
+}
+.account-modal .account-modal-panel{ width: min(440px, 92vw); }
+/* the flavour-grid drip decoration is sized for a 720px panel — scale
+   it down for this narrower one so it stays a corner accent instead
+   of colliding with the centred title or the order list under it */
+.account-modal .menu-modal-drip{ width: 92px; height: 56px; }
+.account-modal-body{ text-align: center; padding-top: clamp(28px, 4vw, 40px); }
+.account-modal-mascot{
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 3px solid var(--cream-deep);
+  object-fit: cover;
+  margin: 0 auto 14px;
+}
+.account-modal-title{
+  margin: 0 0 6px;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--brown-deep);
+}
+.account-modal-subtitle{
+  margin: 0 0 22px;
+  font-size: .88rem;
+  color: var(--brown-deep);
+  opacity: .7;
+}
+.account-modal-form{ text-align: left; }
+.account-modal-submit{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 6px;
+}
+.account-modal-form-actions{ display: flex; gap: 10px; margin-top: 6px; }
+.account-modal-form-actions .site-nav-address-cancel{ flex: 1 1 0; }
+.account-modal-form-actions .menu-modal-add{ flex: 1 1 0; justify-content: center; }
+
+.account-profile-rank{ display: flex; justify-content: center; margin-bottom: 18px; }
+.account-profile-rank-label{
+  padding: 7px 18px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: .85rem;
+  letter-spacing: .02em;
+}
+.account-profile-fields{
+  text-align: left;
+  margin: 0 0 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.account-profile-fields > div{ border-bottom: 1px solid var(--cream-deep); padding-bottom: 10px; }
+.account-profile-fields dt{
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--brown-deep);
+  opacity: .55;
+  margin-bottom: 3px;
+}
+.account-profile-fields dd{
+  margin: 0;
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--brown-deep);
+}
+.account-profile-edit-btn,
+.account-profile-logout{
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 12px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: .9rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.account-profile-edit-btn{ background: var(--orange); color: var(--white); }
+.account-profile-edit-btn:hover{ background: var(--orange-deep); }
+.account-profile-logout{ background: var(--cream); color: var(--brown-deep); }
+.account-profile-logout:hover{ background: var(--cream-deep); }
+
+.account-orders-list{
+  list-style: none;
+  margin: 0 0 6px;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 50vh;
+  overflow-y: auto;
+}
+.account-order-item{
+  border-radius: 16px;
+  background: var(--cream);
+  padding: 14px 16px;
+}
+.account-order-item-head{
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+.account-order-item-date{ font-size: .78rem; color: var(--brown-deep); opacity: .65; }
+.account-order-item-total{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  color: var(--orange);
+}
+.account-order-item-items{
+  margin: 0;
+  font-size: .88rem;
+  color: var(--brown-deep);
+}
+.account-orders-empty{
+  text-align: center;
+  color: var(--brown-deep);
+  opacity: .65;
+  font-size: .92rem;
+  padding: 20px 0 8px;
 }
 
 /* Tablet — the Delivery/Pick-up toggle is the first thing to go,

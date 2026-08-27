@@ -30,14 +30,40 @@
 
     <div class="site-nav-location-panel" id="site-nav-location-panel" hidden>
       <button type="button" class="site-nav-location-close" id="site-nav-location-close" aria-label="Close">&times;</button>
-      <div class="site-nav-location-search">
-        <input type="text" id="site-nav-location-search" placeholder="Search Islamabad area..." autocomplete="off" name="molvi-area-query">
+
+      <div class="site-nav-location-guest" id="site-nav-location-guest">
+        <div class="site-nav-location-search">
+          <input type="text" id="site-nav-location-search" placeholder="Search Islamabad area..." autocomplete="off" name="molvi-area-query">
+        </div>
+        <div class="site-nav-location-map" id="site-nav-location-map" aria-hidden="true">
+          <div class="site-nav-location-map-grid"></div>
+          <div class="site-nav-location-pin" id="site-nav-location-pin" hidden>📍</div>
+        </div>
+        <ul class="site-nav-location-list" id="site-nav-location-list"></ul>
       </div>
-      <div class="site-nav-location-map" id="site-nav-location-map" aria-hidden="true">
-        <div class="site-nav-location-map-grid"></div>
-        <div class="site-nav-location-pin" id="site-nav-location-pin" hidden>📍</div>
+
+      <div class="site-nav-address-panel" id="site-nav-address-panel" hidden>
+        <ul class="site-nav-address-list" id="site-nav-address-list"></ul>
+        <div class="site-nav-address-form" id="site-nav-address-form-wrap" hidden>
+          <div class="checkout-field">
+            <label for="address-form-label">Label</label>
+            <input type="text" id="address-form-label" placeholder="Home, Work...">
+          </div>
+          <div class="checkout-field">
+            <label for="address-form-line">Address</label>
+            <textarea id="address-form-line" placeholder="House #, street, area"></textarea>
+          </div>
+          <div class="checkout-field">
+            <label for="address-form-city">City</label>
+            <input type="text" id="address-form-city" placeholder="Islamabad" value="Islamabad">
+          </div>
+          <div class="site-nav-address-form-actions">
+            <button type="button" class="site-nav-address-cancel" id="address-form-cancel">Cancel</button>
+            <button type="button" class="site-nav-address-save" id="address-form-save">Save Address</button>
+          </div>
+        </div>
+        <button type="button" class="site-nav-address-add-btn" id="site-nav-address-add-btn">+ Add new address</button>
       </div>
-      <ul class="site-nav-location-list" id="site-nav-location-list"></ul>
     </div>
   </div>
 
@@ -50,8 +76,106 @@
     <svg class="site-nav-cart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h-2l-.94 2h-1.06a1 1 0 0 0 0 2h.72l2.3 8.06a2 2 0 0 0 1.92 1.44h7.06a2 2 0 0 0 1.94-1.51l1.5-6a1 1 0 0 0-.97-1.24h-11.4l-.35-1.25a1 1 0 0 0-.02-.06zm2 15a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm8 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
     <span class="cart-badge" id="cart-badge" hidden>0</span>
   </a>
-  <img class="site-nav-mascot" src="assets/images/navbar-mascot.png" alt="">
+  <div class="site-nav-account" id="site-nav-account">
+    <button type="button" class="site-nav-account-btn" id="site-nav-account-btn" aria-haspopup="true" aria-expanded="false">
+      <img class="site-nav-mascot" src="assets/images/navbar-mascot.png" alt="Account">
+    </button>
+    <div class="site-nav-account-menu" id="site-nav-account-menu" hidden>
+      <button type="button" class="site-nav-account-menu-item" data-account-action="orders">My Orders</button>
+      <button type="button" class="site-nav-account-menu-item" data-account-action="addresses">My Addresses</button>
+      <button type="button" class="site-nav-account-menu-item" data-account-action="profile">My Profile</button>
+      <button type="button" class="site-nav-account-menu-item site-nav-account-menu-item--logout" data-account-action="logout">Log out</button>
+    </div>
+  </div>
 </nav>
+
+<!-- ============ ACCOUNT: LOGIN / SIGN UP ============ -->
+<div class="menu-modal account-modal" id="login-modal" data-theme="account" aria-hidden="true">
+  <div class="menu-modal-overlay" data-modal-close></div>
+  <div class="menu-modal-panel account-modal-panel">
+    <button type="button" class="menu-modal-close" data-modal-close aria-label="Close">&times;</button>
+    <div class="menu-modal-drip"></div>
+    <div class="menu-modal-body account-modal-body">
+      <img class="account-modal-mascot" src="assets/images/navbar-mascot.png" alt="">
+      <h2 class="account-modal-title">Welcome to Molvi on Snacks</h2>
+      <p class="account-modal-subtitle">Sign in to save addresses, track orders &amp; earn your rank</p>
+      <form class="checkout-form account-modal-form" id="login-form" novalidate>
+        <div class="checkout-field">
+          <label for="login-name">Full Name</label>
+          <input type="text" id="login-name" required placeholder="Your name">
+        </div>
+        <div class="checkout-field">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" required placeholder="you@email.com">
+        </div>
+        <div class="checkout-field">
+          <label for="login-phone">Phone Number</label>
+          <input type="tel" id="login-phone" required placeholder="03xx xxxxxxx">
+        </div>
+        <button type="submit" class="menu-modal-add account-modal-submit"><span class="menu-modal-add-label">Continue</span></button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ACCOUNT: MY PROFILE ============ -->
+<div class="menu-modal account-modal" id="account-profile-modal" data-theme="account" aria-hidden="true">
+  <div class="menu-modal-overlay" data-modal-close></div>
+  <div class="menu-modal-panel account-modal-panel">
+    <button type="button" class="menu-modal-close" data-modal-close aria-label="Close">&times;</button>
+    <div class="menu-modal-drip"></div>
+    <div class="menu-modal-body account-modal-body">
+      <h2 class="account-modal-title">My Profile</h2>
+
+      <div class="account-profile-view" id="profile-view">
+        <div class="account-profile-rank">
+          <span class="account-profile-rank-label" id="profile-rank">New Snacker</span>
+        </div>
+        <dl class="account-profile-fields">
+          <div><dt>Name</dt><dd id="profile-name">—</dd></div>
+          <div><dt>Email</dt><dd id="profile-email">—</dd></div>
+          <div><dt>Contact</dt><dd id="profile-phone">—</dd></div>
+          <div><dt>Default Address</dt><dd id="profile-address">—</dd></div>
+        </dl>
+        <button type="button" class="account-profile-edit-btn" id="profile-edit-btn">Edit Profile</button>
+        <button type="button" class="account-profile-logout" data-account-action="logout">Log out</button>
+      </div>
+
+      <form class="checkout-form account-modal-form" id="profile-edit-form" hidden novalidate>
+        <div class="checkout-field">
+          <label for="profile-edit-name">Full Name</label>
+          <input type="text" id="profile-edit-name" required>
+        </div>
+        <div class="checkout-field">
+          <label for="profile-edit-email">Email</label>
+          <input type="email" id="profile-edit-email" required>
+        </div>
+        <div class="checkout-field">
+          <label for="profile-edit-phone">Phone Number</label>
+          <input type="tel" id="profile-edit-phone" required>
+        </div>
+        <div class="account-modal-form-actions">
+          <button type="button" class="site-nav-address-cancel" id="profile-edit-cancel">Cancel</button>
+          <button type="submit" class="menu-modal-add"><span class="menu-modal-add-label">Save Changes</span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============ ACCOUNT: MY ORDERS ============ -->
+<div class="menu-modal account-modal" id="account-orders-modal" data-theme="account" aria-hidden="true">
+  <div class="menu-modal-overlay" data-modal-close></div>
+  <div class="menu-modal-panel account-modal-panel">
+    <button type="button" class="menu-modal-close" data-modal-close aria-label="Close">&times;</button>
+    <div class="menu-modal-drip"></div>
+    <div class="menu-modal-body account-modal-body">
+      <h2 class="account-modal-title">My Orders</h2>
+      <ul class="account-orders-list" id="account-orders-list"></ul>
+      <p class="account-orders-empty" id="account-orders-empty" hidden>No orders yet — your snack history starts with your first order!</p>
+    </div>
+  </div>
+</div>
 
 <!-- ============ CHECKOUT ============ -->
 <section class="cart-page cart-page--standalone" id="checkout">
@@ -241,6 +365,11 @@ if (cart.length === 0){
   document.getElementById('checkout-form').addEventListener('submit', (e) => {
     e.preventDefault();
     if (!e.target.reportValidity()) return;
+    recordOrder({
+      date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
+      items: cart.map((item) => ({ name: item.name, qty: item.qty })),
+      total: subtotal + delivery,
+    });
     writeCart([]);
     checkoutWrap.hidden = true;
     checkoutSuccess.hidden = false;
