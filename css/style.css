@@ -479,58 +479,40 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .25));
 }
 
-.cups-row{
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: clamp(14px, 3vw, 36px);
+/* a 6-up coverflow, same system as the samosa carousel: every card
+   sits centred in the track and is pushed sideways + scaled + faded
+   purely by its --tx/--scale/--op custom properties, updated by the
+   JS carousel controller whenever the current (centred) index
+   changes. The page background continuously retints to match
+   whichever flavour is centred (js/main.js sets --active-bg). */
+.cups-carousel{
+  position: relative;
   width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
-  /* the flavour names now sit below each card, poking past its own
-     box — this makes room so they don't collide with the CTA. */
-  margin-bottom: 56px;
+  max-width: 1100px;
+  height: clamp(280px, 34vw, 420px);
+  margin: 0 auto 56px;
 }
 
-/* each flavour card = a rounded colour block that fades in first,
-   with the cup popping in on top of it, matching the hero buckets' beat.
-   All three cards share one fixed rectangle size and sit on the same
-   baseline; the images are capped to the same height so differing
-   source-photo aspect ratios don't make one cup read bigger than
-   another. Clicking one selects it: it's called out (scaled up, ringed)
-   while the other two recede, and the page behind retints to match. */
 .cup-card{
-  position: relative;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
   margin: 0;
-  flex: 1 1 0;
-  max-width: 320px;
+  width: clamp(150px, 20vw, 260px);
   aspect-ratio: 3 / 4;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   cursor: pointer;
-  transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
+  --tx: 0px;
+  --scale: 1;
+  --op: 1;
+  --z: 1;
+  z-index: var(--z);
+  transform: translateX(-50%) translateX(var(--tx)) scale(var(--scale));
+  opacity: var(--op);
+  transition: transform .6s var(--ease-out), opacity .5s var(--ease-out);
 }
-
-.next-page.has-selection .cup-card{ transform: scale(.92); opacity: .55; }
-.next-page.has-selection .cup-card.is-selected{
-  transform: scale(1.1);
-  opacity: 1;
-  z-index: 5;
-}
-
-.cup-card-bg{
-  position: absolute;
-  inset: 6% 3% 0 3%;
-  border-radius: clamp(18px, 2.4vw, 32px);
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .4s var(--ease-out);
-  z-index: 1;
-}
-.cup-card--orea .cup-card-bg{ background: #ecd9b3; }
-.cup-card--strawberry .cup-card-bg{ background: #f6c2ce; }
-.cup-card--pista .cup-card-bg{ background: #bcc684; }
 
 /* flavour name, sitting above the cup within the card */
 .cup-card-label{
@@ -550,12 +532,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   pointer-events: none;
 }
 
-/* selected card: its colour rectangle disappears (the whole page behind
-   it is already that colour) and a soft white glow stands in for it,
-   plus a dark grounding shadow under the cup so it reads as sitting
-   on a surface rather than floating. */
-.cup-card.is-selected .cup-card-bg{ opacity: 0; }
-
+/* centred card: a soft white glow plus a dark grounding shadow under
+   the cup so it reads as sitting on a surface rather than floating —
+   the page behind it is already retinted to this flavour's colour. */
 .cup-card::before{
   content: "";
   position: absolute;
@@ -569,7 +548,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transition: opacity .4s var(--ease-out);
 }
-.cup-card.is-selected::before{ opacity: 1; }
+.cup-card.is-center::before{ opacity: 1; }
 
 .cup-card::after{
   content: "";
@@ -582,7 +561,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transition: opacity .4s var(--ease-out);
 }
-.cup-card.is-selected::after{ opacity: 1; }
+.cup-card.is-center::after{ opacity: 1; }
 
 .cup-card-img{
   position: relative;
@@ -600,7 +579,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    to the other two — left/top rather than transform, since GSAP
    drives this image's own transform for the entrance pop and hover
    tilt and would otherwise fight a transform set here. */
-.cup-card--orea .cup-card-img{
+.cup-card[data-flavor="orea"] .cup-card-img{
   left: -2.5%;
   top: 11%;
   height: 94.76%;

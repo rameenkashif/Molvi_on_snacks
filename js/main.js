@@ -78,39 +78,9 @@ gsap.timeline({
   }
 })
   .to('.cups-heading', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(1.7)' })
-  .to('.cup-card-bg', { opacity: 1, y: 0, duration: .6, stagger: .15 }, '-=.25')
-  .to('.cup-card-label', { opacity: 1, y: 0, duration: .5, stagger: .15 }, '-=.4')
-  .to(['.cup-card--orea .cup-card-img', '.cup-card--pista .cup-card-img'], {
-    opacity: 1, duration: .15, stagger: .16,
-  }, '-=.15')
-  .to(['.cup-card--orea .cup-card-img', '.cup-card--pista .cup-card-img'], {
-    scale: 1, duration: .7, ease: 'back.out(2.4)', stagger: .16,
-  }, '<')
-  .to('.cup-card--strawberry .cup-card-img', { opacity: 1, duration: .15 }, '-=.3')
-  .to('.cup-card--strawberry .cup-card-img', {
-    scale: 1, duration: .75, ease: 'back.out(2.6)',
-  }, '<')
+  .to('.cup-card-label', { opacity: 1, y: 0, duration: .5, stagger: .1 }, '-=.25')
+  .to('.cup-card-img', { opacity: 1, scale: 1, duration: .7, ease: 'back.out(2.2)', stagger: .1 }, '-=.4')
   .to('.cups-cta', { opacity: 1, y: 0, duration: .6 }, '-=.2');
-
-/* =========================================================
-   Flavour cards — hover tilt. Each cup leans slightly away from
-   its own base on hover, outer cups tilting outward and the
-   centred strawberry cup tilting toward the strawberry side.
-   ========================================================= */
-if (!reduceMotion){
-  const tiltByFlavour = { orea: -8, pista: 8, strawberry: -6 };
-  document.querySelectorAll('.cup-card').forEach((card) => {
-    const img = card.querySelector('.cup-card-img');
-    const flavour = Object.keys(tiltByFlavour).find((f) => card.classList.contains(`cup-card--${f}`));
-    const tilt = tiltByFlavour[flavour] || 0;
-    card.addEventListener('mouseenter', () => {
-      gsap.to(img, { rotation: tilt, duration: .4, ease: 'power2.out' });
-    });
-    card.addEventListener('mouseleave', () => {
-      gsap.to(img, { rotation: 0, duration: .5, ease: 'power2.out' });
-    });
-  });
-}
 
 /* =========================================================
    Site nav — hidden off-screen through the hero, then slides down
@@ -149,52 +119,94 @@ if (!reduceMotion){
 }
 
 /* =========================================================
-   Flavour cards — click to select. Picking a cup sets --active-bg on
-   the document root, so the section background, the hero wave above
-   it, and the drip edge below it all retint together to that
-   flavour's colour; the cup itself is called out (scaled up, glowing)
-   while the other two recede. Clicking the selected cup again clears
-   the selection everywhere.
+   Flavour cards — a continuous 6-up coverflow carousel, the same
+   system as the samosa carousel below. All six flavours are always
+   on screen; whichever is centred is called out (bigger, glowing)
+   while the rest recede by distance either side, and the page
+   background (plus the hero wave above it and the drip edge below)
+   retints to that flavour's colour via --active-bg. Auto-advances on
+   a timer; clicking any card recentres the whole set on it directly.
    ========================================================= */
 {
-  const flavourColors = { orea: '#ecd9b3', strawberry: '#f6c2ce', pista: '#bcc684' };
+  const flavourColors = {
+    'choco-bliss': '#d8bfa3',
+    orea: '#ecd9b3',
+    strawberry: '#f6c2ce',
+    pista: '#bcc684',
+    'mango-masti': '#f6d98a',
+    lotus: '#e6c48f',
+  };
   const root = document.documentElement;
-  const nextPage = document.querySelector('.next-page');
-  const cupCards = document.querySelectorAll('.cup-card');
+  const carousel = document.getElementById('cups-carousel');
+  const cupCards = Array.from(document.querySelectorAll('.cup-card'));
+  const count = cupCards.length;
+  const half = Math.floor(count / 2);
+  let current = cupCards.findIndex((c) => c.dataset.flavor === 'strawberry');
+  if (current < 0) current = half;
+  let autoplayId = null;
+  let resumeId = null;
 
-  const selectCard = (card) => {
-    const alreadySelected = card.classList.contains('is-selected');
-    cupCards.forEach((c) => {
-      c.classList.remove('is-selected');
-      c.setAttribute('aria-pressed', 'false');
-      // the scroll-reveal timeline left an inline opacity:1 on this via
-      // GSAP, which a plain CSS rule can't outrank — reset it here too.
-      gsap.to(c.querySelector('.cup-card-bg'), { opacity: 1, duration: .3 });
-    });
-
-    if (alreadySelected){
-      nextPage.classList.remove('has-selection');
-      root.style.removeProperty('--active-bg');
-      return;
-    }
-
-    const flavour = Object.keys(flavourColors).find((f) => card.classList.contains(`cup-card--${f}`));
-    card.classList.add('is-selected');
-    card.setAttribute('aria-pressed', 'true');
-    nextPage.classList.add('has-selection');
-    root.style.setProperty('--active-bg', flavourColors[flavour]);
-    gsap.to(card.querySelector('.cup-card-bg'), { opacity: 0, duration: .3 });
+  const OFFSET_STYLE = {
+    0: { tx: '0px', scale: '1.15', op: '1', z: '5' },
+    1: { tx: 'clamp(90px, 16vw, 210px)', scale: '.82', op: '.55', z: '3' },
+    2: { tx: 'clamp(170px, 28vw, 340px)', scale: '.6', op: '.28', z: '2' },
+    3: { tx: 'clamp(230px, 38vw, 420px)', scale: '.42', op: '.12', z: '1' },
   };
 
-  cupCards.forEach((card) => {
-    card.addEventListener('click', () => selectCard(card));
+  const render = () => {
+    cupCards.forEach((card, i) => {
+      let raw = i - current;
+      if (raw > half) raw -= count;
+      if (raw < -half) raw += count;
+      const abs = Math.abs(raw);
+      const style = OFFSET_STYLE[abs] || OFFSET_STYLE[3];
+      const sign = raw < 0 ? -1 : 1;
+      card.style.setProperty('--tx', abs === 0 ? '0px' : `calc(${sign} * ${style.tx})`);
+      card.style.setProperty('--scale', style.scale);
+      card.style.setProperty('--op', style.op);
+      card.style.setProperty('--z', style.z);
+      card.classList.toggle('is-center', raw === 0);
+      card.setAttribute('aria-pressed', raw === 0 ? 'true' : 'false');
+    });
+    root.style.setProperty('--active-bg', flavourColors[cupCards[current].dataset.flavor]);
+  };
+
+  const goTo = (index) => {
+    current = ((index % count) + count) % count;
+    render();
+  };
+
+  const stopAutoplay = () => {
+    if (autoplayId) clearInterval(autoplayId);
+    autoplayId = null;
+  };
+  const startAutoplay = () => {
+    stopAutoplay();
+    if (reduceMotion) return;
+    autoplayId = setInterval(() => goTo(current + 1), 2800);
+  };
+  const pauseThenResume = () => {
+    stopAutoplay();
+    clearTimeout(resumeId);
+    resumeId = setTimeout(startAutoplay, 4500);
+  };
+
+  cupCards.forEach((card, i) => {
+    card.addEventListener('click', () => { goTo(i); pauseThenResume(); });
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' '){
         e.preventDefault();
-        selectCard(card);
+        goTo(i);
+        pauseThenResume();
       }
     });
   });
+
+  carousel.addEventListener('mouseenter', stopAutoplay);
+  carousel.addEventListener('mouseleave', startAutoplay);
+
+  render();
+  startAutoplay();
 }
 
 /* =========================================================
@@ -384,10 +396,16 @@ gsap.timeline({
   const menuData = {
     icecreams: {
       title: 'Ice-Creams',
+      /* mango masti, choco bliss and lotus are newly added flavours —
+         reusing the orea/strawberry/pista photos as placeholders
+         until their own product shots are ready. */
       items: [
+        { id: 'choco-bliss', name: 'Choco Bliss', price: 160, desc: 'Rich chocolate fudge ice-cream', img: 'assets/images/cup-strawberry-card.png' },
         { id: 'orea', name: 'Orea Barkat', price: 150, desc: 'Oreo chunks in creamy vanilla', img: 'assets/images/cup-orea-card.png' },
         { id: 'strawberry', name: 'Ishq e Strawberry', price: 210, desc: 'Creamy strawberry ice-cream', img: 'assets/images/cup-strawberry-card.png' },
         { id: 'pista', name: 'Shifa e Pista', price: 210, desc: 'Pista ice-cream with a royal touch', img: 'assets/images/cup-pista-card.png' },
+        { id: 'mango-masti', name: 'Mango Masti', price: 170, desc: 'Tropical mango swirl ice-cream', img: 'assets/images/cup-orea-card.png' },
+        { id: 'lotus', name: 'Lotus', price: 190, desc: 'Creamy lotus biscoff swirl', img: 'assets/images/cup-pista-card.png' },
       ],
     },
     samosas: {
@@ -553,8 +571,8 @@ gsap.timeline({
   };
 
   document.querySelector('.cups-cta').addEventListener('click', () => {
-    const cards = document.querySelectorAll('.cup-card');
-    openMenu('icecreams', selectedFlavour(cards, 'cup-card--') || 'orea');
+    const centered = document.querySelector('.cup-card.is-center');
+    openMenu('icecreams', (centered && centered.dataset.flavor) || 'strawberry');
   });
   document.querySelector('.samosa-cta').addEventListener('click', () => {
     const centered = document.querySelector('.samosa-card.is-center');
