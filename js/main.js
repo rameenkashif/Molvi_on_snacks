@@ -43,6 +43,52 @@ if (!reduceMotion){
 }
 
 /* =========================================================
+   Hero — once the intro sequence finishes and the hero has held
+   static for a beat, it becomes a slow, continuous carousel: the
+   whole hero slide pushes off to the left as a promo poster arrives
+   from the right, dwells there, then hands off to the next poster
+   the same way, before sliding the hero itself back in from the
+   right to loop the cycle. Skipped entirely under reduced motion,
+   so the hero just stays put.
+   ========================================================= */
+if (!reduceMotion){
+  const slider = document.getElementById('hero-slider');
+  const slides = Array.from(slider.children);
+  const DWELL_MS = 5000;
+  const TRANSITION_DURATION = 1;
+  let current = 0;
+  let dwellId = null;
+
+  gsap.set(slides.slice(1), { xPercent: 100, visibility: 'visible' });
+
+  const scheduleNext = () => {
+    clearTimeout(dwellId);
+    dwellId = setTimeout(advance, DWELL_MS);
+  };
+
+  function advance(){
+    const next = (current + 1) % slides.length;
+    const outgoing = slides[current];
+    const incoming = slides[next];
+    gsap.set(incoming, { xPercent: 100 });
+    gsap.timeline({
+      defaults: { duration: TRANSITION_DURATION, ease: 'power3.inOut' },
+      onComplete: () => {
+        // park the slide we just left back on the right, ready to
+        // re-enter from there whenever its turn comes round again
+        gsap.set(outgoing, { xPercent: 100 });
+        current = next;
+        scheduleNext();
+      },
+    })
+      .to(outgoing, { xPercent: -100 }, 0)
+      .to(incoming, { xPercent: 0 }, 0);
+  }
+
+  heroTl.eventCallback('onComplete', scheduleNext);
+}
+
+/* =========================================================
    Scroll parallax — hero layers drift at different rates as the
    page scrolls into the next (empty, cream) section. The wave
    itself is left out of this: it stays pinned flush to the

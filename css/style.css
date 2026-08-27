@@ -329,6 +329,52 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   background: linear-gradient(#cfe0ea, var(--cream));
 }
 
+/* Hero carousel track — once the intro sequence finishes, the hero
+   itself becomes the first of three slides (hero, then two promo
+   posters) that a JS controller pushes left/in-from-right on a
+   timer. Each slide is absolutely stacked and full-bleed; only their
+   transform (driven by GSAP) decides which one is on screen. */
+.hero-slider{
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-slide{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-slide--poster{
+  visibility: hidden;
+  background: #efe4c9;
+  overflow: hidden;
+}
+
+/* soft, blurred cover fill behind the true-to-original poster so the
+   full artwork (with all its text intact) can sit letterboxed on top
+   without hard bars on tall/narrow viewports. */
+.hero-poster-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(28px) brightness(.9) saturate(1.1);
+  transform: scale(1.15);
+}
+.hero-poster-fg{
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 /* layer 1 — full background
    capped to a max width and centered so the photo's zoom (and the
    front mountain's ridge line) stays consistent instead of the
@@ -448,7 +494,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   width: min(100%, 1440px);
   height: clamp(34px, 6vw, 62px);
   transform: translateX(-50%) translateY(100%);
-  z-index: 4;
+  z-index: 10;
 }
 .hero-wave svg{ width: 100%; height: 100%; display: block; }
 .hero-wave path{ fill: var(--active-bg, var(--wave-cream)); transition: fill .6s var(--ease-out); }
