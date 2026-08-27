@@ -393,6 +393,11 @@ gsap.timeline({
     { id: 'full', label: 'Full Dozen', mult: 12 },
   ];
 
+  const ICECREAM_SIZES = [
+    { id: 'small', label: '250 ml', mult: 1 },
+    { id: 'large', label: '500 ml', mult: 2 },
+  ];
+
   const menuData = {
     icecreams: {
       title: 'Ice-Creams',
@@ -400,12 +405,12 @@ gsap.timeline({
          reusing the orea/strawberry/pista photos as placeholders
          until their own product shots are ready. */
       items: [
-        { id: 'choco-bliss', name: 'Choco Bliss', price: 160, desc: 'Rich chocolate fudge ice-cream', img: 'assets/images/cup-strawberry-card.png' },
-        { id: 'orea', name: 'Orea Barkat', price: 150, desc: 'Oreo chunks in creamy vanilla', img: 'assets/images/cup-orea-card.png' },
-        { id: 'strawberry', name: 'Ishq e Strawberry', price: 210, desc: 'Creamy strawberry ice-cream', img: 'assets/images/cup-strawberry-card.png' },
-        { id: 'pista', name: 'Shifa e Pista', price: 210, desc: 'Pista ice-cream with a royal touch', img: 'assets/images/cup-pista-card.png' },
-        { id: 'mango-masti', name: 'Mango Masti', price: 170, desc: 'Tropical mango swirl ice-cream', img: 'assets/images/cup-orea-card.png' },
-        { id: 'lotus', name: 'Lotus', price: 190, desc: 'Creamy lotus biscoff swirl', img: 'assets/images/cup-pista-card.png' },
+        { id: 'choco-bliss', name: 'Choco Bliss', price: 160, desc: 'Rich chocolate fudge ice-cream', img: 'assets/images/cup-strawberry-card.png', sizes: ICECREAM_SIZES },
+        { id: 'orea', name: 'Orea Barkat', price: 150, desc: 'Oreo chunks in creamy vanilla', img: 'assets/images/cup-orea-card.png', sizes: ICECREAM_SIZES },
+        { id: 'strawberry', name: 'Ishq e Strawberry', price: 210, desc: 'Creamy strawberry ice-cream', img: 'assets/images/cup-strawberry-card.png', sizes: ICECREAM_SIZES },
+        { id: 'pista', name: 'Shifa e Pista', price: 210, desc: 'Pista ice-cream with a royal touch', img: 'assets/images/cup-pista-card.png', sizes: ICECREAM_SIZES },
+        { id: 'mango-masti', name: 'Mango Masti', price: 170, desc: 'Tropical mango swirl ice-cream', img: 'assets/images/cup-orea-card.png', sizes: ICECREAM_SIZES },
+        { id: 'lotus', name: 'Lotus', price: 190, desc: 'Creamy lotus biscoff swirl', img: 'assets/images/cup-pista-card.png', sizes: ICECREAM_SIZES },
       ],
     },
     samosas: {
