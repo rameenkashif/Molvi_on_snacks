@@ -51,23 +51,198 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
    ========================================================= */
 .site-nav{
   position: fixed;
-  top: 0; left: 50%;
+  top: 0; left: 0; right: 0;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: clamp(16px, 3vw, 40px);
-  width: min(92%, 1100px);
-  margin-top: 16px;
+  width: 100%;
   padding: 10px clamp(16px, 3vw, 28px);
   background: var(--white);
-  border-radius: 0 0 20px 20px;
   box-shadow: 0 12px 28px rgba(60, 33, 26, .16);
   font-family: var(--font-body);
 }
 
 .site-nav-logo{ flex: 0 0 auto; }
 .site-nav-logo img{ height: clamp(30px, 4vw, 38px); width: auto; }
+
+/* Delivery / Pick-up toggle — a two-pill switch sitting right after
+   the logo, mirroring the reference ordering flow. */
+.site-nav-order-toggle{
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 3px;
+}
+.site-nav-toggle-btn{
+  border: none;
+  background: transparent;
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .78rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color .2s var(--ease-out), color .2s var(--ease-out);
+}
+.site-nav-toggle-btn.is-active{ background: var(--orange); color: var(--white); }
+
+/* Delivery-area picker — a button that opens a small dropdown panel
+   with a search field, a decorative "map" (a stylised grid with a
+   pin, not a live map — no external map service is wired up) and a
+   filterable list of Islamabad sectors/areas. */
+.site-nav-location{
+  position: relative;
+  flex: 1 1 200px;
+  min-width: 0;
+  max-width: 260px;
+}
+.site-nav-location-btn{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  border: 1.5px solid var(--cream-deep);
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: .8rem;
+  font-weight: 700;
+  color: var(--brown-deep);
+  cursor: pointer;
+  transition: border-color .2s var(--ease-out);
+}
+.site-nav-location-btn svg:first-child{ flex: none; width: 15px; height: 15px; fill: var(--orange); }
+.site-nav-location-btn span{
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+.site-nav-location-btn svg:last-child{
+  flex: none;
+  width: 14px;
+  height: 14px;
+  fill: var(--brown-deep);
+  opacity: .6;
+  transition: transform .2s var(--ease-out);
+}
+.site-nav-location.is-open .site-nav-location-btn{ border-color: var(--orange); }
+.site-nav-location.is-open .site-nav-location-btn svg:last-child{ transform: rotate(180deg); }
+
+.site-nav-location-panel{
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: min(360px, 88vw);
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 20px 45px rgba(60, 33, 26, .25);
+  padding: 16px;
+  z-index: 60;
+}
+.site-nav-location-close{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: var(--cream);
+  color: var(--brown-deep);
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.site-nav-location-close:hover{ background: var(--cream-deep); }
+.site-nav-location-panel[hidden]{ display: none; }
+
+.site-nav-location-search input{
+  width: 100%;
+  border-radius: 12px;
+  border: 1.5px solid rgba(60, 33, 26, .15);
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-size: .88rem;
+  color: var(--brown-deep);
+  background: var(--cream);
+  margin-bottom: 12px;
+}
+.site-nav-location-search input:focus{ outline: 2px solid var(--orange); outline-offset: 1px; }
+
+.site-nav-location-map{
+  position: relative;
+  height: 120px;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, #eef1e4, #e2e9d4);
+}
+.site-nav-location-map-grid{
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(107, 63, 46, .14) 0 1px, transparent 1px 24px),
+    repeating-linear-gradient(90deg, rgba(107, 63, 46, .14) 0 1px, transparent 1px 24px);
+}
+.site-nav-location-pin{
+  position: absolute;
+  transform: translate(-50%, -100%);
+  font-size: 1.4rem;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, .3));
+  transition: top .35s var(--ease-out), left .35s var(--ease-out);
+}
+.site-nav-location-pin[hidden]{ display: none; }
+
+.site-nav-location-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.site-nav-location-list li button{
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--brown-deep);
+  cursor: pointer;
+  transition: background-color .15s var(--ease-out);
+}
+.site-nav-location-list li button:hover{ background: var(--cream); }
+.site-nav-location-list li button.is-selected{ background: var(--orange); color: var(--white); }
+.site-nav-location-empty{
+  padding: 10px;
+  text-align: center;
+  color: var(--brown-deep);
+  opacity: .6;
+  font-size: .85rem;
+}
 
 .site-nav-links{
   display: flex;
@@ -79,8 +254,10 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   min-width: 0;
 }
 .site-nav-links a{
+  font-family: var(--font-display);
+  font-style: italic;
   font-size: .95rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--brown-deep);
   text-transform: lowercase;
   white-space: nowrap;
@@ -98,17 +275,35 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   object-fit: cover;
 }
 
-/* Mobile — logo and mascot shrink further, and the links scroll
-   horizontally (rather than wrapping/overflowing) starting right
-   after the logo, so they read close to the navbar, not adrift
-   in the middle of it. */
+/* Tablet — the Delivery/Pick-up toggle is the first thing to go,
+   since the location picker (which matters more) needs the room. */
+@media (max-width: 960px){
+  .site-nav-order-toggle{ display: none; }
+  .site-nav-location{ flex: 1 1 160px; max-width: 220px; }
+}
+
+/* Mobile — logo and mascot shrink further, the location button
+   collapses to just its pin icon, and the links scroll horizontally
+   (rather than wrapping/overflowing) starting right after it, so
+   they read close to the navbar, not adrift in the middle of it. */
 @media (max-width: 700px){
   .site-nav{
-    gap: 10px;
+    gap: 8px;
     padding: 8px clamp(10px, 4vw, 18px);
     margin-top: 10px;
   }
   .site-nav-logo img{ height: 24px; }
+  .site-nav-location{ flex: 0 0 auto; max-width: none; }
+  .site-nav-location-btn{ width: 38px; height: 38px; padding: 0; justify-content: center; border-radius: 50%; }
+  .site-nav-location-btn span,
+  .site-nav-location-btn svg:last-child{ display: none; }
+  .site-nav-location-panel{
+    position: fixed;
+    top: 64px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+  }
   .site-nav-links{
     justify-content: flex-start;
     gap: 12px;
@@ -120,6 +315,8 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   .site-nav-links::-webkit-scrollbar{ display: none; }
   .site-nav-links a{ font-size: .78rem; }
   .site-nav-mascot{ width: 30px; height: 30px; }
+  .site-nav-cart{ width: 30px; height: 30px; }
+  .site-nav-cart-icon{ width: 19px; height: 19px; }
 }
 
 /* =========================================================
@@ -282,65 +479,51 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .25));
 }
 
-.cups-row{
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  gap: clamp(14px, 3vw, 36px);
+/* a 6-up coverflow, same system as the samosa carousel: every card
+   sits centred in the track and is pushed sideways + scaled + faded
+   purely by its --tx/--scale/--op custom properties, updated by the
+   JS carousel controller whenever the current (centred) index
+   changes. The page background continuously retints to match
+   whichever flavour is centred (js/main.js sets --active-bg). */
+.cups-carousel{
+  position: relative;
   width: 100%;
-  max-width: 1080px;
-  margin: 0 auto;
+  max-width: 1100px;
+  height: clamp(280px, 34vw, 420px);
+  margin: 0 auto 56px;
 }
 
-/* each flavour card = a rounded colour block that fades in first,
-   with the cup popping in on top of it, matching the hero buckets' beat.
-   All three cards share one fixed rectangle size and sit on the same
-   baseline; the images are capped to the same height so differing
-   source-photo aspect ratios don't make one cup read bigger than
-   another. Clicking one selects it: it's called out (scaled up, ringed)
-   while the other two recede, and the page behind retints to match. */
 .cup-card{
-  position: relative;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
   margin: 0;
-  flex: 1 1 0;
-  max-width: 320px;
+  width: clamp(150px, 20vw, 260px);
   aspect-ratio: 3 / 4;
   display: flex;
   align-items: flex-end;
   justify-content: center;
   cursor: pointer;
-  transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
+  --tx: 0px;
+  --scale: 1;
+  --op: 1;
+  --z: 1;
+  z-index: var(--z);
+  transform: translateX(-50%) translateX(var(--tx)) scale(var(--scale));
+  opacity: var(--op);
+  transition: transform .6s var(--ease-out), opacity .5s var(--ease-out);
 }
-
-.next-page.has-selection .cup-card{ transform: scale(.92); opacity: .55; }
-.next-page.has-selection .cup-card.is-selected{
-  transform: scale(1.1);
-  opacity: 1;
-  z-index: 5;
-}
-
-.cup-card-bg{
-  position: absolute;
-  inset: 6% 3% 0 3%;
-  border-radius: clamp(18px, 2.4vw, 32px);
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity .4s var(--ease-out);
-  z-index: 1;
-}
-.cup-card--orea .cup-card-bg{ background: #ecd9b3; }
-.cup-card--strawberry .cup-card-bg{ background: #f6c2ce; }
-.cup-card--pista .cup-card-bg{ background: #bcc684; }
 
 /* flavour name, sitting above the cup within the card */
 .cup-card-label{
   position: absolute;
-  top: 9%; left: 6%; right: 6%;
+  bottom: -13%; left: 6%; right: 6%;
   z-index: 2;
   margin: 0;
   text-align: center;
   font-family: var(--font-display);
-  font-weight: 600;
+  font-style: italic;
+  font-weight: 700;
   font-size: clamp(.82rem, 1.5vw, 1.05rem);
   color: var(--brown-deep);
   opacity: 0;
@@ -349,12 +532,9 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   pointer-events: none;
 }
 
-/* selected card: its colour rectangle disappears (the whole page behind
-   it is already that colour) and a soft white glow stands in for it,
-   plus a dark grounding shadow under the cup so it reads as sitting
-   on a surface rather than floating. */
-.cup-card.is-selected .cup-card-bg{ opacity: 0; }
-
+/* centred card: a soft white glow plus a dark grounding shadow under
+   the cup so it reads as sitting on a surface rather than floating —
+   the page behind it is already retinted to this flavour's colour. */
 .cup-card::before{
   content: "";
   position: absolute;
@@ -368,7 +548,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transition: opacity .4s var(--ease-out);
 }
-.cup-card.is-selected::before{ opacity: 1; }
+.cup-card.is-center::before{ opacity: 1; }
 
 .cup-card::after{
   content: "";
@@ -381,7 +561,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transition: opacity .4s var(--ease-out);
 }
-.cup-card.is-selected::after{ opacity: 1; }
+.cup-card.is-center::after{ opacity: 1; }
 
 .cup-card-img{
   position: relative;
@@ -393,6 +573,16 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   opacity: 0;
   transform: scale(.7);
   transform-origin: bottom center;
+}
+
+/* orea barkat cup: nudged left/down and sized up slightly relative
+   to the other two — left/top rather than transform, since GSAP
+   drives this image's own transform for the entrance pop and hover
+   tilt and would otherwise fight a transform set here. */
+.cup-card[data-flavor="orea"] .cup-card-img{
+  left: -2.5%;
+  top: 11%;
+  height: 94.76%;
 }
 
 /* call to action — fades/rises in after the cups, sitting below the row */
@@ -415,8 +605,20 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
 }
 
-/* footer band — a solid brown rectangle the drips hang into, with a
-   cream/orange checkerboard strip along its own bottom edge. */
+/* "Molvi on Snacks" sticker — sits on the yellow/cream background,
+   just above where the brown drips start. Static, tilted, layered
+   above everything else on the page; no entrance animation. */
+.samosa-logo-sticker{
+  position: absolute;
+  bottom: clamp(-32px, .5vw, 8px);
+  left: clamp(4vw, 6vw, 90px);
+  z-index: 20;
+  width: clamp(64px, 16.4vw, 229px);
+  transform: rotate(-18deg);
+}
+
+/* footer band — a fixed brown backdrop behind the drip artwork, with
+   a cream/orange checkerboard strip along its own bottom edge. */
 .cups-footer{
   position: relative;
   height: clamp(120px, 16vw, 200px);
@@ -424,23 +626,23 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   background: var(--brown-deep);
 }
 
-/* drip edge — wide, rounded drips (colour dominant, brown only in the
-   narrow gaps between them) closer to the reference than the earlier
-   thin-streak drip graphic. Lives inside .cups-footer, anchored to
-   its own top edge so the flat bar sits flush with the .next-page
-   boundary above and the drips hang down into the footer's own brown
-   background beneath, which shows through in the gaps. Matches the
-   selected flavour's colour, same as the page and the hero wave;
-   falls back to the base cream/yellow when nothing is selected. */
+/* drip edge — the uploaded artwork's own path, used as-is (no
+   tracing/inversion), filled directly with the selected flavour's
+   colour (falling back to cream when nothing is selected, so the
+   drips stay visible against the brown footer). Sits against
+   .next-page's bottom edge, right at the seam where the icecream
+   section ends, and extends down far enough to overlay the top of
+   the checker strip below it (z-index above the checker) for every
+   fill colour, including the unselected/initial state. */
 .cups-drip{
-  position: absolute; left: 0; right: 0; top: 0; bottom: 42%;
+  position: absolute; left: 0; right: 0; top: -8px; height: 70%;
   z-index: 10;
   margin: 0 auto;
   width: min(100%, 1440px);
   pointer-events: none;
   display: block;
 }
-.cups-drip path{
+.cups-drip-shape{
   fill: var(--active-bg, var(--wave-cream));
   transition: fill .6s var(--ease-out);
 }
@@ -501,6 +703,1347 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
     mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
   }
 }
+
+/* =========================================================
+   Samosas — arrives directly after the icecream footer's checker
+   (.cups-footer-checker), with the samosa heading and a three-up
+   selector. Two stickers are pinned to .samosa-page, statically
+   placed with no entrance animation, on top of every layer: the
+   wordmark logo (left) and the "official snack tester" badge
+   (right), both pulled up with a negative top offset so they
+   straddle the seam, reading as stamped across the checker above
+   and this cream section. The samosa row mirrors the icecream cups
+   exactly — same card size, same hover tilt, same selected-state
+   white glow and per-card name label sitting just behind each
+   samosa — so picking one calls it out while the others recede.
+   ========================================================= */
+.samosa-page{
+  position: relative;
+  background: var(--wave-cream);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 3vw, 28px);
+  padding: clamp(20px, 4vw, 40px) 5vw clamp(20px, 4vw, 40px);
+}
+
+.samosa-heading{
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  opacity: 0;
+  transform: scale(.6);
+  filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
+}
+.samosa-spark{
+  position: absolute;
+  top: -8px;
+  right: 100%;
+  margin-right: 22px;
+  width: clamp(56px, 11.9vw, 75px);
+}
+.samosa-wordmark{ width: min(374px, 59.4vw); margin-top: -38px; }
+
+/* the snack tester badge: pulled up over .samosa-page's own top edge
+   so it straddles the checker above and this cream section, like a
+   sticker slapped across the seam. Static — no entrance animation,
+   no hidden initial state — and layered above everything else. */
+.samosa-badge{
+  position: absolute;
+  top: clamp(-64px, -7.4vw, -42px);
+  right: clamp(5vw, 8vw, 110px);
+  z-index: 20;
+  width: clamp(56px, 14.3vw, 209px);
+  transform: rotate(8deg);
+}
+
+/* a 5-up coverflow: every card sits centred in the track and is
+   pushed sideways + scaled + faded purely by its --tx/--scale/--op
+   custom properties, which the JS carousel controller updates
+   whenever the current (centred) index changes — so recentring on a
+   click just becomes a transition on those three properties, no
+   separate "move left/right" logic needed. */
+.samosa-carousel{
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: clamp(280px, 34vw, 420px);
+  margin: 0 auto 56px;
+}
+
+.samosa-card{
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin: 0;
+  width: clamp(150px, 20vw, 260px);
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  --tx: 0px;
+  --scale: 1;
+  --op: 1;
+  --z: 1;
+  z-index: var(--z);
+  transform: translateX(-50%) translateX(var(--tx)) scale(var(--scale));
+  opacity: var(--op);
+  transition: transform .6s var(--ease-out), opacity .5s var(--ease-out);
+}
+
+.samosa-card-label{
+  position: absolute;
+  bottom: -13%; left: 6%; right: 6%;
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(.82rem, 1.5vw, 1.05rem);
+  color: var(--brown-deep);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
+  pointer-events: none;
+}
+
+/* selected card: a dark grounding shadow under the samosa so it reads
+   as sitting on a surface, plus a soft white glow behind it. */
+.samosa-card::before{
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 6%;
+  width: 52%;
+  height: 10%;
+  transform: translateX(-50%);
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(60, 33, 26, .38) 0%, rgba(60, 33, 26, 0) 72%);
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
+}
+.samosa-card.is-center::before{ opacity: 1; }
+
+.samosa-card::after{
+  content: "";
+  position: absolute;
+  inset: 8%;
+  z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 253, 247, .9) 0%, rgba(255, 253, 247, 0) 68%);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
+}
+.samosa-card.is-center::after{ opacity: 1; }
+
+.samosa-card-img{
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 92%;
+  object-fit: contain;
+  object-position: bottom center;
+  opacity: 0;
+  transform: scale(.7);
+  transform-origin: bottom center;
+  filter: drop-shadow(0 14px 18px rgba(60, 33, 26, .25));
+}
+
+.samosa-cta{
+  opacity: 0;
+  margin-top: clamp(12px, 1.7vw, 24px);
+  transform: translateY(20px);
+  padding: 14px 42px;
+  background: #6b3f2e;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+  border-radius: 999px;
+  box-shadow: 0 14px 28px rgba(60, 33, 26, .3);
+  transition: background-color .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+.samosa-cta:hover{
+  background: var(--brown-deep);
+  box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
+}
+
+/* =========================================================
+   Samosas footer — the samosas/shakes/icecreams ribbon sits on the
+   same cream background as .samosa-page above it (its own background
+   is transparent), then a cheese-drip edge (cream drips, dominant —
+   this artwork's own path really is the drips, unlike the icecream
+   footer's) eases down into the orange section that follows.
+   ========================================================= */
+.samosa-ribbon{
+  width: 100%;
+  background: var(--wave-cream);
+  margin-top: clamp(-56px, -3.9vw, -14px);
+}
+.samosa-ribbon img{
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  display: block;
+}
+
+.samosa-cheese-footer{
+  position: relative;
+  height: clamp(90px, 12.5vw, 165px);
+  margin-top: -1px;
+  background: var(--orange);
+}
+.samosa-cheese-drip{
+  position: absolute; left: 0; right: 0; top: 0;
+  width: 100%; height: 100%;
+  display: block;
+  pointer-events: none;
+}
+.samosa-cheese-shape{ fill: var(--wave-cream); }
+
+/* orange section — placeholder for the shakes content, built next. */
+.shakes-page{
+  position: relative;
+  background: var(--orange);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 3vw, 28px);
+  padding: clamp(28px, 6vw, 56px) 5vw clamp(60px, 9vw, 100px);
+}
+
+.shakes-heading{
+  width: min(345px, 55.2vw);
+  margin-top: -8px;
+  opacity: 0;
+  transform: scale(.6);
+  filter: drop-shadow(0 8px 16px rgba(60, 33, 26, .2));
+}
+
+.shakes-row{
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(14px, 3vw, 36px);
+  width: 100%;
+  max-width: 1080px;
+  margin-bottom: 56px;
+}
+
+/* mirrors the icecream/samosa card system exactly: fixed rectangle,
+   recede/call-out transition on selection, white-glow-plus-shadow
+   pair, and a name label sitting just behind each shake — cream
+   here instead of brown-deep, for contrast against the orange bg. */
+.shake-card{
+  position: relative;
+  margin: 0;
+  flex: 1 1 0;
+  max-width: 320px;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform .45s var(--ease-out), opacity .45s var(--ease-out);
+}
+
+.shakes-row.has-selection .shake-card{ transform: scale(.92); opacity: .55; }
+.shakes-row.has-selection .shake-card.is-selected{
+  transform: scale(1.1);
+  opacity: 1;
+  z-index: 5;
+}
+
+.shake-card-label{
+  position: absolute;
+  bottom: -13%; left: 6%; right: 6%;
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(.82rem, 1.5vw, 1.05rem);
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s var(--ease-out), transform .4s var(--ease-out);
+  pointer-events: none;
+}
+
+.shake-card::before{
+  content: "";
+  position: absolute;
+  left: 50%; bottom: 6%;
+  width: 52%;
+  height: 10%;
+  transform: translateX(-50%);
+  z-index: 0;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(60, 33, 26, .38) 0%, rgba(60, 33, 26, 0) 72%);
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
+}
+.shake-card.is-selected::before{ opacity: 1; }
+
+.shake-card::after{
+  content: "";
+  position: absolute;
+  inset: 8%;
+  z-index: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 253, 247, .9) 0%, rgba(255, 253, 247, 0) 68%);
+  filter: blur(6px);
+  opacity: 0;
+  transition: opacity .4s var(--ease-out);
+}
+.shake-card.is-selected::after{ opacity: 1; }
+
+.shake-card-img{
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 92%;
+  object-fit: contain;
+  object-position: bottom center;
+  opacity: 0;
+  transform: scale(.7);
+  transform-origin: bottom center;
+  filter: drop-shadow(0 14px 18px rgba(60, 33, 26, .25));
+}
+
+.shake-card--vanilla .shake-card-img{ rotate: -7deg; translate: 8px 0; }
+.shake-card--strawberry .shake-card-img{ scale: .873; translate: 4px -4px; }
+
+.shakes-cta{
+  opacity: 0;
+  transform: translateY(20px);
+  margin-top: clamp(28px, 3.8vw, 48px);
+  padding: 14px 42px;
+  background: #6b3f2e;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+  border-radius: 999px;
+  box-shadow: 0 14px 28px rgba(60, 33, 26, .3);
+  transition: background-color .25s var(--ease-out), box-shadow .25s var(--ease-out);
+}
+.shakes-cta:hover{
+  background: var(--brown-deep);
+  box-shadow: 0 18px 32px rgba(60, 33, 26, .38);
+}
+
+/* =========================================================
+   Shakes transition — the orange shakes background eases into a
+   checkerboard band via a scalloped wave, the same shape and size
+   as the hero's closing wave but flipped so the scallops read as
+   the orange dipping down into the crest below, rather than rising
+   up into the section above.
+   ========================================================= */
+.shakes-transition{
+  background: var(--orange);
+}
+.shakes-transition-wave{
+  position: relative;
+  height: clamp(34px, 6vw, 62px);
+  background: var(--brown-deep);
+  overflow: hidden;
+}
+.shakes-transition-wave svg{
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: scaleY(-1);
+}
+.shakes-transition-wave path{ fill: var(--orange); }
+.shakes-transition-checker{
+  height: clamp(64px, 8.6vw, 112px);
+  margin-top: -1px;
+  background-image: conic-gradient(
+    var(--orange) 90deg, var(--wave-cream) 90deg 180deg,
+    var(--orange) 180deg 270deg, var(--wave-cream) 270deg
+  );
+  background-size: calc(100vw / 14) calc(100vw / 14);
+}
+
+/* =========================================================
+   Brand marquee — a continuous ticker of the wordmark on the
+   cream band between the shakes checker and the footer. The
+   track is the phrase repeated and duplicated end-to-end, looping
+   via a 50%-translate keyframe so the seam never shows; the crest
+   below it eases the cream band down into the brown footer.
+   ========================================================= */
+.brand-marquee-band{
+  background: var(--wave-cream);
+}
+.brand-marquee{
+  overflow: hidden;
+  padding: clamp(14px, 2.2vw, 22px) 0;
+}
+.brand-marquee-track{
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 26s linear infinite;
+}
+.brand-marquee-track span{
+  flex: none;
+  padding: 0 1.6vw;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(.8rem, 1.4vw, 1.05rem);
+  text-transform: lowercase;
+  color: var(--brown-deep);
+  opacity: .8;
+  white-space: nowrap;
+}
+.brand-marquee-track span + span{
+  border-left: 2px solid var(--brown-deep);
+  opacity: .5;
+}
+@keyframes marquee-scroll{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+/* flat brown bar easing the cream marquee into the footer — no
+   zigzag/wave here, just a plain solid transition. */
+.footer-crest{
+  height: clamp(48px, 6.2vw, 84px);
+  margin-top: -1px;
+  background: var(--brown-deep);
+}
+
+/* =========================================================
+   Site footer — brand block + four link columns on a brown
+   backdrop, landing on an orange bottom bar for legal copy and
+   the mascot. Mirrors the icecream/samosa/shakes column rhythm:
+   fixed gaps, a heading label, then a simple link list.
+   ========================================================= */
+.site-footer{
+  background-color: var(--brown-deep);
+  background-image: url("../assets/images/footer-pattern.png");
+  background-repeat: repeat;
+  background-size: 116px 116px;
+  color: var(--white);
+  margin-top: -1px;
+}
+.site-footer-main{
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: clamp(36px, 5.6vw, 72px) 5vw clamp(28px, 4vw, 48px);
+}
+.site-footer-brand{ padding-right: clamp(8px, 1.5vw, 24px); }
+.site-footer-mascot{
+  width: clamp(64px, 6.4vw, 96px);
+  margin-bottom: 12px;
+  opacity: .9;
+  filter: brightness(0) invert(1);
+}
+.site-footer-logo{
+  display: block;
+  height: clamp(50px, 6vw, 68px);
+  width: auto;
+  margin: 0 0 14px;
+}
+.site-footer-tagline{
+  margin: 0 0 20px;
+  max-width: 30ch;
+  font-size: .95rem;
+  line-height: 1.5;
+  color: var(--cream-deep);
+}
+.site-footer-socials{
+  display: flex;
+  gap: 12px;
+}
+.site-footer-social{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  transition: transform .2s var(--ease-out), background-color .2s var(--ease-out);
+}
+.site-footer-social svg{
+  width: 18px;
+  height: 18px;
+  fill: var(--brown-deep);
+}
+.site-footer-social--fill{ background: var(--orange); }
+.site-footer-social--fill svg{ fill: var(--white); }
+.site-footer-social:hover{ transform: translateY(-3px); }
+
+.site-footer-col h4{
+  margin: 0 0 20px;
+  font-family: var(--font-accent);
+  font-size: 1.05rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.site-footer-col ul{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.site-footer-col a{
+  font-size: .95rem;
+  color: var(--cream-deep);
+  transition: color .2s var(--ease-out);
+}
+.site-footer-col a:hover{ color: var(--orange); }
+.site-footer-about p{
+  margin: 0;
+  max-width: 28ch;
+  font-size: .95rem;
+  line-height: 1.6;
+  color: var(--cream-deep);
+}
+.site-footer-contact li{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: .95rem;
+  color: var(--cream-deep);
+}
+.site-footer-contact svg{
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  fill: var(--orange);
+}
+
+.site-footer-bottom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  padding: 18px 5vw;
+  background: var(--orange);
+  border-top: 1px dashed rgba(255, 253, 247, .35);
+}
+.site-footer-legal{
+  margin: 0;
+  font-size: .9rem;
+  color: var(--white);
+}
+.site-footer-divider{ margin: 0 6px; opacity: .6; }
+.site-footer-heart{ color: var(--brown-deep); }
+.site-footer-bottom-mascot{
+  position: absolute;
+  right: clamp(-10px, 1vw, 24px);
+  bottom: clamp(-30px, -2vw, -6px);
+  width: clamp(90px, 8vw, 130px);
+  opacity: .9;
+  filter: brightness(0) saturate(100%) invert(30%) sepia(90%) saturate(1200%) hue-rotate(-10deg) brightness(1.05);
+  pointer-events: none;
+}
+
+@media (max-width: 900px){
+  .site-footer-main{
+    grid-template-columns: 1fr 1fr;
+  }
+  .site-footer-brand{ grid-column: 1 / -1; }
+}
+@media (max-width: 540px){
+  .site-footer-main{ grid-template-columns: 1fr; }
+  .site-footer-bottom{ flex-direction: column; text-align: center; gap: 10px; }
+  .site-footer-bottom-mascot{ position: static; width: 84px; opacity: .8; }
+}
+
+/* =========================================================
+   Menu modal — shared popup opened from the icecreams / samosas /
+   shakes "view all" (and "scoop now") buttons. One markup skeleton,
+   themed per section via a data-theme attribute that swaps the
+   accent, drip-corner and row-tint colours; content (title, items,
+   totals) is filled in by JS. The currently-selected card on the
+   home page is passed in as the item pre-added at qty 1.
+   ========================================================= */
+.menu-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .3s var(--ease-out), visibility 0s linear .3s;
+}
+.menu-modal.is-open{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity .3s var(--ease-out);
+}
+body.menu-modal-lock{ overflow: hidden; }
+
+.menu-modal-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 10, 6, .55);
+  backdrop-filter: blur(2px);
+}
+
+.menu-modal-panel{
+  position: relative;
+  width: min(720px, 92vw);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(20, 10, 5, .35);
+  transform: translateY(24px) scale(.96);
+  transition: transform .35s var(--ease-out);
+}
+.menu-modal.is-open .menu-modal-panel{ transform: translateY(0) scale(1); }
+
+.menu-modal[data-theme="icecreams"]{
+  --menu-accent: #e8628f;
+  --menu-accent-bright: #ff9dbc;
+  --menu-drip: #f7b9ca;
+  --menu-tint: #fdeef2;
+  --menu-cta: #e8628f;
+}
+.menu-modal[data-theme="samosas"]{
+  --menu-accent: #e2571b;
+  --menu-accent-bright: #ff9a56;
+  --menu-drip: #f4813a;
+  --menu-tint: #fdece1;
+  --menu-cta: #e2571b;
+}
+.menu-modal[data-theme="shakes"]{
+  --menu-accent: #6b3f2e;
+  --menu-accent-bright: #ffb347;
+  --menu-drip: #ffd9b0;
+  --menu-tint: #fff3e6;
+  --menu-cta: #f75c03;
+}
+
+.menu-modal-drip{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: min(240px, 46%);
+  height: 96px;
+  background: var(--menu-drip);
+  border-radius: 0 28px 0 70%;
+}
+
+.menu-modal-close{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--brown-deep);
+  color: var(--white);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .2s var(--ease-out);
+}
+.menu-modal-close:hover{ transform: scale(1.08); }
+
+.menu-modal-body{
+  overflow-y: auto;
+  flex: 1 1 auto;
+  padding: 0 clamp(20px, 3.4vw, 32px) 8px;
+}
+
+.menu-modal-head{
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 76px 8px 4px;
+}
+.menu-modal-spark{ width: 22px; opacity: .9; }
+.menu-modal-title{
+  margin: 0;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 2.05rem);
+  color: var(--menu-accent);
+  text-align: center;
+}
+.menu-modal-subtitle{
+  text-align: center;
+  margin: 2px 0 20px;
+  font-weight: 600;
+  color: var(--brown-deep);
+  opacity: .72;
+  font-size: .95rem;
+}
+
+.menu-modal-list{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.menu-modal-item{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+  border-radius: 18px;
+  background: var(--menu-tint);
+}
+.menu-modal-item-img{
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: rgba(60, 33, 26, .06);
+}
+.menu-modal-item-info{ flex: 1 1 auto; min-width: 0; }
+.menu-modal-item-name{
+  margin: 0 0 2px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--brown-deep);
+}
+.menu-modal-item-desc{
+  margin: 0;
+  font-size: .82rem;
+  font-weight: 600;
+  color: var(--menu-accent);
+}
+/* samosas are sold by the dozen — items with a size option (see
+   menuData in main.js) get this pill toggle instead of a single
+   flat price, and the price/total react to whichever is active. */
+.menu-modal-size-toggle{
+  display: flex;
+  gap: 6px;
+  margin-top: 6px;
+}
+.menu-modal-size-btn{
+  border: 1.5px solid rgba(60, 33, 26, .15);
+  background: var(--white);
+  color: var(--brown-deep);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-family: var(--font-body);
+  font-size: .74rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color .2s var(--ease-out), color .2s var(--ease-out), border-color .2s var(--ease-out);
+}
+.menu-modal-size-btn.is-active{
+  background: var(--menu-accent);
+  border-color: var(--menu-accent);
+  color: var(--white);
+}
+.menu-modal-item-meta{
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.menu-modal-item-price{
+  flex: none;
+  font-weight: 700;
+  color: var(--brown-deep);
+  margin: 0 4px;
+  font-size: .95rem;
+}
+.menu-modal-stepper{
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--white);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: inset 0 0 0 1.5px rgba(60, 33, 26, .12);
+}
+.menu-modal-step{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  color: var(--brown-deep);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s var(--ease-out);
+}
+.menu-modal-step:hover:not(:disabled){ background: var(--cream-deep); }
+.menu-modal-step:disabled{ opacity: .3; cursor: not-allowed; }
+.menu-modal-qty{
+  min-width: 16px;
+  text-align: center;
+  font-weight: 700;
+  font-size: .92rem;
+}
+
+.menu-modal-instructions{ margin: 20px 0 20px; }
+.menu-modal-instructions label{
+  display: block;
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: .9rem;
+  color: var(--brown-deep);
+  margin-bottom: 6px;
+}
+.menu-modal-instructions textarea{
+  width: 100%;
+  min-height: 60px;
+  resize: vertical;
+  border-radius: 14px;
+  border: 1.5px solid rgba(60, 33, 26, .15);
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: .9rem;
+  color: var(--brown-deep);
+  background: var(--cream);
+}
+.menu-modal-instructions textarea:focus{
+  outline: 2px solid var(--menu-accent);
+  outline-offset: 1px;
+}
+
+.menu-modal-footer{
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px clamp(20px, 3.4vw, 28px);
+  background: var(--brown-deep);
+}
+.menu-modal-total{ display: flex; flex-direction: column; color: var(--white); }
+.menu-modal-total span{
+  font-size: .74rem;
+  opacity: .75;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.menu-modal-total strong{
+  font-family: var(--font-accent);
+  font-size: 1.3rem;
+  color: var(--menu-accent-bright);
+}
+.menu-modal-add{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 22px;
+  background: var(--menu-cta);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+  transition: transform .2s var(--ease-out), background-color .2s var(--ease-out);
+}
+.menu-modal-add svg{ width: 18px; height: 18px; fill: currentColor; }
+.menu-modal-add:hover{ transform: translateY(-2px); }
+.menu-modal-add.is-added{ background: #2f9e44; }
+
+@media (max-width: 480px){
+  .menu-modal-item{ flex-wrap: wrap; }
+  .menu-modal-item-img{ width: 52px; height: 52px; }
+  .menu-modal-item-meta{ flex-basis: calc(100% - 66px); justify-content: space-between; margin-top: 4px; margin-left: 66px; }
+  .menu-modal-footer{ flex-direction: column; align-items: stretch; gap: 12px; }
+  .menu-modal-add{ justify-content: center; }
+}
+
+/* =========================================================
+   Cart page — sits between the shakes section and the brand
+   marquee, on the same cream ground the shakes checker transitions
+   into. Mirrors the menu modal's row styling (image + name/price +
+   stepper) so the two feel like one system, plus a remove button, a
+   summary card, and an empty state for when nothing's been added.
+   ========================================================= */
+.cart-page{
+  padding: clamp(56px, 8vw, 96px) 5vw clamp(48px, 7vw, 80px);
+  background: var(--cream);
+  text-align: center;
+}
+.cart-heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.cart-spark{ width: clamp(20px, 2.6vw, 28px); opacity: .9; }
+.cart-title{
+  margin: 0;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--orange);
+}
+.cart-subtitle{
+  margin: 6px 0 40px;
+  color: var(--brown-deep);
+  opacity: .7;
+  font-weight: 600;
+}
+
+.cart-wrap{ max-width: 720px; margin: 0 auto; text-align: left; }
+
+.cart-list{
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.cart-item{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 20px;
+  background: var(--white);
+  box-shadow: 0 8px 20px rgba(60, 33, 26, .08);
+}
+.cart-item-img{
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  object-fit: cover;
+  background: var(--cream-deep);
+}
+.cart-item-info{ flex: 1 1 auto; min-width: 0; }
+.cart-item-tag{
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  padding: 2px 9px;
+  border-radius: 999px;
+  margin-bottom: 4px;
+  color: var(--white);
+}
+.cart-item-tag--icecreams{ background: #e8628f; }
+.cart-item-tag--samosas{ background: #e2571b; }
+.cart-item-tag--shakes{ background: #6b3f2e; }
+.cart-item-name{
+  margin: 0 0 2px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.02rem;
+  color: var(--brown-deep);
+}
+.cart-item-price{
+  margin: 0;
+  font-size: .85rem;
+  color: var(--brown-deep);
+  opacity: .6;
+  font-weight: 600;
+}
+.cart-item-meta{
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.cart-item-stepper{
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: inset 0 0 0 1.5px rgba(60, 33, 26, .12);
+}
+.cart-item-step{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: var(--white);
+  color: var(--brown-deep);
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color .2s var(--ease-out);
+}
+.cart-item-step:hover{ background: var(--cream-deep); }
+.cart-item-qty{ min-width: 16px; text-align: center; font-weight: 700; font-size: .9rem; }
+.cart-item-line-total{
+  font-weight: 700;
+  color: var(--orange);
+  min-width: 60px;
+  text-align: right;
+  font-size: .92rem;
+}
+.cart-item-remove{
+  border: none;
+  background: none;
+  color: var(--brown-deep);
+  opacity: .4;
+  font-size: 1.2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px;
+  transition: opacity .2s var(--ease-out), color .2s var(--ease-out);
+}
+.cart-item-remove:hover{ opacity: 1; color: #c0392b; }
+
+.cart-empty{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 56px 20px;
+  text-align: center;
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 8px 20px rgba(60, 33, 26, .06);
+}
+.cart-empty p{
+  margin: 0;
+  font-family: var(--font-accent);
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--brown-deep);
+  opacity: .55;
+}
+.cart-empty-cta{
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .2s var(--ease-out), transform .2s var(--ease-out);
+}
+.cart-empty-cta:hover{ background: var(--orange-deep); transform: translateY(-2px); }
+
+.cart-page.is-empty .cart-list,
+.cart-page.is-empty .cart-summary{ display: none; }
+.cart-page.is-empty .cart-empty{ display: flex; }
+
+.cart-summary{
+  background: var(--brown-deep);
+  border-radius: 24px;
+  padding: 22px 26px;
+  color: var(--white);
+}
+.cart-summary-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: .95rem;
+  opacity: .85;
+}
+.cart-summary-row strong{ font-weight: 700; }
+.cart-summary-row--total{
+  margin-top: 6px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(255, 253, 247, .3);
+  opacity: 1;
+  font-size: 1.1rem;
+}
+.cart-summary-row--total strong{
+  color: var(--orange);
+  font-family: var(--font-accent);
+  font-size: 1.3rem;
+}
+.cart-checkout{
+  width: 100%;
+  margin-top: 18px;
+  padding: 14px;
+  border: none;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1.02rem;
+  cursor: pointer;
+  transition: background-color .2s var(--ease-out), transform .2s var(--ease-out);
+}
+.cart-checkout:hover{ background: var(--orange-deep); transform: translateY(-2px); }
+.cart-checkout.is-done{ background: #2f9e44; }
+
+.cart-badge{
+  position: absolute;
+  top: -9px;
+  right: -14px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-size: .65rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+@media (max-width: 480px){
+  .cart-item{ flex-wrap: wrap; }
+  .cart-item-img{ width: 56px; height: 56px; }
+  .cart-item-meta{ flex-basis: calc(100% - 72px); margin-left: 72px; margin-top: 8px; justify-content: space-between; }
+}
+
+/* Cart / checkout as standalone pages — no hero above the fixed nav
+   here, so the page content needs its own top clearance, and (since
+   these pages don't run main.js's scroll-reveal) the nav is simply
+   visible from the first frame, no JS required. */
+.cart-page--standalone{ padding-top: clamp(96px, 13vw, 132px); min-height: 70vh; }
+.site-nav-cart{
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: var(--brown-deep);
+  transition: color .2s var(--ease-out);
+}
+.site-nav-cart:hover,
+.site-nav-cart.is-active{ color: var(--orange); }
+.site-nav-cart-icon{ width: 22px; height: 22px; fill: currentColor; }
+.site-nav-cart .cart-badge{ top: -2px; right: -2px; }
+
+/* Floating "View Cart" button — index.html only, pops in the moment
+   the cart goes from empty to non-empty so people browsing further
+   down the page don't have to scroll back up to the nav. */
+.view-cart-fab{
+  position: fixed;
+  right: clamp(16px, 3vw, 32px);
+  bottom: clamp(16px, 3vw, 32px);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: var(--orange);
+  color: var(--white);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  box-shadow: 0 14px 32px rgba(60, 33, 26, .35);
+  opacity: 0;
+  transform: scale(.85);
+  pointer-events: none;
+  transition: transform .3s var(--ease-out), opacity .3s var(--ease-out), background-color .2s var(--ease-out);
+}
+.view-cart-fab.is-visible{ opacity: 1; transform: scale(1); pointer-events: auto; }
+.view-cart-fab.is-visible:hover{ background: var(--orange-deep); transform: scale(1) translateY(-3px); }
+.view-cart-fab svg{ width: 18px; height: 18px; fill: currentColor; }
+.view-cart-fab-count{
+  background: var(--white);
+  color: var(--orange);
+  border-radius: 999px;
+  min-width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .75rem;
+  font-weight: 800;
+  padding: 0 5px;
+}
+@media (max-width: 600px){
+  .view-cart-fab span:not(.view-cart-fab-count){ display: none; }
+  .view-cart-fab{ padding: 14px; }
+}
+
+/* =========================================================
+   Checkout page — delivery details form beside a read-only order
+   summary, then a details/success swap once the order is placed.
+   ========================================================= */
+.checkout-wrap{
+  max-width: 980px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 28px;
+  align-items: start;
+  text-align: left;
+}
+.checkout-form{
+  background: var(--white);
+  border-radius: 24px;
+  padding: 28px clamp(20px, 3vw, 32px);
+  box-shadow: 0 8px 20px rgba(60, 33, 26, .06);
+}
+.checkout-form h2,
+.checkout-summary h2{
+  margin: 0 0 18px;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--brown-deep);
+}
+.checkout-field{ margin-bottom: 16px; }
+.checkout-field label{
+  display: block;
+  font-weight: 700;
+  font-size: .86rem;
+  color: var(--brown-deep);
+  margin-bottom: 6px;
+}
+.checkout-field input[type="text"],
+.checkout-field input[type="tel"],
+.checkout-field textarea{
+  width: 100%;
+  border-radius: 14px;
+  border: 1.5px solid rgba(60, 33, 26, .15);
+  padding: 11px 14px;
+  font-family: var(--font-body);
+  font-size: .92rem;
+  color: var(--brown-deep);
+  background: var(--cream);
+}
+.checkout-field textarea{ min-height: 64px; resize: vertical; }
+.checkout-field input:focus,
+.checkout-field textarea:focus{ outline: 2px solid var(--orange); outline-offset: 1px; }
+.checkout-payment-options{ display: flex; flex-direction: column; gap: 10px; }
+.checkout-radio{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: .92rem;
+  color: var(--brown-deep);
+  cursor: pointer;
+}
+.checkout-radio input{ accent-color: var(--orange); width: 16px; height: 16px; }
+
+.checkout-summary{
+  background: var(--brown-deep);
+  border-radius: 24px;
+  padding: 24px clamp(20px, 3vw, 26px);
+  color: var(--white);
+}
+.checkout-summary h2{ color: var(--white); }
+.checkout-summary-list{
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checkout-summary-item{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: .88rem;
+  opacity: .9;
+}
+.checkout-summary-item span:first-child{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+}
+.checkout-summary .cart-summary-row{ opacity: .85; }
+.checkout-summary .cart-summary-row--total{ opacity: 1; }
+
+.checkout-empty,
+.checkout-success{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 56px 24px;
+  background: var(--white);
+  border-radius: 24px;
+  box-shadow: 0 8px 20px rgba(60, 33, 26, .06);
+}
+.checkout-empty p,
+.checkout-success p{ margin: 0; color: var(--brown-deep); opacity: .7; font-weight: 600; }
+.checkout-success h2{
+  margin: 0;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  font-size: 1.5rem;
+  color: var(--orange);
+}
+.checkout-success-icon{
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #2f9e44;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+@media (max-width: 800px){
+  .checkout-wrap{ grid-template-columns: 1fr; }
+}
+
+/* .checkout-wrap/.checkout-empty/.checkout-success each set their own
+   `display`, which otherwise outranks the `hidden` attribute's
+   built-in (low-specificity) `display: none` — so state toggling via
+   `.hidden = true/false` in JS needs an explicit override here. */
+.checkout-wrap[hidden],
+.checkout-empty[hidden],
+.checkout-success[hidden]{ display: none; }
 
 /* =========================================================
    Reduced motion
