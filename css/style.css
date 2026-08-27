@@ -611,6 +611,71 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   padding: 20px 0 8px;
 }
 
+/* =========================================================
+   Icecream promo pop-up — the Khallis Vanilla poster, shown once
+   (ever, per browser) the first time a visitor scrolls into the
+   icecream section. Same fixed-overlay chrome as the other modals,
+   but the "panel" is just the poster art plus a close button
+   pinned to its corner — there's no white card around it.
+   ========================================================= */
+.promo-popup{
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .3s var(--ease-out), visibility 0s linear .3s;
+}
+.promo-popup.is-open{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity .3s var(--ease-out);
+}
+.promo-popup-overlay{
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 10, 6, .6);
+  backdrop-filter: blur(2px);
+}
+.promo-popup-panel{
+  position: relative;
+  width: min(340px, 82vw);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(20, 10, 5, .4);
+  transform: translateY(24px) scale(.96);
+  transition: transform .35s var(--ease-out);
+}
+.promo-popup.is-open .promo-popup-panel{ transform: translateY(0) scale(1); }
+.promo-popup-img{ display: block; width: 100%; height: auto; }
+.promo-popup-close{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--brown-deep);
+  color: var(--white);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .3);
+  transition: transform .2s var(--ease-out);
+}
+.promo-popup-close:hover{ transform: scale(1.08); }
+
 /* Tablet — the Delivery/Pick-up toggle is the first thing to go,
    since the location picker (which matters more) needs the room. */
 @media (max-width: 960px){

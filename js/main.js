@@ -89,6 +89,46 @@ if (!reduceMotion){
 }
 
 /* =========================================================
+   Icecream promo pop-up — the Khallis Vanilla poster, shown once
+   (ever, per browser — tracked in localStorage) the first time a
+   visitor scrolls into the icecream section.
+   ========================================================= */
+{
+  const PROMO_SEEN_KEY = 'molvi-icecream-promo-seen';
+  const popup = document.getElementById('promo-popup');
+  let alreadySeen = true;
+  try { alreadySeen = !!localStorage.getItem(PROMO_SEEN_KEY); } catch (e) { alreadySeen = false; }
+
+  if (popup && !alreadySeen){
+    const openPromo = () => {
+      popup.classList.add('is-open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('menu-modal-lock');
+      try { localStorage.setItem(PROMO_SEEN_KEY, '1'); } catch (e) { /* storage blocked */ }
+    };
+    const closePromo = () => {
+      popup.classList.remove('is-open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('menu-modal-lock');
+    };
+
+    ScrollTrigger.create({
+      trigger: '#next-page',
+      start: 'top 70%',
+      once: true,
+      onEnter: openPromo,
+    });
+
+    popup.querySelectorAll('[data-promo-close]').forEach((el) => {
+      el.addEventListener('click', closePromo);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.classList.contains('is-open')) closePromo();
+    });
+  }
+}
+
+/* =========================================================
    Scroll parallax — hero layers drift at different rates as the
    page scrolls into the next (empty, cream) section. The wave
    itself is left out of this: it stays pinned flush to the
