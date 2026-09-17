@@ -776,112 +776,167 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   object-fit: contain;
 }
 
-/* layer 1 — full background
-   capped to a max width and centered so the photo's zoom (and the
-   front mountain's ridge line) stays consistent instead of the
-   image scaling up further on ultra-wide viewports */
-.hero-bg-full{
-  position: absolute; top: 0; bottom: 0; left: 50%;
-  width: min(100%, 1440px);
-  transform: translateX(-50%);
-  z-index: 1;
-}
-.hero-bg-full img{
-  width: 100%; height: 100%; object-fit: cover; object-position: center 65%;
-}
-
-/* layer 2 — wordmark, sandwiched between the two mountain layers */
-.hero-wordmark{
-  position: absolute;
-  top: 2.5%;
-  left: 50%;
-  width: min(520px, 78vw);
-  z-index: 2;
-  opacity: 0;
-  transform: translate(-50%, 42vh);
-  filter: drop-shadow(0 10px 26px rgba(0,0,0,.28));
-}
-.hero-wordmark img{ width: 100%; }
-
-/* layer 3 — front background. Held to well under half the hero's height
-   (and capped/centered like layer 1) so its ridge line always sits below
-   the wordmark by construction — no dependence on the photo's exact alpha
-   shape or the viewport's width/height ratio. Just the lower slice of the
-   mountains, tucking the wordmark's bottom edge behind them for depth. */
-.hero-bg-front{
-  position: absolute; bottom: 0; left: 50%;
-  width: min(100%, 1440px);
-  height: 38%;
-  min-height: 200px;
-  transform: translateX(-50%);
-  z-index: 3;
+/* Hero home slide — a bold flat-graphic composition (badge, giant
+   stacked wordmark, diagonal flavour ribbon, product shot) rather
+   than the old mountain-photo layers, but built entirely from the
+   site's own palette/type so it still reads as Molvi on Snacks. */
+.hero2-bg{
+  position: absolute; inset: 0;
+  z-index: 0;
   overflow: hidden;
-  /* feather the top edge so the height cap dissolves into the full
-     background beneath (the same photo) instead of a hard seam */
-  -webkit-mask-image: linear-gradient(to bottom, transparent, black 90px);
-  mask-image: linear-gradient(to bottom, transparent, black 90px);
+  background: var(--cream);
 }
-.hero-bg-front img{
-  width: 100%; height: 100%; object-fit: cover; object-position: center bottom;
-  transform: scale(1.08);
-  transform-origin: center bottom;
+.hero2-blob{
+  position: absolute;
+  display: block;
+  opacity: .55;
+}
+.hero2-blob--a{
+  top: -12%; left: -10%;
+  width: 46vw; height: 46vw;
+  background: var(--cream-deep);
+  border-radius: 42% 58% 65% 35% / 45% 40% 60% 55%;
+}
+.hero2-blob--b{
+  bottom: -18%; right: -12%;
+  width: 52vw; height: 52vw;
+  background: var(--orange);
+  opacity: .14;
+  border-radius: 60% 40% 30% 70% / 55% 60% 40% 45%;
+}
+.hero2-blob--c{
+  top: 20%; right: 6%;
+  width: 22vw; height: 22vw;
+  background: var(--cream-deep);
+  border-radius: 55% 45% 60% 40% / 40% 55% 45% 60%;
 }
 
-/* layer 4 — wood block. Rises from below the hero until its own bottom
-   edge settles at the hero's bottom edge. */
-.hero-wood{
-  position: absolute; left: 50%; bottom: 0;
-  width: min(100%, 1440px);
-  height: clamp(46px, 8vw, 82px);
-  transform: translateX(-50%) translateY(100%);
-  z-index: 4;
-  background-image: url("../assets/images/wood-floor.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  box-shadow: inset 0 16px 24px rgba(0,0,0,.35);
-}
-
-/* layer 5 — the three tubs, all standing on the same baseline in a row,
-   strawberry just slightly larger and centered */
-.hero-buckets{
-  position: absolute; left: 50%;
-  bottom: clamp(20px, 5.6vw, 46px);
-  width: min(700px, 90vw);
-  height: clamp(270px, 39vw, 330px);
-  transform: translateX(-50%);
+/* badge — top-left pill, pops in first */
+.hero2-badge{
+  position: absolute;
+  top: clamp(24px, 7vh, 60px);
+  left: clamp(20px, 6vw, 64px);
   z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--white);
+  color: var(--brown-deep);
+  border-radius: 999px;
+  padding: 9px 20px 9px 16px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(.75rem, 1.4vw, .95rem);
+  box-shadow: 0 12px 28px rgba(60, 33, 26, .18);
+  opacity: 0;
+  transform: translateY(-18px);
+}
+.hero2-badge-spark{ color: var(--orange); }
+
+/* giant stacked wordmark — the hero's centrepiece, filling most of
+   the frame the way the reference's oversized logotype does */
+.hero2-wordmark{
+  position: absolute; inset: 0;
+  z-index: 2;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: clamp(96px, 17vh, 168px);
+  text-align: center;
+  pointer-events: none;
+}
+.hero2-word{
+  display: block;
+  font-family: var(--font-accent);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: .86;
+  letter-spacing: -.01em;
+  color: var(--brown-deep);
+  font-size: clamp(3rem, 12.5vw, 8rem);
+  opacity: 0;
+  transform: translateY(44px);
+}
+.hero2-word--on{
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  text-transform: none;
+  color: var(--orange);
+  font-size: clamp(1.4rem, 5.2vw, 2.8rem);
+  margin: clamp(-10px, -1.6vw, -2px) 0;
+}
+.hero2-word--snacks{ margin-top: clamp(-16px, -2.2vw, -4px); }
+
+/* small circular sticker, rotated for a playful flourish over the
+   ribbon — same asset used further down in the samosas section */
+.hero2-sticker{
+  position: absolute;
+  top: clamp(64px, 13vh, 116px);
+  right: clamp(12px, 6vw, 64px);
+  width: clamp(60px, 8vw, 92px);
+  z-index: 5;
+  filter: drop-shadow(0 12px 20px rgba(60, 33, 26, .3));
+  opacity: 0;
+  transform: scale(.6) rotate(-10deg);
 }
 
-.hero-bucket{
-  position: absolute; bottom: 0;
-  margin: 0;
+/* diagonal flavour ribbon, crossing behind the product shot */
+.hero2-ribbon{
+  position: absolute;
+  left: 50%; top: 78%;
+  width: 145%;
+  transform: translate(-50%, -50%) rotate(-6deg);
+  z-index: 3;
+  background: var(--orange);
+  box-shadow: 0 14px 30px rgba(60, 33, 26, .25);
+  padding: clamp(10px, 1.6vw, 16px) 0;
+  overflow: hidden;
   opacity: 0;
 }
-.hero-bucket img{
+.hero2-ribbon-track{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(10px, 1.6vw, 20px);
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(.95rem, 2.4vw, 1.35rem);
+  color: var(--white);
+  text-transform: lowercase;
+}
+.hero2-ribbon-dot{ opacity: .75; font-size: .75em; }
+
+/* the strawberry tub, popping over the ribbon like the reference's
+   splash — same asset/treatment as the old hero buckets used */
+.hero2-bucket{
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: clamp(190px, 22vw, 300px);
+  margin: 0;
+  z-index: 4;
+  transform: translateX(-50%) scale(.7);
+  transform-origin: bottom center;
+  opacity: 0;
+}
+.hero2-bucket img{
   width: 100%;
-  filter: drop-shadow(0 16px 18px rgba(0,0,0,.35));
+  display: block;
+  filter: drop-shadow(0 20px 26px rgba(60, 33, 26, .35));
 }
 
-.hero-bucket--orea{
-  left: 0;
-  width: 33%;
-  z-index: 1;
-  transform: scale(.7);
-}
-.hero-bucket--pista{
-  right: -18px;
-  width: 35%;
-  z-index: 1;
-  transform: scale(.7);
-}
-/* wide enough that the neighbouring tubs' inner edges tuck behind it */
-.hero-bucket--strawberry{
-  left: 52%;
-  width: 46%;
-  bottom: -2.5%;
-  z-index: 2;
-  transform: translateX(-50%) scale(.7);
+@media (max-width: 700px){
+  .hero2-word{ font-size: clamp(2.5rem, 15vw, 4rem); }
+  .hero2-word--on{ font-size: clamp(1.2rem, 7vw, 1.8rem); }
+  .hero2-wordmark{ padding-top: clamp(80px, 20vh, 130px); }
+  .hero2-ribbon{ width: 175%; top: 56%; }
+  .hero2-bucket{ width: clamp(170px, 40vw, 230px); bottom: 8%; }
 }
 
 /* layer 6 — closing wave. Rises in last, once the tubs have popped in,
@@ -1102,53 +1157,6 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   );
   /* each tile = 2 squares across, so 14 tiles = 28 squares per row */
   background-size: calc(100vw / 14) calc(100vw / 14);
-}
-
-/* Desktop — land the wordmark a bit higher than the shared/mobile position */
-@media (min-width: 861px){
-  .hero-wordmark{
-    top: calc(0.5% - 36px);
-  }
-}
-
-/* =========================================================
-   Ultra-wide viewports — once the capped layers (above) leave a
-   visible strip either side, fill it with a blurred echo of the
-   photo and feather the capped layers' edges into it, so the cap
-   reads as an edge fade rather than a hard seam. Scoped to widths
-   beyond the cap so narrower/mobile viewports are untouched.
-   ========================================================= */
-@media (min-width: 1441px){
-  .hero::before{
-    content: "";
-    position: absolute; inset: 0;
-    z-index: 0;
-    background: url("../assets/images/bg-mountain-full.jpg") center 65% / cover no-repeat;
-    filter: blur(50px) saturate(1.1) brightness(.9);
-    transform: scale(1.15);
-  }
-
-  .hero-bg-full{
-    -webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-    mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-  }
-
-  .hero-bg-front{
-    -webkit-mask-image:
-      linear-gradient(to bottom, transparent, black 90px),
-      linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-    -webkit-mask-composite: source-in;
-    mask-image:
-      linear-gradient(to bottom, transparent, black 90px),
-      linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-    mask-composite: intersect;
-  }
-
-  .hero-wood,
-  .hero-wave{
-    -webkit-mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-    mask-image: linear-gradient(to right, transparent, black 80px, black calc(100% - 80px), transparent);
-  }
 }
 
 /* =========================================================
