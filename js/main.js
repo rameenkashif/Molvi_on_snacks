@@ -3,35 +3,23 @@ gsap.registerPlugin(ScrollTrigger);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* =========================================================
-   Hero intro sequence
-   The badge pops in first, then the giant stacked wordmark rises
-   up line by line, the flavour ribbon fades in behind it, and the
-   strawberry tub pops in over the ribbon last, echoing the same
-   "pop in with an overshoot" beat the flavour carousels use further
-   down the page.
+   Hero — a continuous carousel of promo posters, no intro
+   animation: the first poster is just there on load, and every
+   DWELL_MS it pushes off to the left as the next poster arrives
+   from the right, looping forever. Skipped entirely under reduced
+   motion, so the hero just shows the first poster and stays put.
    ========================================================= */
-const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+{
+  const slider = document.getElementById('hero-slider');
+  const slides = Array.from(slider.children);
 
-heroTl
-  .to('.hero2-badge', { opacity: 1, y: 0, duration: .6 }, 0)
-  .to('.hero2-word', { opacity: 1, y: 0, duration: .8, stagger: .12, ease: 'power4.out' }, '-=.3')
-  .to('.hero2-ribbon', { opacity: 1, duration: .6 }, '-=.5')
-  .to('.hero2-sticker', { opacity: 1, duration: .15 }, '-=.4')
-  .to('.hero2-sticker', { scale: 1, rotation: -8, duration: .7, ease: 'back.out(2.4)' }, '<')
-  .to('.hero2-bucket', { opacity: 1, duration: .15 }, '-=.35')
-  .to('.hero2-bucket', { scale: 1, duration: .75, ease: 'back.out(2.6)' }, '<')
-  // once everything else has landed, the closing wave rises in last
-  .to('.hero-wave', { y: '0%', duration: .9, ease: 'power3.out' }, '-=.15');
+  // every slide is a .hero-slide--poster (hidden by default in CSS
+  // until JS parks it), so all of them need un-hiding here — not
+  // just the ones about to be pushed off-screen to the right
+  gsap.set(slides, { visibility: 'visible' });
+  gsap.set(slides.slice(1), { xPercent: 100 });
+}
 
-/* =========================================================
-   Hero — once the intro sequence finishes and the hero has held
-   static for a beat, it becomes a slow, continuous carousel: the
-   whole hero slide pushes off to the left as a promo poster arrives
-   from the right, dwells there, then hands off to the next poster
-   the same way, before sliding the hero itself back in from the
-   right to loop the cycle. Skipped entirely under reduced motion,
-   so the hero just stays put.
-   ========================================================= */
 if (!reduceMotion){
   const slider = document.getElementById('hero-slider');
   const slides = Array.from(slider.children);
@@ -39,8 +27,6 @@ if (!reduceMotion){
   const TRANSITION_DURATION = 1;
   let current = 0;
   let dwellId = null;
-
-  gsap.set(slides.slice(1), { xPercent: 100, visibility: 'visible' });
 
   const scheduleNext = () => {
     clearTimeout(dwellId);
@@ -66,7 +52,7 @@ if (!reduceMotion){
       .to(incoming, { xPercent: 0 }, 0);
   }
 
-  heroTl.eventCallback('onComplete', scheduleNext);
+  scheduleNext();
 }
 
 /* =========================================================
@@ -105,25 +91,6 @@ if (!reduceMotion){
     });
   }
 }
-
-/* =========================================================
-   Scroll parallax — hero layers drift at different rates as the
-   page scrolls into the next (empty, cream) section. The wave
-   itself is left out of this: it stays pinned flush to the
-   hero's bottom edge the whole time, so it never pulls away from
-   the seam with .next-page and exposes a gap underneath it.
-   ========================================================= */
-gsap.timeline({
-  scrollTrigger: {
-    trigger: '.hero',
-    start: 'top top',
-    end: 'bottom top',
-    scrub: .6,
-  }
-})
-.to('.hero2-bucket', { y: '-12%', ease: 'none' }, 0)
-.to('.hero2-ribbon', { y: '-6%', ease: 'none' }, 0)
-.to('.hero2-wordmark', { y: '-3%', ease: 'none' }, 0);
 
 /* =========================================================
    Flavour cards — once the wave has fully risen and the page
