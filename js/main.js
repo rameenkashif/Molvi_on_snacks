@@ -3,6 +3,26 @@ gsap.registerPlugin(ScrollTrigger);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* =========================================================
+   Intro — the logo fades in and un-blurs while the strawberry
+   splash rises up from the bottom edge at the same time. The
+   ribbon behind them is a pure-CSS marquee (see style.css), always
+   scrolling regardless of this timeline. Under reduced motion both
+   elements just land in their settled state with no animation.
+   ========================================================= */
+if (reduceMotion){
+  gsap.set('.intro-logo', { opacity: 1, filter: 'drop-shadow(0 16px 28px rgba(60, 33, 26, .2)) blur(0px)' });
+  gsap.set('.intro-icecream', { y: 0 });
+} else {
+  gsap.timeline({ defaults: { ease: 'power3.out' } })
+    .to('.intro-logo', {
+      opacity: 1,
+      filter: 'drop-shadow(0 16px 28px rgba(60, 33, 26, .2)) blur(0px)',
+      duration: 1.4,
+    }, .2)
+    .to('.intro-icecream', { y: 0, duration: 1.3, ease: 'back.out(1.5)' }, .1);
+}
+
+/* =========================================================
    Hero — a continuous carousel of promo posters, no intro
    animation: the first poster is just there on load, and every
    DWELL_MS it pushes off to the left as the next poster arrives

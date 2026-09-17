@@ -721,6 +721,87 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 }
 
 /* =========================================================
+   Intro — a plain, full-height splash the visitor lands on before
+   the hero: the brown wordmark fades/blurs in, the strawberry
+   splash rises up from the bottom edge, and a diagonal ribbon of
+   flavour categories scrolls across behind both, continuously.
+   ========================================================= */
+.intro{
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #f0ece0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro-ribbon{
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 160%;
+  transform: translate(-50%, -50%) rotate(-6deg);
+  z-index: 1;
+  background: var(--orange);
+  box-shadow: 0 14px 30px rgba(60, 33, 26, .25);
+  padding: clamp(12px, 2vw, 20px) 0;
+  overflow: hidden;
+}
+.intro-ribbon-track{
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: clamp(14px, 2vw, 24px);
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(1rem, 2.6vw, 1.5rem);
+  color: var(--white);
+  text-transform: lowercase;
+  animation: intro-marquee 20s linear infinite;
+}
+.intro-ribbon-dot{ opacity: .75; font-size: .75em; }
+
+@keyframes intro-marquee{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+
+.intro-logo{
+  position: relative;
+  z-index: 3;
+  width: min(480px, 58vw);
+  filter: drop-shadow(0 16px 28px rgba(60, 33, 26, .2)) blur(20px);
+  opacity: 0;
+}
+
+.intro-icecream{
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  margin: 0;
+  z-index: 2;
+  width: min(520px, 64vw);
+  transform: translateX(-50%) translateY(55%);
+}
+.intro-icecream img{
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 20px 30px rgba(60, 33, 26, .3));
+}
+
+@media (max-width: 700px){
+  .intro-ribbon{ width: 190%; }
+  .intro-logo{ width: min(320px, 72vw); }
+  .intro-icecream{ width: min(360px, 78vw); }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .intro-ribbon-track{ animation: none; }
+}
+
+/* =========================================================
    Hero
    ========================================================= */
 .hero{
