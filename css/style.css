@@ -781,11 +781,11 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 .intro-icecream{
   position: absolute;
   left: 50%;
-  bottom: 0;
+  bottom: 14%;
   margin: 0;
   z-index: 2;
-  width: min(520px, 64vw);
-  transform: translateX(-50%) translateY(55%);
+  width: min(680px, 78vw);
+  transform: translateX(-50%) translateY(90%);
 }
 .intro-icecream img{
   width: 100%;
@@ -795,7 +795,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 
 @media (max-width: 700px){
   .intro-ribbon{ width: 190%; }
-  .intro-icecream{ width: min(360px, 78vw); }
+  .intro-icecream{ width: min(440px, 86vw); bottom: 16%; }
 }
 
 @media (prefers-reduced-motion: reduce){

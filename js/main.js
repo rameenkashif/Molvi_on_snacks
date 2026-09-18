@@ -6,14 +6,29 @@ const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').match
    Intro — the logo fades in and un-blurs while the strawberry
    splash rises up from the bottom edge at the same time. The
    ribbon behind them is a pure-CSS marquee (see style.css), always
-   scrolling regardless of this timeline. Under reduced motion both
-   elements just land in their settled state with no animation.
+   scrolling regardless of this timeline. This is a one-time
+   entrance animation, not a section visitors are meant to sit on —
+   once it settles, the page glides itself down into the site
+   (unless the visitor has already scrolled away on their own).
+   Under reduced motion both elements just land in their settled
+   state with no animation, and there's no auto-scroll either.
    ========================================================= */
 if (reduceMotion){
   gsap.set('.intro-logo', { opacity: 1, filter: 'drop-shadow(0 16px 28px rgba(60, 33, 26, .2)) blur(0px)' });
   gsap.set('.intro-icecream', { y: 0 });
 } else {
-  gsap.timeline({ defaults: { ease: 'power3.out' } })
+  const introTl = gsap.timeline({
+    defaults: { ease: 'power3.out' },
+    onComplete: () => {
+      setTimeout(() => {
+        if (window.scrollY < window.innerHeight * .5){
+          const hero = document.getElementById('hero');
+          if (hero) hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 900);
+    },
+  });
+  introTl
     .to('.intro-logo', {
       opacity: 1,
       filter: 'drop-shadow(0 16px 28px rgba(60, 33, 26, .2)) blur(0px)',
