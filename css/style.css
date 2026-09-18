@@ -741,7 +741,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
   left: 50%; top: 50%;
   width: 160%;
   transform: translate(-50%, -50%) rotate(-6deg);
-  z-index: 1;
+  z-index: 3;
   background: var(--orange);
   box-shadow: 0 14px 30px rgba(60, 33, 26, .25);
   padding: clamp(12px, 2vw, 20px) 0;
@@ -770,7 +770,7 @@ button{ font: inherit; color: inherit; background: none; border: 0; cursor: poin
 
 .intro-logo{
   position: relative;
-  z-index: 3;
+  z-index: 1;
   width: min(480px, 58vw);
   filter: drop-shadow(0 16px 28px rgba(60, 33, 26, .2)) blur(20px);
   opacity: 0;
