@@ -22,8 +22,8 @@ if (reduceMotion){
     onComplete: () => {
       setTimeout(() => {
         if (window.scrollY < window.innerHeight * .5){
-          const hero = document.getElementById('hero');
-          if (hero) hero.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          const nextPage = document.getElementById('next-page');
+          if (nextPage) nextPage.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }, 900);
     },
@@ -35,59 +35,6 @@ if (reduceMotion){
       duration: 1.4,
     }, .2)
     .to('.intro-icecream', { y: 0, duration: 1.3, ease: 'back.out(1.5)' }, .1);
-}
-
-/* =========================================================
-   Hero — a continuous carousel of promo posters, no intro
-   animation: the first poster is just there on load, and every
-   DWELL_MS it pushes off to the left as the next poster arrives
-   from the right, looping forever. Skipped entirely under reduced
-   motion, so the hero just shows the first poster and stays put.
-   ========================================================= */
-{
-  const slider = document.getElementById('hero-slider');
-  const slides = Array.from(slider.children);
-
-  // every slide is a .hero-slide--poster (hidden by default in CSS
-  // until JS parks it), so all of them need un-hiding here — not
-  // just the ones about to be pushed off-screen to the right
-  gsap.set(slides, { visibility: 'visible' });
-  gsap.set(slides.slice(1), { xPercent: 100 });
-}
-
-if (!reduceMotion){
-  const slider = document.getElementById('hero-slider');
-  const slides = Array.from(slider.children);
-  const DWELL_MS = 5000;
-  const TRANSITION_DURATION = 1;
-  let current = 0;
-  let dwellId = null;
-
-  const scheduleNext = () => {
-    clearTimeout(dwellId);
-    dwellId = setTimeout(advance, DWELL_MS);
-  };
-
-  function advance(){
-    const next = (current + 1) % slides.length;
-    const outgoing = slides[current];
-    const incoming = slides[next];
-    gsap.set(incoming, { xPercent: 100 });
-    gsap.timeline({
-      defaults: { duration: TRANSITION_DURATION, ease: 'power3.inOut' },
-      onComplete: () => {
-        // park the slide we just left back on the right, ready to
-        // re-enter from there whenever its turn comes round again
-        gsap.set(outgoing, { xPercent: 100 });
-        current = next;
-        scheduleNext();
-      },
-    })
-      .to(outgoing, { xPercent: -100 }, 0)
-      .to(incoming, { xPercent: 0 }, 0);
-  }
-
-  scheduleNext();
 }
 
 /* =========================================================
