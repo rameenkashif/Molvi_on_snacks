@@ -1,0 +1,321 @@
+{
+ "stamp": "Rameen Kashif (456834) | Manal Aslam (465734) | Zainab Ali Bangash (486688)",
+ "note": "direct = the plan_route arguments a programmer would pass (null = infeasible / no plan needed). check = machine-checkable success criteria.",
+ "requests": [
+  {
+   "id": 1,
+   "difficulty": 1,
+   "text": "Plan the cheapest route that delivers all four parcels and tell me its cost.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst"
+   },
+   "check": {}
+  },
+  {
+   "id": 2,
+   "difficulty": 1,
+   "text": "Deliver only the parcel for S2. What does it cost?",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst",
+    "stops": [
+     "S2"
+    ]
+   },
+   "check": {
+    "stops": [
+     "S2"
+    ]
+   }
+  },
+  {
+   "id": 3,
+   "difficulty": 1,
+   "text": "Deliver S1 and S4 only, cheapest route.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst",
+    "stops": [
+     "S1",
+     "S4"
+    ]
+   },
+   "check": {
+    "stops": [
+     "S1",
+     "S4"
+    ]
+   }
+  },
+  {
+   "id": 4,
+   "difficulty": 1,
+   "text": "Use breadth-first search to plan a route for all stops and report the cost.",
+   "direct": {
+    "algorithm": "bfs",
+    "heuristic": "zero"
+   },
+   "check": {
+    "algorithm": "bfs"
+   }
+  },
+  {
+   "id": 5,
+   "difficulty": 2,
+   "text": "What are the teleport tunnel pairs, and does the optimal full tour use a tunnel?",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst"
+   },
+   "check": {
+    "tools": [
+     "tunnel_info"
+    ]
+   }
+  },
+  {
+   "id": 6,
+   "difficulty": 2,
+   "text": "Deliver S3 first, then the rest, as cheaply as possible.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst",
+    "stop_order": [
+     "S3"
+    ]
+   },
+   "check": {
+    "order": [
+     "S3"
+    ]
+   }
+  },
+  {
+   "id": 7,
+   "difficulty": 2,
+   "text": "Deliver S2, then S1, then the remaining stops.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst",
+    "stop_order": [
+     "S2",
+     "S1"
+    ]
+   },
+   "check": {
+    "order": [
+     "S2",
+     "S1"
+    ]
+   }
+  },
+  {
+   "id": 8,
+   "difficulty": 2,
+   "text": "Which stops need a ford crossing, and has the rival used the dam yet?",
+   "direct": null,
+   "check": {
+    "tools": [
+     "flood_status"
+    ],
+    "no_plan_needed": true
+   }
+  },
+  {
+   "id": 9,
+   "difficulty": 3,
+   "text": "Plan with greedy best-first search and with A*. Which is cheaper and by how much? Keep the cheaper one as the current plan.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst"
+   },
+   "check": {
+    "algorithms_called": [
+     "greedy",
+     "astar"
+    ]
+   }
+  },
+  {
+   "id": 10,
+   "difficulty": 3,
+   "text": "Plan a route for all four stops with total cost under 120.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst"
+   },
+   "check": {
+    "max_cost": 120
+   }
+  },
+  {
+   "id": 11,
+   "difficulty": 3,
+   "text": "Deliver S1, S2 and S4 without crossing any ford.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst",
+    "stops": [
+     "S1",
+     "S2",
+     "S4"
+    ],
+    "avoid_terrain": [
+     "ford"
+    ]
+   },
+   "check": {
+    "stops": [
+     "S1",
+     "S2",
+     "S4"
+    ],
+    "avoid": [
+     "ford"
+    ]
+   }
+  },
+  {
+   "id": 12,
+   "difficulty": 3,
+   "text": "Deliver S1 while avoiding grass.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst",
+    "stops": [
+     "S1"
+    ],
+    "avoid_terrain": [
+     "grass"
+    ]
+   },
+   "check": {
+    "stops": [
+     "S1"
+    ],
+    "avoid": [
+     "grass"
+    ]
+   }
+  },
+  {
+   "id": 13,
+   "difficulty": 4,
+   "text": "Plan the optimal tour, then simulate 30 steps and tell me what the rival did.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst"
+   },
+   "check": {
+    "simulate": true
+   }
+  },
+  {
+   "id": 14,
+   "difficulty": 4,
+   "text": "Avoid fords completely and deliver all four parcels.",
+   "direct": null,
+   "check": {
+    "feasible": false
+   }
+  },
+  {
+   "id": 15,
+   "difficulty": 4,
+   "text": "Avoid mud entirely and deliver everything.",
+   "direct": null,
+   "check": {
+    "feasible": false
+   }
+  },
+  {
+   "id": 16,
+   "difficulty": 4,
+   "text": "Plan a route for all four stops with total cost under 100.",
+   "direct": null,
+   "check": {
+    "feasible": false
+   }
+  },
+  {
+   "id": 17,
+   "difficulty": 5,
+   "text": "Deliver S5 first and then the rest.",
+   "direct": null,
+   "check": {
+    "feasible": false
+   }
+  },
+  {
+   "id": 18,
+   "difficulty": 5,
+   "text": "Finish S3 before the rival can flood the fords: deliver S3 first, then simulate until the episode ends and report delivered and stolen parcels.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst",
+    "stop_order": [
+     "S3"
+    ]
+   },
+   "check": {
+    "order": [
+     "S3"
+    ],
+    "simulate": true
+   }
+  },
+  {
+   "id": 19,
+   "difficulty": 5,
+   "text": "Deliver S4 first, then S2, under cost 140, using our admissible heuristic.",
+   "direct": {
+    "algorithm": "astar",
+    "heuristic": "tunnel_mst",
+    "stop_order": [
+     "S4",
+     "S2"
+    ]
+   },
+   "check": {
+    "order": [
+     "S4",
+     "S2"
+    ],
+    "max_cost": 140,
+    "heuristic": "tunnel_mst"
+   }
+  },
+  {
+   "id": 20,
+   "difficulty": 5,
+   "text": "Use weighted A* to deliver S1, S2 and S4 without fords, then check the flood status of that plan.",
+   "direct": {
+    "algorithm": "wastar",
+    "heuristic": "tunnel_mst",
+    "stops": [
+     "S1",
+     "S2",
+     "S4"
+    ],
+    "avoid_terrain": [
+     "ford"
+    ]
+   },
+   "check": {
+    "stops": [
+     "S1",
+     "S2",
+     "S4"
+    ],
+    "avoid": [
+     "ford"
+    ],
+    "algorithm": "wastar",
+    "tools": [
+     "flood_status"
+    ]
+   }
+  }
+ ]
+}

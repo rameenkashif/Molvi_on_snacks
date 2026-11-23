@@ -1,0 +1,8375 @@
+{
+  "stamp": "Rameen Kashif (456834) | Manal Aslam (465734) | Zainab Ali Bangash (486688)",
+  "configs": [
+    {
+      "config": "A* planner (naive)",
+      "win rate": "0.13 [0.05,0.30]",
+      "loss rate": "0.27 [0.14,0.44]",
+      "delivered": "1.87 \u00b1 0.23",
+      "stolen": "2.13 \u00b1 0.23",
+      "cost": "134.80 \u00b1 15.72",
+      "steps": "75.67 \u00b1 6.16",
+      "replans": "15.60 \u00b1 3.19",
+      "dam used": 30
+    },
+    {
+      "config": "A* planner (flood-aware)",
+      "win rate": "0.13 [0.05,0.30]",
+      "loss rate": "0.33 [0.19,0.51]",
+      "delivered": "1.63 \u00b1 0.35",
+      "stolen": "2.37 \u00b1 0.35",
+      "cost": "130.80 \u00b1 11.93",
+      "steps": "78.60 \u00b1 5.92",
+      "replans": "14.87 \u00b1 2.97",
+      "dam used": 24
+    },
+    {
+      "config": "Alpha-Beta agent (tuned)",
+      "win rate": "0.13 [0.05,0.30]",
+      "loss rate": "0.27 [0.14,0.44]",
+      "delivered": "1.67 \u00b1 0.28",
+      "stolen": "1.90 \u00b1 0.25",
+      "cost": "167.27 \u00b1 30.42",
+      "steps": "108.13 \u00b1 20.99",
+      "replans": "8.10 \u00b1 1.37",
+      "dam used": 28
+    },
+    {
+      "config": "Alpha-Beta, rival has no dam",
+      "win rate": "0.10 [0.03,0.26]",
+      "loss rate": "0.47 [0.30,0.64]",
+      "delivered": "1.43 \u00b1 0.27",
+      "stolen": "2.13 \u00b1 0.27",
+      "cost": "172.80 \u00b1 34.23",
+      "steps": "113.43 \u00b1 23.87",
+      "replans": "7.03 \u00b1 1.25",
+      "dam used": 0
+    },
+    {
+      "config": "Alpha-Beta, no stealing",
+      "win rate": "0.93 [0.79,0.98]",
+      "loss rate": "0.00 [0.00,0.11]",
+      "delivered": "1.37 \u00b1 0.33",
+      "stolen": "0.00 \u00b1 0.00",
+      "cost": "257.70 \u00b1 16.74",
+      "steps": "193.30 \u00b1 9.75",
+      "replans": "3.17 \u00b1 0.94",
+      "dam used": 12
+    }
+  ],
+  "flood_sweep": [
+    {
+      "config": "flood_duration=0",
+      "win rate": "0.17 [0.07,0.34]",
+      "loss rate": "0.43 [0.27,0.61]",
+      "delivered": "1.53 \u00b1 0.32",
+      "stolen": "2.00 \u00b1 0.31",
+      "cost": "182.43 \u00b1 35.85",
+      "steps": "115.63 \u00b1 23.20",
+      "replans": "7.17 \u00b1 1.22",
+      "dam used": 7
+    },
+    {
+      "config": "flood_duration=10",
+      "win rate": "0.17 [0.07,0.34]",
+      "loss rate": "0.40 [0.25,0.58]",
+      "delivered": "1.50 \u00b1 0.31",
+      "stolen": "1.93 \u00b1 0.28",
+      "cost": "192.27 \u00b1 38.29",
+      "steps": "122.00 \u00b1 23.12",
+      "replans": "8.03 \u00b1 1.31",
+      "dam used": 26
+    },
+    {
+      "config": "flood_duration=15",
+      "win rate": "0.13 [0.05,0.30]",
+      "loss rate": "0.27 [0.14,0.44]",
+      "delivered": "1.67 \u00b1 0.28",
+      "stolen": "1.90 \u00b1 0.25",
+      "cost": "167.27 \u00b1 30.42",
+      "steps": "108.13 \u00b1 20.99",
+      "replans": "8.10 \u00b1 1.37",
+      "dam used": 28
+    },
+    {
+      "config": "flood_duration=25",
+      "win rate": "0.13 [0.05,0.30]",
+      "loss rate": "0.30 [0.17,0.48]",
+      "delivered": "1.57 \u00b1 0.29",
+      "stolen": "1.83 \u00b1 0.26",
+      "cost": "188.53 \u00b1 35.27",
+      "steps": "120.23 \u00b1 22.48",
+      "replans": "8.43 \u00b1 1.28",
+      "dam used": 28
+    }
+  ],
+  "ablation": [
+    {
+      "heuristic": "tunnel_mst",
+      "A* expanded": "1735 \u00b1 350",
+      "cost": "74.3 \u00b1 7.4",
+      "time ms": "22.1 \u00b1 4.7",
+      "suboptimal runs": 0,
+      "mean gap": 0.0
+    },
+    {
+      "heuristic": "mst_plain",
+      "A* expanded": "1415 \u00b1 319",
+      "cost": "74.6 \u00b1 7.4",
+      "time ms": "14.3 \u00b1 3.2",
+      "suboptimal runs": 4,
+      "mean gap": 0.37
+    },
+    {
+      "heuristic": "nearest",
+      "A* expanded": "2929 \u00b1 339",
+      "cost": "74.7 \u00b1 7.3",
+      "time ms": "29.9 \u00b1 6.7",
+      "suboptimal runs": 4,
+      "mean gap": 0.4
+    },
+    {
+      "heuristic": "zero",
+      "A* expanded": "3968 \u00b1 374",
+      "cost": "74.3 \u00b1 7.4",
+      "time ms": "22.0 \u00b1 2.1",
+      "suboptimal runs": 0,
+      "mean gap": 0.0
+    }
+  ],
+  "failures": [
+    {
+      "scenario": 0,
+      "rival start": [
+        16,
+        20
+      ],
+      "delivered": 1,
+      "stolen": 2,
+      "slips": 16,
+      "dam t": 29,
+      "steals": "t=2 rival stole parcel at (15, 18); t=35 rival stole parcel at (21, 5)",
+      "cause": "a parcel was stolen while the flood cut the agent off"
+    },
+    {
+      "scenario": 6,
+      "rival start": [
+        16,
+        7
+      ],
+      "delivered": 1,
+      "stolen": 3,
+      "slips": 11,
+      "dam t": 29,
+      "steals": "t=6 rival stole parcel at (21, 5); t=19 rival stole parcel at (22, 17); t=56 rival stole parcel at (15, 18)",
+      "cause": "rival started next to a stop (first theft at t=6)"
+    },
+    {
+      "scenario": 9,
+      "rival start": [
+        21,
+        3
+      ],
+      "delivered": 1,
+      "stolen": 3,
+      "slips": 7,
+      "dam t": 88,
+      "steals": "t=5 rival stole parcel at (21, 5); t=18 rival stole parcel at (22, 17); t=71 rival stole parcel at (15, 18)",
+      "cause": "rival started next to a stop (first theft at t=5)"
+    },
+    {
+      "scenario": 13,
+      "rival start": [
+        16,
+        6
+      ],
+      "delivered": 0,
+      "stolen": 2,
+      "slips": 12,
+      "dam t": 31,
+      "steals": "t=7 rival stole parcel at (21, 5); t=20 rival stole parcel at (22, 17)",
+      "cause": "rival started next to a stop (first theft at t=7)"
+    },
+    {
+      "scenario": 16,
+      "rival start": [
+        8,
+        22
+      ],
+      "delivered": 1,
+      "stolen": 2,
+      "slips": 13,
+      "dam t": 107,
+      "steals": "t=10 rival stole parcel at (15, 18); t=126 rival stole parcel at (21, 5)",
+      "cause": "rival started next to a stop (first theft at t=10)"
+    },
+    {
+      "scenario": 17,
+      "rival start": [
+        22,
+        8
+      ],
+      "delivered": 1,
+      "stolen": 3,
+      "slips": 5,
+      "dam t": 66,
+      "steals": "t=3 rival stole parcel at (21, 5); t=16 rival stole parcel at (22, 17); t=51 rival stole parcel at (15, 18)",
+      "cause": "rival started next to a stop (first theft at t=3)"
+    },
+    {
+      "scenario": 28,
+      "rival start": [
+        8,
+        18
+      ],
+      "delivered": 0,
+      "stolen": 1,
+      "slips": 9,
+      "dam t": null,
+      "steals": "t=6 rival stole parcel at (15, 18)",
+      "cause": "rival started next to a stop (first theft at t=6)"
+    },
+    {
+      "scenario": 29,
+      "rival start": [
+        20,
+        3
+      ],
+      "delivered": 1,
+      "stolen": 3,
+      "slips": 11,
+      "dam t": 60,
+      "steals": "t=6 rival stole parcel at (21, 5); t=22 rival stole parcel at (22, 17); t=91 rival stole parcel at (15, 18)",
+      "cause": "rival started next to a stop (first theft at t=6)"
+    }
+  ],
+  "weights": {
+    "tour": 1.0,
+    "score": 40.0,
+    "race": 0.0,
+    "ford": 0.0,
+    "mobility": 0.25
+  },
+  "raw": {
+    "A* planner (naive)": [
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 131.0,
+        "steps": 74,
+        "slips": 11,
+        "replans": 15,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": 29,
+        "rival_nodes": 14994,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 177.0,
+        "steps": 100,
+        "slips": 11,
+        "replans": 15,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 2
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 21910,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 239.0,
+        "steps": 83,
+        "slips": 5,
+        "replans": 39,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 31
+        },
+        "planned_cost": 112.0,
+        "dam_time": 51,
+        "rival_nodes": 17966,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 62,
+        "slips": 8,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 58,
+        "rival_nodes": 15955,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 119.0,
+        "steps": 75,
+        "slips": 5,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": 23,
+        "rival_nodes": 14825,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 83.0,
+        "steps": 54,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 52,
+        "rival_nodes": 14517,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 102.0,
+        "steps": 55,
+        "slips": 9,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 1
+        },
+        "planned_cost": 112.0,
+        "dam_time": 52,
+        "rival_nodes": 13427,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 84.0,
+        "steps": 56,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 54,
+        "rival_nodes": 15193,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 102.0,
+        "steps": 62,
+        "slips": 9,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 17164,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 128.0,
+        "steps": 63,
+        "slips": 7,
+        "replans": 18,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 7
+        },
+        "planned_cost": 111.0,
+        "dam_time": 61,
+        "rival_nodes": 14802,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 170.0,
+        "steps": 101,
+        "slips": 17,
+        "replans": 19,
+        "replans_by_reason": {
+          "slip": 17,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 28258,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 91.0,
+        "steps": 57,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 55,
+        "rival_nodes": 15502,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 116.0,
+        "steps": 77,
+        "slips": 9,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 28,
+        "rival_nodes": 16215,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 207.0,
+        "steps": 85,
+        "slips": 14,
+        "replans": 24,
+        "replans_by_reason": {
+          "slip": 14,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 8
+        },
+        "planned_cost": 112.0,
+        "dam_time": 33,
+        "rival_nodes": 17472,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 139.0,
+        "steps": 83,
+        "slips": 12,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": 26,
+        "rival_nodes": 21382,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 118.0,
+        "steps": 74,
+        "slips": 9,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 14120,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 128.0,
+        "steps": 80,
+        "slips": 8,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": 31,
+        "rival_nodes": 14960,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 97.0,
+        "steps": 53,
+        "slips": 5,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 3
+        },
+        "planned_cost": 112.0,
+        "dam_time": 51,
+        "rival_nodes": 13282,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 195.0,
+        "steps": 98,
+        "slips": 18,
+        "replans": 25,
+        "replans_by_reason": {
+          "slip": 18,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 6
+        },
+        "planned_cost": 111.0,
+        "dam_time": 42,
+        "rival_nodes": 20997,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 79,
+        "slips": 14,
+        "replans": 17,
+        "replans_by_reason": {
+          "slip": 14,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 77,
+        "rival_nodes": 20639,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 66,
+        "slips": 12,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 17324,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 225.0,
+        "steps": 124,
+        "slips": 22,
+        "replans": 42,
+        "replans_by_reason": {
+          "slip": 22,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 17
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 27381,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 66,
+        "slips": 10,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 18821,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 132.0,
+        "steps": 81,
+        "slips": 11,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 32,
+        "rival_nodes": 16766,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 128.0,
+        "steps": 79,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 17223,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 119.0,
+        "steps": 80,
+        "slips": 10,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 26,
+        "rival_nodes": 16275,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 190.0,
+        "steps": 97,
+        "slips": 14,
+        "replans": 21,
+        "replans_by_reason": {
+          "slip": 14,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 5
+        },
+        "planned_cost": 111.0,
+        "dam_time": 35,
+        "rival_nodes": 19096,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 113.0,
+        "steps": 71,
+        "slips": 6,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 14542,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 103.0,
+        "steps": 62,
+        "slips": 4,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 17063,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 166.0,
+        "steps": 73,
+        "slips": 11,
+        "replans": 27,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 13
+        },
+        "planned_cost": 111.0,
+        "dam_time": 39,
+        "rival_nodes": 15663,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 15
+      }
+    ],
+    "A* planner (flood-aware)": [
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 131.0,
+        "steps": 74,
+        "slips": 11,
+        "replans": 15,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": 29,
+        "rival_nodes": 14994,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 177.0,
+        "steps": 100,
+        "slips": 11,
+        "replans": 15,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 2
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 21910,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 101.0,
+        "steps": 59,
+        "slips": 3,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 1
+        },
+        "planned_cost": 112.0,
+        "dam_time": 57,
+        "rival_nodes": 14496,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 117.0,
+        "steps": 70,
+        "slips": 8,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 18061,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 119.0,
+        "steps": 75,
+        "slips": 5,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": 23,
+        "rival_nodes": 14825,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 93.0,
+        "steps": 62,
+        "slips": 7,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 16395,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 110.0,
+        "steps": 63,
+        "slips": 11,
+        "replans": 16,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 1
+        },
+        "planned_cost": 112.0,
+        "dam_time": 59,
+        "rival_nodes": 14626,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 92.0,
+        "steps": 62,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 16831,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 115.0,
+        "steps": 68,
+        "slips": 11,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 65,
+        "rival_nodes": 18333,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 117.0,
+        "steps": 62,
+        "slips": 7,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 2
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 14571,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 170.0,
+        "steps": 101,
+        "slips": 17,
+        "replans": 19,
+        "replans_by_reason": {
+          "slip": 17,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 28258,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 98.0,
+        "steps": 63,
+        "slips": 6,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 61,
+        "rival_nodes": 16825,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 116.0,
+        "steps": 77,
+        "slips": 9,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 28,
+        "rival_nodes": 16215,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 4,
+        "undelivered": 0,
+        "cost": 196.0,
+        "steps": 110,
+        "slips": 20,
+        "replans": 37,
+        "replans_by_reason": {
+          "slip": 20,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 4,
+          "blocked": 13
+        },
+        "planned_cost": 112.0,
+        "dam_time": 105,
+        "rival_nodes": 29145,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 139.0,
+        "steps": 83,
+        "slips": 12,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": 26,
+        "rival_nodes": 21382,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 118.0,
+        "steps": 74,
+        "slips": 9,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 14120,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 4,
+        "undelivered": 0,
+        "cost": 124.0,
+        "steps": 75,
+        "slips": 9,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 4,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 20198,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 4,
+        "undelivered": 0,
+        "cost": 108.0,
+        "steps": 71,
+        "slips": 5,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 4,
+          "blocked": 2
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 20439,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 157.0,
+        "steps": 103,
+        "slips": 20,
+        "replans": 25,
+        "replans_by_reason": {
+          "slip": 20,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 2
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 29348,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 136.0,
+        "steps": 84,
+        "slips": 14,
+        "replans": 17,
+        "replans_by_reason": {
+          "slip": 14,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 82,
+        "rival_nodes": 21843,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 118.0,
+        "steps": 71,
+        "slips": 12,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 69,
+        "rival_nodes": 18482,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 225.0,
+        "steps": 124,
+        "slips": 22,
+        "replans": 42,
+        "replans_by_reason": {
+          "slip": 22,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 17
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 27381,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 115.0,
+        "steps": 73,
+        "slips": 11,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 71,
+        "rival_nodes": 20473,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 132.0,
+        "steps": 81,
+        "slips": 11,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 32,
+        "rival_nodes": 16766,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 128.0,
+        "steps": 79,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 17223,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 119.0,
+        "steps": 80,
+        "slips": 10,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 26,
+        "rival_nodes": 16275,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 190.0,
+        "steps": 97,
+        "slips": 14,
+        "replans": 21,
+        "replans_by_reason": {
+          "slip": 14,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 5
+        },
+        "planned_cost": 111.0,
+        "dam_time": 35,
+        "rival_nodes": 19096,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 113.0,
+        "steps": 71,
+        "slips": 6,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 14542,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 4,
+        "undelivered": 0,
+        "cost": 109.0,
+        "steps": 67,
+        "slips": 5,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 4,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 18376,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 4,
+        "undelivered": 0,
+        "cost": 141.0,
+        "steps": 79,
+        "slips": 11,
+        "replans": 21,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 4,
+          "blocked": 6
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 23322,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 15
+      }
+    ],
+    "Alpha-Beta agent (tuned)": [
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 283.0,
+        "steps": 200,
+        "slips": 16,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": 29,
+        "rival_nodes": 34419,
+        "agent_nodes": 2345,
+        "stall_breaks": 26,
+        "game_moves": 131,
+        "finished": false,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 280.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 37328,
+        "agent_nodes": 4380,
+        "stall_breaks": 33,
+        "game_moves": 166,
+        "finished": false,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 79.0,
+        "steps": 46,
+        "slips": 1,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 44,
+        "rival_nodes": 11910,
+        "agent_nodes": 595,
+        "stall_breaks": 0,
+        "game_moves": 18,
+        "finished": true,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 62,
+        "slips": 8,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 58,
+        "rival_nodes": 15955,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 120.0,
+        "steps": 81,
+        "slips": 5,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 23,
+        "rival_nodes": 15821,
+        "agent_nodes": 1419,
+        "stall_breaks": 1,
+        "game_moves": 49,
+        "finished": true,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 83.0,
+        "steps": 54,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 52,
+        "rival_nodes": 14517,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 132.0,
+        "steps": 79,
+        "slips": 11,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 29,
+        "rival_nodes": 14045,
+        "agent_nodes": 864,
+        "stall_breaks": 5,
+        "game_moves": 34,
+        "finished": true,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 84.0,
+        "steps": 56,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 54,
+        "rival_nodes": 15193,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 102.0,
+        "steps": 62,
+        "slips": 9,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 17164,
+        "agent_nodes": 208,
+        "stall_breaks": 0,
+        "game_moves": 6,
+        "finished": true,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 155.0,
+        "steps": 90,
+        "slips": 7,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 88,
+        "rival_nodes": 19320,
+        "agent_nodes": 1122,
+        "stall_breaks": 9,
+        "game_moves": 48,
+        "finished": true,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 170.0,
+        "steps": 101,
+        "slips": 17,
+        "replans": 15,
+        "replans_by_reason": {
+          "slip": 13,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 28258,
+        "agent_nodes": 908,
+        "stall_breaks": 0,
+        "game_moves": 27,
+        "finished": true,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 91.0,
+        "steps": 57,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 55,
+        "rival_nodes": 15502,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 111.0,
+        "steps": 75,
+        "slips": 9,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 28,
+        "rival_nodes": 16161,
+        "agent_nodes": 538,
+        "stall_breaks": 0,
+        "game_moves": 16,
+        "finished": true,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 2,
+        "undelivered": 2,
+        "cost": 367.0,
+        "steps": 200,
+        "slips": 12,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 31,
+        "rival_nodes": 34822,
+        "agent_nodes": 4587,
+        "stall_breaks": 38,
+        "game_moves": 185,
+        "finished": false,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 206.0,
+        "steps": 131,
+        "slips": 19,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": 26,
+        "rival_nodes": 30605,
+        "agent_nodes": 895,
+        "stall_breaks": 10,
+        "game_moves": 51,
+        "finished": true,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 77,
+        "slips": 10,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 15039,
+        "agent_nodes": 743,
+        "stall_breaks": 0,
+        "game_moves": 23,
+        "finished": true,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 270.0,
+        "steps": 200,
+        "slips": 13,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 107,
+        "rival_nodes": 36557,
+        "agent_nodes": 2890,
+        "stall_breaks": 15,
+        "game_moves": 102,
+        "finished": false,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 68,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 66,
+        "rival_nodes": 15697,
+        "agent_nodes": 726,
+        "stall_breaks": 5,
+        "game_moves": 29,
+        "finished": true,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 244.0,
+        "steps": 160,
+        "slips": 18,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 28947,
+        "agent_nodes": 2203,
+        "stall_breaks": 21,
+        "game_moves": 96,
+        "finished": true,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 79,
+        "slips": 14,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 77,
+        "rival_nodes": 20639,
+        "agent_nodes": 1297,
+        "stall_breaks": 0,
+        "game_moves": 34,
+        "finished": true,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 66,
+        "slips": 12,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 17324,
+        "agent_nodes": 132,
+        "stall_breaks": 0,
+        "game_moves": 4,
+        "finished": true,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 268.0,
+        "steps": 200,
+        "slips": 15,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 37245,
+        "agent_nodes": 3989,
+        "stall_breaks": 34,
+        "game_moves": 152,
+        "finished": false,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 66,
+        "slips": 10,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 18821,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 138.0,
+        "steps": 84,
+        "slips": 11,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 32,
+        "rival_nodes": 17716,
+        "agent_nodes": 1173,
+        "stall_breaks": 0,
+        "game_moves": 35,
+        "finished": true,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 134.0,
+        "steps": 85,
+        "slips": 5,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 17832,
+        "agent_nodes": 760,
+        "stall_breaks": 2,
+        "game_moves": 27,
+        "finished": true,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 117.0,
+        "steps": 81,
+        "slips": 10,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 26,
+        "rival_nodes": 16856,
+        "agent_nodes": 1431,
+        "stall_breaks": 0,
+        "game_moves": 41,
+        "finished": true,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 0,
+        "stolen": 0,
+        "undelivered": 4,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 56971,
+        "agent_nodes": 6322,
+        "stall_breaks": 46,
+        "game_moves": 188,
+        "finished": false,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 75,
+        "slips": 6,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 15843,
+        "agent_nodes": 596,
+        "stall_breaks": 0,
+        "game_moves": 18,
+        "finished": true,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 1,
+        "undelivered": 3,
+        "cost": 319.0,
+        "steps": 200,
+        "slips": 9,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 31563,
+        "agent_nodes": 4826,
+        "stall_breaks": 35,
+        "game_moves": 181,
+        "finished": false,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 202.0,
+        "steps": 109,
+        "slips": 11,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 21273,
+        "agent_nodes": 1365,
+        "stall_breaks": 12,
+        "game_moves": 64,
+        "finished": true,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 15
+      }
+    ],
+    "Alpha-Beta, rival has no dam": [
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 258.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": null,
+        "rival_nodes": 28207,
+        "agent_nodes": 2890,
+        "stall_breaks": 28,
+        "game_moves": 150,
+        "finished": false,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 311.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 2,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 39698,
+        "agent_nodes": 5199,
+        "stall_breaks": 34,
+        "game_moves": 170,
+        "finished": false,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 79.0,
+        "steps": 46,
+        "slips": 1,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 7757,
+        "agent_nodes": 540,
+        "stall_breaks": 0,
+        "game_moves": 18,
+        "finished": true,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 62,
+        "slips": 8,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 10953,
+        "agent_nodes": 56,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 290.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 41633,
+        "agent_nodes": 3287,
+        "stall_breaks": 26,
+        "game_moves": 161,
+        "finished": false,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 70.0,
+        "steps": 46,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 9192,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 321.0,
+        "steps": 177,
+        "slips": 14,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 29396,
+        "agent_nodes": 3380,
+        "stall_breaks": 32,
+        "game_moves": 142,
+        "finished": true,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 84.0,
+        "steps": 56,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 10380,
+        "agent_nodes": 68,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 102.0,
+        "steps": 62,
+        "slips": 9,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 11645,
+        "agent_nodes": 192,
+        "stall_breaks": 0,
+        "game_moves": 6,
+        "finished": true,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 164.0,
+        "steps": 99,
+        "slips": 7,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 14984,
+        "agent_nodes": 1316,
+        "stall_breaks": 12,
+        "game_moves": 57,
+        "finished": true,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 155.0,
+        "steps": 86,
+        "slips": 17,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 13,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 16714,
+        "agent_nodes": 890,
+        "stall_breaks": 0,
+        "game_moves": 28,
+        "finished": true,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 91.0,
+        "steps": 57,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 10677,
+        "agent_nodes": 35,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 107.0,
+        "steps": 63,
+        "slips": 9,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 12228,
+        "agent_nodes": 423,
+        "stall_breaks": 0,
+        "game_moves": 13,
+        "finished": true,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 2,
+        "undelivered": 2,
+        "cost": 376.0,
+        "steps": 200,
+        "slips": 13,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 33171,
+        "agent_nodes": 4716,
+        "stall_breaks": 39,
+        "game_moves": 185,
+        "finished": false,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 84.0,
+        "steps": 49,
+        "slips": 6,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": null,
+        "rival_nodes": 12502,
+        "agent_nodes": 216,
+        "stall_breaks": 0,
+        "game_moves": 7,
+        "finished": true,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 41505,
+        "agent_nodes": 3196,
+        "stall_breaks": 26,
+        "game_moves": 159,
+        "finished": false,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 108.0,
+        "steps": 71,
+        "slips": 8,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 13641,
+        "agent_nodes": 1632,
+        "stall_breaks": 0,
+        "game_moves": 46,
+        "finished": true,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 115.0,
+        "steps": 71,
+        "slips": 5,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 11351,
+        "agent_nodes": 765,
+        "stall_breaks": 6,
+        "game_moves": 32,
+        "finished": true,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 241.0,
+        "steps": 157,
+        "slips": 18,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 25692,
+        "agent_nodes": 2301,
+        "stall_breaks": 21,
+        "game_moves": 93,
+        "finished": true,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 79,
+        "slips": 14,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 13887,
+        "agent_nodes": 1138,
+        "stall_breaks": 0,
+        "game_moves": 33,
+        "finished": true,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 66,
+        "slips": 12,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 11473,
+        "agent_nodes": 120,
+        "stall_breaks": 0,
+        "game_moves": 4,
+        "finished": true,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 277.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 39210,
+        "agent_nodes": 4539,
+        "stall_breaks": 38,
+        "game_moves": 156,
+        "finished": false,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 66,
+        "slips": 10,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 13071,
+        "agent_nodes": 68,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 118.0,
+        "steps": 76,
+        "slips": 9,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 13884,
+        "agent_nodes": 1058,
+        "stall_breaks": 1,
+        "game_moves": 36,
+        "finished": true,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 224.0,
+        "steps": 200,
+        "slips": 9,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 2,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 28654,
+        "agent_nodes": 4282,
+        "stall_breaks": 30,
+        "game_moves": 166,
+        "finished": false,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 138.0,
+        "steps": 85,
+        "slips": 9,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 13579,
+        "agent_nodes": 807,
+        "stall_breaks": 3,
+        "game_moves": 29,
+        "finished": true,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 0,
+        "stolen": 0,
+        "undelivered": 4,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 43884,
+        "agent_nodes": 5897,
+        "stall_breaks": 46,
+        "game_moves": 188,
+        "finished": false,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 113.0,
+        "steps": 77,
+        "slips": 6,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 14712,
+        "agent_nodes": 1226,
+        "stall_breaks": 2,
+        "game_moves": 39,
+        "finished": true,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 3,
+        "undelivered": 1,
+        "cost": 293.0,
+        "steps": 200,
+        "slips": 13,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 42873,
+        "agent_nodes": 4680,
+        "stall_breaks": 18,
+        "game_moves": 168,
+        "finished": false,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 89.0,
+        "steps": 52,
+        "slips": 9,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 9801,
+        "agent_nodes": 370,
+        "stall_breaks": 0,
+        "game_moves": 9,
+        "finished": true,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 15
+      }
+    ],
+    "Alpha-Beta, no stealing": [
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 215.0,
+        "steps": 200,
+        "slips": 6,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": null,
+        "rival_nodes": 30660,
+        "agent_nodes": 3144,
+        "stall_breaks": 52,
+        "game_moves": 187,
+        "finished": false,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 0,
+        "undelivered": 2,
+        "cost": 271.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 2,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 30190,
+        "agent_nodes": 4601,
+        "stall_breaks": 32,
+        "game_moves": 182,
+        "finished": false,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 258.0,
+        "steps": 200,
+        "slips": 5,
+        "replans": 0,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 41220,
+        "agent_nodes": 5552,
+        "stall_breaks": 42,
+        "game_moves": 187,
+        "finished": false,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 250.0,
+        "steps": 200,
+        "slips": 4,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 36399,
+        "agent_nodes": 3901,
+        "stall_breaks": 48,
+        "game_moves": 189,
+        "finished": false,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 216.0,
+        "steps": 200,
+        "slips": 4,
+        "replans": 0,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 34187,
+        "agent_nodes": 3243,
+        "stall_breaks": 50,
+        "game_moves": 185,
+        "finished": false,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 260.0,
+        "steps": 200,
+        "slips": 9,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 41024,
+        "agent_nodes": 5845,
+        "stall_breaks": 39,
+        "game_moves": 184,
+        "finished": false,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 0,
+        "stolen": 0,
+        "undelivered": 4,
+        "cost": 237.0,
+        "steps": 200,
+        "slips": 15,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 49644,
+        "agent_nodes": 6071,
+        "stall_breaks": 37,
+        "game_moves": 184,
+        "finished": false,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 0,
+        "stolen": 0,
+        "undelivered": 4,
+        "cost": 237.0,
+        "steps": 200,
+        "slips": 7,
+        "replans": 0,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 40449,
+        "agent_nodes": 5012,
+        "stall_breaks": 43,
+        "game_moves": 195,
+        "finished": false,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 230.0,
+        "steps": 200,
+        "slips": 7,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 33506,
+        "agent_nodes": 3550,
+        "stall_breaks": 50,
+        "game_moves": 187,
+        "finished": false,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 228.0,
+        "steps": 200,
+        "slips": 5,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 30643,
+        "agent_nodes": 2966,
+        "stall_breaks": 55,
+        "game_moves": 187,
+        "finished": false,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 0,
+        "undelivered": 2,
+        "cost": 308.0,
+        "steps": 200,
+        "slips": 20,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 2,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 47,
+        "rival_nodes": 33827,
+        "agent_nodes": 4193,
+        "stall_breaks": 35,
+        "game_moves": 188,
+        "finished": false,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 257.0,
+        "steps": 200,
+        "slips": 7,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 40524,
+        "agent_nodes": 5817,
+        "stall_breaks": 40,
+        "game_moves": 185,
+        "finished": false,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 0,
+        "undelivered": 2,
+        "cost": 345.0,
+        "steps": 200,
+        "slips": 10,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 28,
+        "rival_nodes": 31988,
+        "agent_nodes": 3092,
+        "stall_breaks": 37,
+        "game_moves": 161,
+        "finished": false,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 258.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 0,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 40717,
+        "agent_nodes": 4969,
+        "stall_breaks": 44,
+        "game_moves": 187,
+        "finished": false,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 277.0,
+        "steps": 200,
+        "slips": 20,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": 26,
+        "rival_nodes": 34632,
+        "agent_nodes": 3763,
+        "stall_breaks": 31,
+        "game_moves": 148,
+        "finished": false,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 258.0,
+        "steps": 200,
+        "slips": 9,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 39657,
+        "agent_nodes": 4678,
+        "stall_breaks": 42,
+        "game_moves": 188,
+        "finished": false,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 0,
+        "undelivered": 2,
+        "cost": 334.0,
+        "steps": 200,
+        "slips": 12,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 26,
+        "rival_nodes": 32311,
+        "agent_nodes": 3217,
+        "stall_breaks": 38,
+        "game_moves": 164,
+        "finished": false,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 273.0,
+        "steps": 200,
+        "slips": 8,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 25,
+        "rival_nodes": 35388,
+        "agent_nodes": 3946,
+        "stall_breaks": 34,
+        "game_moves": 150,
+        "finished": false,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 220.0,
+        "steps": 200,
+        "slips": 6,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 29877,
+        "agent_nodes": 2703,
+        "stall_breaks": 55,
+        "game_moves": 186,
+        "finished": false,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 268.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 2,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 53775,
+        "agent_nodes": 5159,
+        "stall_breaks": 37,
+        "game_moves": 193,
+        "finished": false,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 233.0,
+        "steps": 200,
+        "slips": 6,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 31803,
+        "agent_nodes": 2961,
+        "stall_breaks": 53,
+        "game_moves": 184,
+        "finished": false,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 0,
+        "undelivered": 2,
+        "cost": 281.0,
+        "steps": 200,
+        "slips": 16,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 34638,
+        "agent_nodes": 4591,
+        "stall_breaks": 32,
+        "game_moves": 167,
+        "finished": false,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 236.0,
+        "steps": 200,
+        "slips": 8,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 33709,
+        "agent_nodes": 3408,
+        "stall_breaks": 50,
+        "game_moves": 187,
+        "finished": false,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 0,
+        "undelivered": 2,
+        "cost": 336.0,
+        "steps": 200,
+        "slips": 13,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 32,
+        "rival_nodes": 33757,
+        "agent_nodes": 3082,
+        "stall_breaks": 35,
+        "game_moves": 157,
+        "finished": false,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 4,
+        "stolen": 0,
+        "undelivered": 0,
+        "cost": 132.0,
+        "steps": 78,
+        "slips": 3,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 12602,
+        "agent_nodes": 840,
+        "stall_breaks": 2,
+        "game_moves": 37,
+        "finished": true,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 0,
+        "undelivered": 2,
+        "cost": 340.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 26,
+        "rival_nodes": 31432,
+        "agent_nodes": 3214,
+        "stall_breaks": 36,
+        "game_moves": 163,
+        "finished": false,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 273.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 40855,
+        "agent_nodes": 4846,
+        "stall_breaks": 38,
+        "game_moves": 187,
+        "finished": false,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 257.0,
+        "steps": 200,
+        "slips": 6,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 2,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 33594,
+        "agent_nodes": 4746,
+        "stall_breaks": 40,
+        "game_moves": 176,
+        "finished": false,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 1,
+        "stolen": 0,
+        "undelivered": 3,
+        "cost": 240.0,
+        "steps": 200,
+        "slips": 7,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 42688,
+        "agent_nodes": 4545,
+        "stall_breaks": 38,
+        "game_moves": 179,
+        "finished": false,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 4,
+        "stolen": 0,
+        "undelivered": 0,
+        "cost": 203.0,
+        "steps": 121,
+        "slips": 13,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 30,
+        "rival_nodes": 18518,
+        "agent_nodes": 945,
+        "stall_breaks": 3,
+        "game_moves": 40,
+        "finished": true,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 15
+      }
+    ]
+  },
+  "raw_flood": {
+    "0": [
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 258.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": null,
+        "rival_nodes": 57696,
+        "agent_nodes": 5833,
+        "stall_breaks": 28,
+        "game_moves": 150,
+        "finished": false,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 311.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 2,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 76320,
+        "agent_nodes": 5188,
+        "stall_breaks": 34,
+        "game_moves": 170,
+        "finished": false,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 79.0,
+        "steps": 46,
+        "slips": 1,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 12794,
+        "agent_nodes": 598,
+        "stall_breaks": 0,
+        "game_moves": 18,
+        "finished": true,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 62,
+        "slips": 8,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 58,
+        "rival_nodes": 17323,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 290.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": 108,
+        "rival_nodes": 57011,
+        "agent_nodes": 3576,
+        "stall_breaks": 26,
+        "game_moves": 161,
+        "finished": false,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 83.0,
+        "steps": 54,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 16024,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 321.0,
+        "steps": 177,
+        "slips": 14,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 174,
+        "rival_nodes": 47268,
+        "agent_nodes": 3595,
+        "stall_breaks": 32,
+        "game_moves": 142,
+        "finished": true,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 84.0,
+        "steps": 56,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 16366,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 102.0,
+        "steps": 62,
+        "slips": 9,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 18603,
+        "agent_nodes": 202,
+        "stall_breaks": 0,
+        "game_moves": 6,
+        "finished": true,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 164.0,
+        "steps": 99,
+        "slips": 7,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 23599,
+        "agent_nodes": 1399,
+        "stall_breaks": 12,
+        "game_moves": 57,
+        "finished": true,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 155.0,
+        "steps": 86,
+        "slips": 17,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 13,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 83,
+        "rival_nodes": 27991,
+        "agent_nodes": 947,
+        "stall_breaks": 0,
+        "game_moves": 28,
+        "finished": true,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 91.0,
+        "steps": 57,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 16622,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 107.0,
+        "steps": 63,
+        "slips": 9,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 20705,
+        "agent_nodes": 412,
+        "stall_breaks": 0,
+        "game_moves": 12,
+        "finished": true,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 2,
+        "undelivered": 2,
+        "cost": 376.0,
+        "steps": 200,
+        "slips": 13,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 50393,
+        "agent_nodes": 4998,
+        "stall_breaks": 39,
+        "game_moves": 185,
+        "finished": false,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 310.0,
+        "steps": 200,
+        "slips": 23,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": 66,
+        "rival_nodes": 41591,
+        "agent_nodes": 2611,
+        "stall_breaks": 26,
+        "game_moves": 137,
+        "finished": false,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 101,
+        "rival_nodes": 55077,
+        "agent_nodes": 3442,
+        "stall_breaks": 26,
+        "game_moves": 159,
+        "finished": false,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 139.0,
+        "steps": 86,
+        "slips": 8,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 24651,
+        "agent_nodes": 821,
+        "stall_breaks": 5,
+        "game_moves": 30,
+        "finished": true,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 115.0,
+        "steps": 71,
+        "slips": 5,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": null,
+        "rival_nodes": 17830,
+        "agent_nodes": 818,
+        "stall_breaks": 6,
+        "game_moves": 32,
+        "finished": true,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 241.0,
+        "steps": 157,
+        "slips": 18,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 40922,
+        "agent_nodes": 2435,
+        "stall_breaks": 21,
+        "game_moves": 93,
+        "finished": true,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 79,
+        "slips": 14,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 21970,
+        "agent_nodes": 1204,
+        "stall_breaks": 0,
+        "game_moves": 33,
+        "finished": true,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 66,
+        "slips": 12,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 18688,
+        "agent_nodes": 126,
+        "stall_breaks": 0,
+        "game_moves": 4,
+        "finished": true,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 277.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 74815,
+        "agent_nodes": 4387,
+        "stall_breaks": 38,
+        "game_moves": 156,
+        "finished": false,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 66,
+        "slips": 10,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 20292,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 118.0,
+        "steps": 76,
+        "slips": 9,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 24091,
+        "agent_nodes": 1178,
+        "stall_breaks": 1,
+        "game_moves": 36,
+        "finished": true,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "win",
+        "delivered": 4,
+        "stolen": 0,
+        "undelivered": 0,
+        "cost": 117.0,
+        "steps": 65,
+        "slips": 3,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 20315,
+        "agent_nodes": 130,
+        "stall_breaks": 0,
+        "game_moves": 4,
+        "finished": true,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 138.0,
+        "steps": 85,
+        "slips": 9,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 24117,
+        "agent_nodes": 862,
+        "stall_breaks": 3,
+        "game_moves": 29,
+        "finished": true,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "draw",
+        "delivered": 0,
+        "stolen": 0,
+        "undelivered": 4,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 60092,
+        "agent_nodes": 6271,
+        "stall_breaks": 46,
+        "game_moves": 188,
+        "finished": false,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 113.0,
+        "steps": 77,
+        "slips": 6,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 25683,
+        "agent_nodes": 1345,
+        "stall_breaks": 2,
+        "game_moves": 39,
+        "finished": true,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 134.0,
+        "steps": 79,
+        "slips": 5,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 23464,
+        "agent_nodes": 908,
+        "stall_breaks": 4,
+        "game_moves": 31,
+        "finished": true,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 0
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 2,
+        "undelivered": 2,
+        "cost": 374.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 56427,
+        "agent_nodes": 4288,
+        "stall_breaks": 43,
+        "game_moves": 176,
+        "finished": false,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 0
+      }
+    ],
+    "10": [
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 258.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": 29,
+        "rival_nodes": 31223,
+        "agent_nodes": 2698,
+        "stall_breaks": 26,
+        "game_moves": 140,
+        "finished": false,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 280.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 37384,
+        "agent_nodes": 4380,
+        "stall_breaks": 33,
+        "game_moves": 166,
+        "finished": false,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 79.0,
+        "steps": 46,
+        "slips": 1,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 44,
+        "rival_nodes": 12046,
+        "agent_nodes": 595,
+        "stall_breaks": 0,
+        "game_moves": 18,
+        "finished": true,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 62,
+        "slips": 8,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 58,
+        "rival_nodes": 16018,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 284.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 1
+        },
+        "planned_cost": 111.0,
+        "dam_time": 108,
+        "rival_nodes": 52566,
+        "agent_nodes": 3500,
+        "stall_breaks": 26,
+        "game_moves": 161,
+        "finished": false,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 83.0,
+        "steps": 54,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 52,
+        "rival_nodes": 14581,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 282.0,
+        "steps": 142,
+        "slips": 15,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 114,
+        "rival_nodes": 29397,
+        "agent_nodes": 2455,
+        "stall_breaks": 18,
+        "game_moves": 107,
+        "finished": true,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 84.0,
+        "steps": 56,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 54,
+        "rival_nodes": 15254,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 102.0,
+        "steps": 62,
+        "slips": 9,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 17248,
+        "agent_nodes": 208,
+        "stall_breaks": 0,
+        "game_moves": 6,
+        "finished": true,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 155.0,
+        "steps": 90,
+        "slips": 7,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 88,
+        "rival_nodes": 19373,
+        "agent_nodes": 1122,
+        "stall_breaks": 9,
+        "game_moves": 48,
+        "finished": true,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 165.0,
+        "steps": 96,
+        "slips": 17,
+        "replans": 15,
+        "replans_by_reason": {
+          "slip": 13,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 26299,
+        "agent_nodes": 908,
+        "stall_breaks": 0,
+        "game_moves": 27,
+        "finished": true,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 91.0,
+        "steps": 57,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 55,
+        "rival_nodes": 15565,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 107.0,
+        "steps": 63,
+        "slips": 9,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 17926,
+        "agent_nodes": 381,
+        "stall_breaks": 0,
+        "game_moves": 11,
+        "finished": true,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 2,
+        "undelivered": 2,
+        "cost": 374.0,
+        "steps": 200,
+        "slips": 12,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 31,
+        "rival_nodes": 35300,
+        "agent_nodes": 4651,
+        "stall_breaks": 38,
+        "game_moves": 185,
+        "finished": false,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 309.0,
+        "steps": 200,
+        "slips": 21,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": 26,
+        "rival_nodes": 37244,
+        "agent_nodes": 2355,
+        "stall_breaks": 25,
+        "game_moves": 128,
+        "finished": false,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 167.0,
+        "steps": 115,
+        "slips": 11,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 101,
+        "rival_nodes": 32109,
+        "agent_nodes": 1829,
+        "stall_breaks": 10,
+        "game_moves": 74,
+        "finished": true,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 270.0,
+        "steps": 200,
+        "slips": 13,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 107,
+        "rival_nodes": 37023,
+        "agent_nodes": 2932,
+        "stall_breaks": 15,
+        "game_moves": 104,
+        "finished": false,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 68,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 66,
+        "rival_nodes": 15835,
+        "agent_nodes": 726,
+        "stall_breaks": 5,
+        "game_moves": 29,
+        "finished": true,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 217.0,
+        "steps": 133,
+        "slips": 18,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 131,
+        "rival_nodes": 30587,
+        "agent_nodes": 1739,
+        "stall_breaks": 13,
+        "game_moves": 69,
+        "finished": true,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 79,
+        "slips": 14,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 77,
+        "rival_nodes": 20729,
+        "agent_nodes": 1297,
+        "stall_breaks": 0,
+        "game_moves": 34,
+        "finished": true,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 66,
+        "slips": 12,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 17398,
+        "agent_nodes": 132,
+        "stall_breaks": 0,
+        "game_moves": 4,
+        "finished": true,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 268.0,
+        "steps": 200,
+        "slips": 15,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 37052,
+        "agent_nodes": 4016,
+        "stall_breaks": 34,
+        "game_moves": 153,
+        "finished": false,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 66,
+        "slips": 10,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 18895,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 118.0,
+        "steps": 76,
+        "slips": 9,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 20972,
+        "agent_nodes": 1148,
+        "stall_breaks": 1,
+        "game_moves": 36,
+        "finished": true,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 134.0,
+        "steps": 85,
+        "slips": 5,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 17680,
+        "agent_nodes": 698,
+        "stall_breaks": 2,
+        "game_moves": 25,
+        "finished": true,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 209.0,
+        "steps": 166,
+        "slips": 23,
+        "replans": 14,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 26,
+        "rival_nodes": 46620,
+        "agent_nodes": 2955,
+        "stall_breaks": 0,
+        "game_moves": 61,
+        "finished": true,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "draw",
+        "delivered": 0,
+        "stolen": 0,
+        "undelivered": 4,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 56981,
+        "agent_nodes": 6322,
+        "stall_breaks": 46,
+        "game_moves": 188,
+        "finished": false,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 114.0,
+        "steps": 78,
+        "slips": 6,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 66,
+        "rival_nodes": 21495,
+        "agent_nodes": 1245,
+        "stall_breaks": 2,
+        "game_moves": 40,
+        "finished": true,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 1,
+        "undelivered": 3,
+        "cost": 319.0,
+        "steps": 200,
+        "slips": 9,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 31667,
+        "agent_nodes": 4826,
+        "stall_breaks": 35,
+        "game_moves": 181,
+        "finished": false,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 10
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 2,
+        "undelivered": 2,
+        "cost": 478.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 45849,
+        "agent_nodes": 3761,
+        "stall_breaks": 33,
+        "game_moves": 176,
+        "finished": false,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 10
+      }
+    ],
+    "15": [
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 283.0,
+        "steps": 200,
+        "slips": 16,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": 29,
+        "rival_nodes": 34419,
+        "agent_nodes": 2345,
+        "stall_breaks": 26,
+        "game_moves": 131,
+        "finished": false,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 280.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 37328,
+        "agent_nodes": 4380,
+        "stall_breaks": 33,
+        "game_moves": 166,
+        "finished": false,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 79.0,
+        "steps": 46,
+        "slips": 1,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 44,
+        "rival_nodes": 11910,
+        "agent_nodes": 595,
+        "stall_breaks": 0,
+        "game_moves": 18,
+        "finished": true,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 62,
+        "slips": 8,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 58,
+        "rival_nodes": 15955,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 120.0,
+        "steps": 81,
+        "slips": 5,
+        "replans": 2,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 23,
+        "rival_nodes": 15821,
+        "agent_nodes": 1419,
+        "stall_breaks": 1,
+        "game_moves": 49,
+        "finished": true,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 83.0,
+        "steps": 54,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 52,
+        "rival_nodes": 14517,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 132.0,
+        "steps": 79,
+        "slips": 11,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 29,
+        "rival_nodes": 14045,
+        "agent_nodes": 864,
+        "stall_breaks": 5,
+        "game_moves": 34,
+        "finished": true,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 84.0,
+        "steps": 56,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 54,
+        "rival_nodes": 15193,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 102.0,
+        "steps": 62,
+        "slips": 9,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 17164,
+        "agent_nodes": 208,
+        "stall_breaks": 0,
+        "game_moves": 6,
+        "finished": true,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 155.0,
+        "steps": 90,
+        "slips": 7,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 88,
+        "rival_nodes": 19320,
+        "agent_nodes": 1122,
+        "stall_breaks": 9,
+        "game_moves": 48,
+        "finished": true,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 170.0,
+        "steps": 101,
+        "slips": 17,
+        "replans": 15,
+        "replans_by_reason": {
+          "slip": 13,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 28258,
+        "agent_nodes": 908,
+        "stall_breaks": 0,
+        "game_moves": 27,
+        "finished": true,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 91.0,
+        "steps": 57,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 55,
+        "rival_nodes": 15502,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 111.0,
+        "steps": 75,
+        "slips": 9,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 28,
+        "rival_nodes": 16161,
+        "agent_nodes": 538,
+        "stall_breaks": 0,
+        "game_moves": 16,
+        "finished": true,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 2,
+        "undelivered": 2,
+        "cost": 367.0,
+        "steps": 200,
+        "slips": 12,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 31,
+        "rival_nodes": 34822,
+        "agent_nodes": 4587,
+        "stall_breaks": 38,
+        "game_moves": 185,
+        "finished": false,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 206.0,
+        "steps": 131,
+        "slips": 19,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": 26,
+        "rival_nodes": 30605,
+        "agent_nodes": 895,
+        "stall_breaks": 10,
+        "game_moves": 51,
+        "finished": true,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 77,
+        "slips": 10,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 15039,
+        "agent_nodes": 743,
+        "stall_breaks": 0,
+        "game_moves": 23,
+        "finished": true,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 270.0,
+        "steps": 200,
+        "slips": 13,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 107,
+        "rival_nodes": 36557,
+        "agent_nodes": 2890,
+        "stall_breaks": 15,
+        "game_moves": 102,
+        "finished": false,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 68,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 66,
+        "rival_nodes": 15697,
+        "agent_nodes": 726,
+        "stall_breaks": 5,
+        "game_moves": 29,
+        "finished": true,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 244.0,
+        "steps": 160,
+        "slips": 18,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 28947,
+        "agent_nodes": 2203,
+        "stall_breaks": 21,
+        "game_moves": 96,
+        "finished": true,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 79,
+        "slips": 14,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 77,
+        "rival_nodes": 20639,
+        "agent_nodes": 1297,
+        "stall_breaks": 0,
+        "game_moves": 34,
+        "finished": true,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 66,
+        "slips": 12,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 17324,
+        "agent_nodes": 132,
+        "stall_breaks": 0,
+        "game_moves": 4,
+        "finished": true,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 268.0,
+        "steps": 200,
+        "slips": 15,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 37245,
+        "agent_nodes": 3989,
+        "stall_breaks": 34,
+        "game_moves": 152,
+        "finished": false,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 66,
+        "slips": 10,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 18821,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 138.0,
+        "steps": 84,
+        "slips": 11,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 32,
+        "rival_nodes": 17716,
+        "agent_nodes": 1173,
+        "stall_breaks": 0,
+        "game_moves": 35,
+        "finished": true,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 134.0,
+        "steps": 85,
+        "slips": 5,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 17832,
+        "agent_nodes": 760,
+        "stall_breaks": 2,
+        "game_moves": 27,
+        "finished": true,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 117.0,
+        "steps": 81,
+        "slips": 10,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 26,
+        "rival_nodes": 16856,
+        "agent_nodes": 1431,
+        "stall_breaks": 0,
+        "game_moves": 41,
+        "finished": true,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 0,
+        "stolen": 0,
+        "undelivered": 4,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 56971,
+        "agent_nodes": 6322,
+        "stall_breaks": 46,
+        "game_moves": 188,
+        "finished": false,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 75,
+        "slips": 6,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 15843,
+        "agent_nodes": 596,
+        "stall_breaks": 0,
+        "game_moves": 18,
+        "finished": true,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 1,
+        "undelivered": 3,
+        "cost": 319.0,
+        "steps": 200,
+        "slips": 9,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 31563,
+        "agent_nodes": 4826,
+        "stall_breaks": 35,
+        "game_moves": 181,
+        "finished": false,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 15
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 202.0,
+        "steps": 109,
+        "slips": 11,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 21273,
+        "agent_nodes": 1365,
+        "stall_breaks": 12,
+        "game_moves": 64,
+        "finished": true,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 15
+      }
+    ],
+    "25": [
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 283.0,
+        "steps": 200,
+        "slips": 16,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 116.0,
+        "dam_time": 29,
+        "rival_nodes": 34104,
+        "agent_nodes": 2345,
+        "stall_breaks": 26,
+        "game_moves": 131,
+        "finished": false,
+        "scenario": 0,
+        "rival_start": [
+          16,
+          20
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 277.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 39783,
+        "agent_nodes": 4122,
+        "stall_breaks": 31,
+        "game_moves": 156,
+        "finished": false,
+        "scenario": 1,
+        "rival_start": [
+          7,
+          0
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 79.0,
+        "steps": 46,
+        "slips": 1,
+        "replans": 3,
+        "replans_by_reason": {
+          "slip": 1,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 44,
+        "rival_nodes": 11859,
+        "agent_nodes": 595,
+        "stall_breaks": 0,
+        "game_moves": 18,
+        "finished": true,
+        "scenario": 2,
+        "rival_start": [
+          22,
+          7
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 62,
+        "slips": 8,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 58,
+        "rival_nodes": 15996,
+        "agent_nodes": 0,
+        "stall_breaks": 0,
+        "game_moves": 0,
+        "finished": true,
+        "scenario": 3,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 1,
+        "stolen": 1,
+        "undelivered": 2,
+        "cost": 237.0,
+        "steps": 200,
+        "slips": 25,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 23,
+        "rival_nodes": 45351,
+        "agent_nodes": 4346,
+        "stall_breaks": 3,
+        "game_moves": 102,
+        "finished": false,
+        "scenario": 4,
+        "rival_start": [
+          10,
+          16
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 83.0,
+        "steps": 54,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 52,
+        "rival_nodes": 14537,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 5,
+        "rival_start": [
+          21,
+          16
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 132.0,
+        "steps": 79,
+        "slips": 11,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 29,
+        "rival_nodes": 13943,
+        "agent_nodes": 862,
+        "stall_breaks": 5,
+        "game_moves": 34,
+        "finished": true,
+        "scenario": 6,
+        "rival_start": [
+          16,
+          7
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 84.0,
+        "steps": 56,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 54,
+        "rival_nodes": 15188,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 7,
+        "rival_start": [
+          14,
+          15
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 102.0,
+        "steps": 62,
+        "slips": 9,
+        "replans": 10,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 17122,
+        "agent_nodes": 208,
+        "stall_breaks": 0,
+        "game_moves": 6,
+        "finished": true,
+        "scenario": 8,
+        "rival_start": [
+          14,
+          13
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 155.0,
+        "steps": 90,
+        "slips": 7,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 88,
+        "rival_nodes": 19368,
+        "agent_nodes": 1122,
+        "stall_breaks": 9,
+        "game_moves": 48,
+        "finished": true,
+        "scenario": 9,
+        "rival_start": [
+          21,
+          3
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 180.0,
+        "steps": 111,
+        "slips": 17,
+        "replans": 15,
+        "replans_by_reason": {
+          "slip": 13,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 32346,
+        "agent_nodes": 908,
+        "stall_breaks": 0,
+        "game_moves": 27,
+        "finished": true,
+        "scenario": 10,
+        "rival_start": [
+          5,
+          1
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 91.0,
+        "steps": 57,
+        "slips": 5,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 55,
+        "rival_nodes": 15525,
+        "agent_nodes": 37,
+        "stall_breaks": 0,
+        "game_moves": 1,
+        "finished": true,
+        "scenario": 11,
+        "rival_start": [
+          18,
+          18
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 135.0,
+        "steps": 93,
+        "slips": 10,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 28,
+        "rival_nodes": 17049,
+        "agent_nodes": 1472,
+        "stall_breaks": 3,
+        "game_moves": 52,
+        "finished": true,
+        "scenario": 12,
+        "rival_start": [
+          5,
+          22
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 2,
+        "undelivered": 2,
+        "cost": 360.0,
+        "steps": 200,
+        "slips": 12,
+        "replans": 1,
+        "replans_by_reason": {
+          "slip": 0,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 31,
+        "rival_nodes": 33936,
+        "agent_nodes": 4472,
+        "stall_breaks": 38,
+        "game_moves": 185,
+        "finished": false,
+        "scenario": 13,
+        "rival_start": [
+          16,
+          6
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 206.0,
+        "steps": 131,
+        "slips": 19,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 120.0,
+        "dam_time": 26,
+        "rival_nodes": 30317,
+        "agent_nodes": 895,
+        "stall_breaks": 10,
+        "game_moves": 51,
+        "finished": true,
+        "scenario": 14,
+        "rival_start": [
+          21,
+          17
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 157.0,
+        "steps": 98,
+        "slips": 11,
+        "replans": 8,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 16524,
+        "agent_nodes": 1024,
+        "stall_breaks": 4,
+        "game_moves": 39,
+        "finished": true,
+        "scenario": 15,
+        "rival_start": [
+          13,
+          17
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 270.0,
+        "steps": 200,
+        "slips": 13,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 107,
+        "rival_nodes": 35830,
+        "agent_nodes": 2785,
+        "stall_breaks": 15,
+        "game_moves": 97,
+        "finished": false,
+        "scenario": 16,
+        "rival_start": [
+          8,
+          22
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 68,
+        "slips": 5,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 2,
+          "blocked": 0
+        },
+        "planned_cost": 112.0,
+        "dam_time": 66,
+        "rival_nodes": 15716,
+        "agent_nodes": 726,
+        "stall_breaks": 5,
+        "game_moves": 29,
+        "finished": true,
+        "scenario": 17,
+        "rival_start": [
+          22,
+          8
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 2,
+        "undelivered": 1,
+        "cost": 350.0,
+        "steps": 200,
+        "slips": 18,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 11,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 45,
+        "rival_nodes": 37295,
+        "agent_nodes": 3968,
+        "stall_breaks": 33,
+        "game_moves": 153,
+        "finished": false,
+        "scenario": 18,
+        "rival_start": [
+          20,
+          21
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 130.0,
+        "steps": 79,
+        "slips": 14,
+        "replans": 5,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 77,
+        "rival_nodes": 20632,
+        "agent_nodes": 1297,
+        "stall_breaks": 0,
+        "game_moves": 34,
+        "finished": true,
+        "scenario": 19,
+        "rival_start": [
+          2,
+          14
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 112.0,
+        "steps": 66,
+        "slips": 12,
+        "replans": 13,
+        "replans_by_reason": {
+          "slip": 12,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 17294,
+        "agent_nodes": 132,
+        "stall_breaks": 0,
+        "game_moves": 4,
+        "finished": true,
+        "scenario": 20,
+        "rival_start": [
+          16,
+          22
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "win",
+        "delivered": 2,
+        "stolen": 1,
+        "undelivered": 1,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 14,
+        "replans": 7,
+        "replans_by_reason": {
+          "slip": 6,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 39429,
+        "agent_nodes": 3844,
+        "stall_breaks": 32,
+        "game_moves": 144,
+        "finished": false,
+        "scenario": 21,
+        "rival_start": [
+          1,
+          0
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 100.0,
+        "steps": 66,
+        "slips": 10,
+        "replans": 12,
+        "replans_by_reason": {
+          "slip": 10,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 64,
+        "rival_nodes": 18813,
+        "agent_nodes": 72,
+        "stall_breaks": 0,
+        "game_moves": 2,
+        "finished": true,
+        "scenario": 22,
+        "rival_start": [
+          14,
+          14
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 165.0,
+        "steps": 98,
+        "slips": 11,
+        "replans": 9,
+        "replans_by_reason": {
+          "slip": 7,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 32,
+        "rival_nodes": 17646,
+        "agent_nodes": 1062,
+        "stall_breaks": 3,
+        "game_moves": 39,
+        "finished": true,
+        "scenario": 23,
+        "rival_start": [
+          6,
+          21
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "win",
+        "delivered": 3,
+        "stolen": 1,
+        "undelivered": 0,
+        "cost": 142.0,
+        "steps": 93,
+        "slips": 5,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 5,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 25,
+        "rival_nodes": 20982,
+        "agent_nodes": 760,
+        "stall_breaks": 2,
+        "game_moves": 27,
+        "finished": true,
+        "scenario": 24,
+        "rival_start": [
+          2,
+          0
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 1,
+        "stolen": 1,
+        "undelivered": 2,
+        "cost": 418.0,
+        "steps": 200,
+        "slips": 26,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 9,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 26,
+        "rival_nodes": 52101,
+        "agent_nodes": 4381,
+        "stall_breaks": 1,
+        "game_moves": 90,
+        "finished": false,
+        "scenario": 25,
+        "rival_start": [
+          0,
+          15
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 0,
+        "stolen": 0,
+        "undelivered": 4,
+        "cost": 267.0,
+        "steps": 200,
+        "slips": 11,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 0,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 57719,
+        "agent_nodes": 6322,
+        "stall_breaks": 46,
+        "game_moves": 188,
+        "finished": false,
+        "scenario": 26,
+        "rival_start": [
+          6,
+          0
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "draw",
+        "delivered": 2,
+        "stolen": 2,
+        "undelivered": 0,
+        "cost": 141.0,
+        "steps": 89,
+        "slips": 6,
+        "replans": 6,
+        "replans_by_reason": {
+          "slip": 4,
+          "dam": 1,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 27,
+        "rival_nodes": 15702,
+        "agent_nodes": 984,
+        "stall_breaks": 3,
+        "game_moves": 39,
+        "finished": true,
+        "scenario": 27,
+        "rival_start": [
+          8,
+          15
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "loss",
+        "delivered": 0,
+        "stolen": 1,
+        "undelivered": 3,
+        "cost": 319.0,
+        "steps": 200,
+        "slips": 9,
+        "replans": 4,
+        "replans_by_reason": {
+          "slip": 3,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 1,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": null,
+        "rival_nodes": 31505,
+        "agent_nodes": 4826,
+        "stall_breaks": 35,
+        "game_moves": 181,
+        "finished": false,
+        "scenario": 28,
+        "rival_start": [
+          8,
+          18
+        ],
+        "flood_duration": 25
+      },
+      {
+        "outcome": "loss",
+        "delivered": 1,
+        "stolen": 3,
+        "undelivered": 0,
+        "cost": 202.0,
+        "steps": 109,
+        "slips": 11,
+        "replans": 11,
+        "replans_by_reason": {
+          "slip": 8,
+          "dam": 0,
+          "flood_end": 0,
+          "stolen": 3,
+          "blocked": 0
+        },
+        "planned_cost": 111.0,
+        "dam_time": 60,
+        "rival_nodes": 21114,
+        "agent_nodes": 1363,
+        "stall_breaks": 12,
+        "game_moves": 64,
+        "finished": true,
+        "scenario": 29,
+        "rival_start": [
+          20,
+          3
+        ],
+        "flood_duration": 25
+      }
+    ]
+  }
+}

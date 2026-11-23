@@ -1,0 +1,211 @@
+{
+  "stamp": "Rameen Kashif (456834) | Manal Aslam (465734) | Zainab Ali Bangash (486688)",
+  "model": "claude-haiku-5-5",
+  "rows": [
+    {
+      "id": 1,
+      "diff": 1,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 111.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 2,
+      "diff": 1,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 22.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 3,
+      "diff": 1,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 53.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 4,
+      "diff": 1,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 132.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 5,
+      "diff": 2,
+      "direct ok": true,
+      "direct calls": 2,
+      "direct cost": 111.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 6,
+      "diff": 2,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 128.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 7,
+      "diff": 2,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 123.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 8,
+      "diff": 2,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": null,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 9,
+      "diff": 3,
+      "direct ok": true,
+      "direct calls": 3,
+      "direct cost": 111.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 10,
+      "diff": 3,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 111.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 11,
+      "diff": 3,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 90.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 12,
+      "diff": 3,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 36.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 13,
+      "diff": 4,
+      "direct ok": true,
+      "direct calls": 2,
+      "direct cost": 111.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 14,
+      "diff": 4,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": null,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 15,
+      "diff": 4,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": null,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 16,
+      "diff": 4,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": null,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 17,
+      "diff": 5,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": null,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 18,
+      "diff": 5,
+      "direct ok": true,
+      "direct calls": 2,
+      "direct cost": 128.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 19,
+      "diff": 5,
+      "direct ok": true,
+      "direct calls": 1,
+      "direct cost": 135.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    },
+    {
+      "id": 20,
+      "diff": 5,
+      "direct ok": true,
+      "direct calls": 2,
+      "direct cost": 90.0,
+      "validated ok": "not run",
+      "raw ok": "not run"
+    }
+  ],
+  "summary": [
+    {
+      "method": "direct planner call",
+      "runs": 20,
+      "success": "1.00 [0.84, 1.00]",
+      "mean tool calls": 1.3
+    },
+    {
+      "method": "LLM (validated)",
+      "runs": 0,
+      "success": "not run (no key, no cache)",
+      "mean tool calls": ""
+    },
+    {
+      "method": "LLM (raw)",
+      "runs": 0,
+      "success": "not run (no key, no cache)",
+      "mean tool calls": ""
+    }
+  ],
+  "error_log": [],
+  "per_mode": {
+    "validated": [],
+    "raw": []
+  }
+}
