@@ -30,8 +30,8 @@ The instructor's generator gives grid size 23, obstacle density 0.24, terrain co
 grass 2, mud 3, ford 8 (36 fords), depot $(8,7)$ and stops S1 $(21,5)$, S2 $(0,1)$, S3
 $(22,17)$, S4 $(15,18)$; S3 is itself a ford. Tunnels are placed by us, seeded from the
 instance hash: $(0,5)\leftrightarrow(9,2)$, $(12,0)\leftrightarrow(13,10)$,
-$(12,4)\leftrightarrow(12,17)$ (Fig.~\ref{fig:map}). The vectorised cost map is 7.3$\times$
-faster than a Python loop at $23\times23$ and $\approx$45$\times$ at $184\times184$.
+$(12,4)\leftrightarrow(12,17)$ (Fig.~\ref{fig:map}). The vectorised cost map is 6$\times$
+faster than a Python loop at $23\times23$ and $\approx$34$\times$ at $184\times184$ (Table in \texttt{part\_a\_benchmark.json}; timings vary by machine).
 PEAS, the environment classification (fully observable, stochastic, sequential, dynamic,
 discrete, competitive multi-agent) and the choice of a utility-based agent are in
 \texttt{docs/part\_a\_analysis.md}; we summarise them in Table~I of that file.
@@ -73,7 +73,7 @@ expands 3436 nodes against 5187 for UCS. IDS is exponential in depth: it solves 
 variants (depth 11--17) but is stopped after 500k expansions on the 61-action tour.
 Table~\ref{tab:heur} shows the key finding of the heuristic study: \emph{the handout's
 Manhattan baselines are inadmissible on our map}, because a tunnel jump costs 1 while covering
-up to 21 Manhattan units. A$^*$ with \texttt{nearest}, \texttt{farthest} or \texttt{mst\_plain}
+up to 13 Manhattan units. A$^*$ with \texttt{nearest}, \texttt{farthest} or \texttt{mst\_plain}
 (our heuristic without tunnels) returns 116, not 111 (Table~\ref{tab:adm} shows the sampled
 overestimates). \textbf{Inadmissible but faster} (Table~\ref{tab:inadm}): weighted A$^*$ with
 $w=3$ expands 95 nodes (36$\times$ fewer) and returns 119 (+7.2\%); greedy returns 132 (+18.9\%).
