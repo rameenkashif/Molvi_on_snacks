@@ -112,8 +112,14 @@ mapping are in \texttt{results/llm\_traces/} and \texttt{docs/part\_d\_llm.md}.
 % ignored constraints) and include two traces.
 
 \section{Integration and Evaluation (Part E)}
-The Streamlit UI (\texttt{streamlit run app.py}) shows the grid, tunnels, flood state, plan,
-agent and rival and exposes every viva parameter. Each configuration is run on the same 30
+The Streamlit UI (\texttt{streamlit run app.py}) is a pixel-art game view of the city:
+16$\times$16-pixel tiles for roads, grass, mud and fords (dark, foaming water while flooded),
+trees and rocks for walls, portals for tunnels, and sprites for the courier, the raccoon rival,
+the depot and the stops (map pins that turn green when delivered and grey when stolen). A second
+tab exposes the Claude dispatcher interactively, showing its answer, its plan on the map, the
+calls blocked by the validation layer and the full ReAct trace. The sidebar exposes every viva
+parameter for both tabs.
+% TODO(group): add Fig. with results/ui_game.png (and results/ui_dispatcher.png in Part D). Each configuration is run on the same 30
 scenarios seeded by $\mathrm{sha256}(\text{``scenario}|\text{6a18af32}|i\text{''})$, which fix
 the rival start and the slip draws (Table~\ref{tab:configs}, Fig.~\ref{fig:configs}).
 Table~\ref{tab:flood} sweeps the flood duration. The \textbf{ablation} (Table~\ref{tab:abl})
